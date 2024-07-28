@@ -1,42 +1,47 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
+import { getData } from "./main";
+import { ClimbingGym } from "./dataModel";
+
 export default function Home() {
+  const data = getData();
   return (
     <main className={styles.main}>
       <div className={styles.description}>
+        <h1>indoor.rocks</h1>
         <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
+          indoor rock climbing gym guidebook
         </p>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          By: <a href="https://zach.lysobey.com/">Zach Lysobey</a>
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <h2>Climbing Gyms in New York City (NYC)</h2>
+
+      {
+        data.climbingGyms.map(( gym ) => (
+          <article key={gym.name} className={styles.gymCard}>
+            <h3>{gym.name}</h3>
+            <p>{gym.description}</p>
+            <table>
+              {
+                Object.keys(gym).map((propName) => (
+                  <tr key={propName}>
+                    <td>{propName}</td>
+                    <td>{JSON.stringify(gym[propName as keyof ClimbingGym])}</td>
+                  </tr>
+                ))
+              }
+              
+            </table>
+          </article>
+        ))
+      }
+      
+      <div>
+        <code className={styles.code}><pre>{JSON.stringify(data.climbingGyms, null, 4)}</pre></code>
       </div>
 
       <div className={styles.grid}>
