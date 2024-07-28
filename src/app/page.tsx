@@ -1,8 +1,16 @@
 import styles from "./page.module.css";
 import { ClimbingGyms } from "./ClimbingGyms";
 import { Suspense } from "react";
+import { getData } from "./getData";
+
+const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));
+
 
 export default function Home() {
+  const dataPromise = delay(1000).then(getData);
+  const nyGymPromise = dataPromise.then(d => d.climbingGyms.filter(g => g.address.state === "NY"))
+  const ctGymPromise = dataPromise.then(d => d.climbingGyms.filter(g => g.address.state === "CT"))
+  ctGymPromise.then(g => console.log('ct', g))
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -16,9 +24,14 @@ export default function Home() {
       </div>
 
       <div className={styles.content}>
-        <h2>Climbing Gyms in New York City (NYC)</h2>
+        <h2>Climbing Gyms in New York (NY)</h2>
         <Suspense fallback={(<p>Loading...</p>)}>
-          <ClimbingGyms />
+          <ClimbingGyms dataPromise={nyGymPromise} />
+        </Suspense>
+
+        <h2>Climbing Gyms in Connecticut (CT)</h2>
+        <Suspense fallback={(<p>Loading...</p>)}>
+          <ClimbingGyms dataPromise={ctGymPromise} />
         </Suspense>
       </div>
 

@@ -1,12 +1,12 @@
-import { getData } from "./getData";
+import { ClimbingGym } from './dataModel'
 import styles from "./page.module.css";
 
-const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));
+type Props = {
+  dataPromise: Promise<ClimbingGym[]>
+};
 
-export const ClimbingGyms = async () => {
-  // TODO: remove fake wait
-  const data = await delay(1000).then(getData);
-  return data.climbingGyms.map(( gym ) => (
+export const ClimbingGyms = async ({ dataPromise }: Props) => {
+  return (await dataPromise).map(gym => (
     <article key={gym.name}>
       <h3>{gym.name}</h3>
       <p>{gym.description}</p>

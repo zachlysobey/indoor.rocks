@@ -35,7 +35,6 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
       amenityMap['free-weights'],
       amenityMap['yoga'],
       amenityMap['sauna'],
-      amenityMap['auto-belays'],
     ]
   },
   brooklynBoulders: {
@@ -92,6 +91,25 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
       amenityMap['auto-belays'],
       amenityMap['machines'],
       amenityMap['free-weights'],
+    ]
+  },
+  rockClimbFairfield: {
+    name: 'Rock Climb Fairfield',
+    address: {
+      state: 'CT',
+      streetNumber: '85',
+      streetName: 'Mill Plain Rd',
+      city: 'Fairfield',
+      postalCode: '06824',
+      country: 'USA'
+    },
+    amenities: [
+      { name: 'bouldering', description: 'Indoor bouldering walls for all skill levels' },
+      { name: 'top-rope', description: 'Top-rope climbing routes with auto-belays' },
+      { name: 'auto-belays', description: 'Auto-belay systems for solo climbers' },
+      { name: 'machines', description: 'A variety of exercise machines' },
+      { name: 'free-weights', description: 'Various free weights available' },
+      { name: 'yoga', description: 'Yoga classes and sessions' }
     ]
   }
 };
