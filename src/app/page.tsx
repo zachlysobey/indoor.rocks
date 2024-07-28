@@ -3,46 +3,24 @@ import styles from "./page.module.css";
 
 import { getData } from "./main";
 import { ClimbingGym } from "./dataModel";
+import { Suspense } from "react";
+import Loading from "@/components/Loading";
+import ClimbingGyms from "@/components/ClimbingGym";
 
-export default function Home() {
-  const data = getData();
+export default async function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
         <h1>indoor.rocks</h1>
-        <p>
-          indoor rock climbing gym guidebook
-        </p>
+        <p>indoor rock climbing gym guidebook</p>
         <div>
           By: <a href="https://zach.lysobey.com/">Zach Lysobey</a>
         </div>
       </div>
-
       <h2>Climbing Gyms in New York City (NYC)</h2>
-
-      {
-        data.climbingGyms.map(( gym ) => (
-          <article key={gym.name} className={styles.gymCard}>
-            <h3>{gym.name}</h3>
-            <p>{gym.description}</p>
-            <table>
-              {
-                Object.keys(gym).map((propName) => (
-                  <tr key={propName}>
-                    <td>{propName}</td>
-                    <td>{JSON.stringify(gym[propName as keyof ClimbingGym])}</td>
-                  </tr>
-                ))
-              }
-              
-            </table>
-          </article>
-        ))
-      }
-      
-      <div>
-        <code className={styles.code}><pre>{JSON.stringify(data.climbingGyms, null, 4)}</pre></code>
-      </div>
+      <Suspense fallback={<Loading />}>
+        <ClimbingGyms />
+      </Suspense>
 
       <div className={styles.grid}>
         <a
