@@ -1,4 +1,4 @@
-import { ClimbingGym } from "../../dataModel";
+import type { ClimbingGym } from "@/app/dataModel";
 import { amenityMap } from "../amenityMap";
 
 export const rockClimbFairfield: ClimbingGym = {

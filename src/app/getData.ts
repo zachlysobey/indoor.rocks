@@ -1,4 +1,4 @@
-import { ClimbingGym, DataModel } from "./dataModel";
+import type { ClimbingGym, DataModel } from "./dataModel";
 import { vitalBrooklyn } from './data/nyc-gyms/vitalBrooklyn';
 import { brooklynBoulders } from "./data/nyc-gyms/brooklynBoulders";
 import { theCliffsLic } from "./data/nyc-gyms/theCliffLic";

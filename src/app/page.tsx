@@ -1,10 +1,9 @@
-import styles from "./page.module.css";
-import { ClimbingGyms } from "./ClimbingGyms";
 import { Suspense } from "react";
+import { ClimbingGyms } from "./ClimbingGyms";
 import { getData } from "./getData";
+import styles from "./page.module.css";
 
 const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));
-
 
 export default function Home() {
   const dataPromise = delay(1000).then(getData);
