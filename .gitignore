@@ -36,4 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 # terraform
+terraform/.terraform/
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
 terraform/terraform-service-account-key.json
