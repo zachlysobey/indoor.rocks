@@ -12,3 +12,4 @@
 
 * A little refactoring
 * Set up new GCP project: [`indoor-rocks-sandbox-01`](https://console.cloud.google.com/iam-admin/iam?authuser=1&project=indoor-rocks-sandbox-01)
+* Set up GCP service account for Terraform
