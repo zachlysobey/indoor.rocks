@@ -38,3 +38,9 @@ From the project root, source the newly created service-account key
 ```bash
 export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/terraform/terraform-service-account-key.json"
 ```
+
+## Create Remote Terraform state
+
+```bash
+gsutil mb -l us-east1 gs://indoor-rocks-terraform-state
+```
