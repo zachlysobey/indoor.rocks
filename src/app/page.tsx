@@ -1,15 +1,9 @@
 import { Suspense } from "react";
 import { ClimbingGyms } from "./ClimbingGyms";
 import { getData } from "./getData";
-import { getUserData } from '@/actions/todoActions';
 import styles from "./page.module.css";
 
 const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));
-
-const DataRenderer = async ({ dataPromise }: { dataPromise: Promise<object>}) => {
-  const data = await dataPromise;
-  return <>{JSON.stringify(data, null, 2)}</>
-}
 
 export default function Home() {
   const dataPromise = delay(1000).then(getData);
@@ -27,10 +21,6 @@ export default function Home() {
         <div>
           By: <a href="https://zach.lysobey.com/">Zach Lysobey</a>
         </div>
-      </div>
-
-      <div>
-        {<DataRenderer dataPromise={getUserData()} />}
       </div>
 
       <div className={styles.content}>
