@@ -1,5 +1,13 @@
 # indoor.rocks terraform
 
+> ## ⚠️ Parked — do not run `terraform apply`
+>
+> This directory is parked. The remote state tracks four live resources that these `.tf` files don't
+> declare, so an `apply` would destroy all four. See the [root README](../README.md) on this branch
+> for the full picture before running anything. `terraform plan` is safe; `apply` is not.
+>
+> The setup notes below are unchanged and still accurate for standing the service account back up.
+
 ## Setting up a GCP Service Account for Terraform
 
 ```bash
