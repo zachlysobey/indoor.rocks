@@ -4,10 +4,6 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Infrastructure is setup (or will be setup*) in Google Cloud.
-
-Currently under a private GCP project: [`indoor-rocks-sandbox-01`](https://console.cloud.google.com/iam-admin/iam?authuser=1&project=indoor-rocks-sandbox-01)
-
 ## Getting Started
 
 Install NodeJS:
