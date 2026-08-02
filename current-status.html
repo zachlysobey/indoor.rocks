@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>indoor.rocks — Current Status</title>
+<style>
+  :root {
+    --bg: #fbfaf9; --fg: #1c1917; --muted: #78716c; --line: #e7e5e4;
+    --card: #ffffff; --code-bg: #f5f5f4;
+    --red: #b91c1c; --amber: #b45309; --green: #15803d; --blue: #1d4ed8;
+    --red-bg: #fef2f2; --amber-bg: #fffbeb; --green-bg: #f0fdf4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1917; --fg: #f5f5f4; --muted: #a8a29e; --line: #3f3b39;
+      --card: #262322; --code-bg: #302c2b;
+      --red: #fca5a5; --amber: #fcd34d; --green: #86efac; --blue: #93c5fd;
+      --red-bg: #2e1b1b; --amber-bg: #2d2411; --green-bg: #14261a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 2.5rem 1.25rem 5rem;
+    background: var(--bg); color: var(--fg);
+    font: 16px/1.55 ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 46rem; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 .15rem; letter-spacing: -.02em; }
+  h2 { font-size: .78rem; text-transform: uppercase; letter-spacing: .09em;
+       color: var(--muted); margin: 2.4rem 0 .75rem; font-weight: 650; }
+  .sub { color: var(--muted); font-size: .9rem; margin: 0 0 1.5rem; }
+  code, kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .87em;
+        background: var(--code-bg); padding: .1em .35em; border-radius: 4px; }
+  pre { background: var(--code-bg); padding: .8rem 1rem; border-radius: 8px;
+        overflow-x: auto; font-size: .8rem; line-height: 1.5; margin: .75rem 0; }
+  pre code { background: none; padding: 0; }
+  a { color: var(--blue); }
+
+  /* ── the headline ── */
+  .verdict { border: 1px solid var(--line); border-left: 4px solid var(--amber);
+             background: var(--card); border-radius: 8px; padding: 1rem 1.15rem; }
+  .verdict p { margin: 0 0 .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+  .verdict strong { font-weight: 650; }
+
+  .blocker { border: 1px solid var(--line); border-left: 4px solid var(--red);
+             background: var(--red-bg); border-radius: 8px; padding: .9rem 1.15rem;
+             margin-top: .85rem; font-size: .93rem; }
+  .blocker b { color: var(--red); }
+
+  .cleared { border: 1px solid var(--line); border-left: 4px solid var(--green);
+             background: var(--green-bg); border-radius: 8px; padding: .9rem 1.15rem;
+             margin-top: .85rem; font-size: .93rem; }
+  .cleared b { color: var(--green); }
+  .cleared s { color: var(--muted); }
+
+  /* ── status rows ── */
+  .rows { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--card); }
+  .row { display: grid; grid-template-columns: 1.9rem 8.5rem 1fr; gap: .7rem;
+         align-items: baseline; padding: .7rem .95rem; border-top: 1px solid var(--line);
+         font-size: .93rem; }
+  .row:first-child { border-top: 0; }
+  .row .dot { font-size: .95rem; line-height: 1.5; text-align: center; }
+  .row .what { font-weight: 600; }
+  .row .note { color: var(--muted); }
+  .row .note em { color: var(--fg); font-style: normal; }
+  @media (max-width: 34rem) {
+    .row { grid-template-columns: 1.5rem 1fr; }
+    .row .note { grid-column: 2; }
+  }
+  .ok { color: var(--green); } .warn { color: var(--amber); } .bad { color: var(--red); }
+
+  /* ── expandables ── */
+  details { border: 1px solid var(--line); border-radius: 8px; background: var(--card);
+            margin-bottom: .5rem; }
+  details[open] { padding-bottom: .3rem; }
+  summary { cursor: pointer; padding: .65rem .95rem; font-size: .92rem; font-weight: 550;
+            list-style: none; display: flex; align-items: center; gap: .5rem; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "▸"; color: var(--muted); font-size: .8rem; }
+  details[open] > summary::before { content: "▾"; }
+  summary:hover { color: var(--blue); }
+  .body { padding: 0 .95rem .4rem; font-size: .9rem; }
+  .body > :first-child { margin-top: 0; }
+  .body ul { padding-left: 1.15rem; margin: .5rem 0; }
+  .body li { margin: .3rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: .85rem; margin: .6rem 0; }
+  th, td { text-align: left; padding: .38rem .5rem; border-bottom: 1px solid var(--line);
+           vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: .78rem;
+       text-transform: uppercase; letter-spacing: .05em; }
+
+  /* ── diagram ── */
+  .diagram { display: flex; flex-direction: column; gap: .4rem; margin: .8rem 0; }
+  .lane { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+  .box { border: 1px solid var(--line); border-radius: 6px; padding: .3rem .6rem;
+         font-size: .8rem; font-family: ui-monospace, Menlo, monospace; background: var(--code-bg); }
+  .box.live { border-color: var(--green); background: var(--green-bg); }
+  .box.broke { border-color: var(--red); background: var(--red-bg); }
+  .box.none { border-style: dashed; color: var(--muted); }
+  .arrow { color: var(--muted); font-size: .8rem; }
+  .legend { font-size: .78rem; color: var(--muted); margin-top: .6rem; }
+
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line);
+           font-size: .8rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>indoor.rocks — where the project actually is</h1>
+  <p class="sub">Snapshot re-stamped <strong>2026-08-02</strong>, at the end of plan 001 ·
+  <code>main</code> @ <code>5beaf8b</code><br>
+  First taken 2026-07-25, when the last commit was <code>a149e21</code> — <strong>2024-08-15</strong>, ~23 months idle</p>
+
+  <div class="verdict">
+    <p><strong>This is scaffolding with 5 hand-typed climbing gyms bolted on — not yet a website.</strong>
+    That hasn't changed. What changed is that it's now honest scaffolding: the build works, the
+    <code>create-next-app</code> residue is gone, and the two half-finished experiments
+    (Postgres/Drizzle, Terraform) are parked on branches with issues explaining them.</p>
+    <p><strong>The good news, unchanged:</strong> your gym data is plain TypeScript, so the site needs
+    <em>no</em> database and <em>no</em> server to go live. Nothing real blocks a deploy.</p>
+  </div>
+
+  <div class="cleared">
+    <p style="margin:0 0 .5rem"><b>The hard blocker is cleared.</b> <s>npm run build fails today.</s>
+    The database experiment was parked and the build passes —
+    <a href="https://github.com/zachlysobey/indoor.rocks/pull/3">PR #3</a>, merged. Verified on a
+    clean checkout: 5/5 static pages, lint clean.</p>
+    <p style="margin:0">The Drizzle/Postgres work is preserved on the
+    <a href="https://github.com/zachlysobey/indoor.rocks/tree/park/database"><code>park/database</code></a>
+    branch — where it got to, and what would need fixing to revive it, is written up in
+    <a href="https://github.com/zachlysobey/indoor.rocks/issues/2">issue #2</a> and that branch's
+    README. Nothing was deleted outright. <strong>002 is unblocked.</strong></p>
+  </div>
+
+  <h2>Status at a glance</h2>
+  <div class="rows">
+    <div class="row">
+      <span class="dot ok">●</span><span class="what">Domain</span>
+      <span class="note">Registered &amp; live at IONOS. Serving your generic <em>“Under Construction”</em> lysobey.com placeholder. DNS is yours to point.</span>
+    </div>
+    <div class="row">
+      <span class="dot ok">●</span><span class="what">Build</span>
+      <span class="note"><em>Passes</em> — 5/5 static pages, lint clean. Was failing on page-data collection until PR #3.</span>
+    </div>
+    <div class="row">
+      <span class="dot warn">●</span><span class="what">The app</span>
+      <span class="note">Next.js <em>14.2.35</em> App Router, patched but two majors behind. Scaffold residue — <em>“Create Next App”</em> title, Vercel starter cards — stripped in PR #5.</span>
+    </div>
+    <div class="row">
+      <span class="dot warn">●</span><span class="what">Content</span>
+      <span class="note"><em>5 gyms</em> (4 NY, 1 CT) as hardcoded TS. Decent type model. Rendered as raw JSON dumps in tables.</span>
+    </div>
+    <div class="row">
+      <span class="dot warn">●</span><span class="what">Database</span>
+      <span class="note"><em>Parked</em> on <code>park/database</code> (issue #2), off <code>main</code> as of PR #3. Was Drizzle + <code>pg</code> against a local Docker Postgres; only table was <code>users(full_name, phone)</code>, unrelated to gyms. Still no hosted DB — and the site doesn't need one.</span>
+    </div>
+    <div class="row">
+      <span class="dot bad">●</span><span class="what">Hosting</span>
+      <span class="note"><em>None provisioned.</em> No CI, no Dockerfile, no deploy config. <code>terraform/</code> is no longer on <code>main</code> — it declared a backend, a provider and <em>zero resources</em>. <strong>This is 002's whole job.</strong></span>
+    </div>
+    <div class="row">
+      <span class="dot warn">●</span><span class="what">GCP</span>
+      <span class="note">Project <code>indoor-rocks-sandbox-01</code> exists; TF state bucket exists. State tracks 4 budget/alerting resources still running. Their config lives on the unmerged <code>terraform-progress</code> branch — <em>never merged</em>, not never written. Parked in PR #7 / issue #6; that branch is now draft PR #8.</span>
+    </div>
+  </div>
+
+  <h2>Dig deeper</h2>
+
+  <details>
+    <summary>The one blocker, precisely — and how it was cleared</summary>
+    <div class="body">
+      <p><code>src/app/page.tsx</code> rendered <code>&lt;DataRenderer dataPromise={getUserData()} /&gt;</code>.
+      That server action imported <code>src/db/drizzle.ts</code>, which throws at <em>module load</em> if
+      <code>DATABASE_PW</code> is unset. Next.js tries to statically prerender <code>/</code> at build
+      time, so the throw killed the build:</p>
+      <pre><code>✓ Compiled successfully
+   Collecting page data ...
+Error: make sure to export DATABASE_PW!
+&gt; Build error occurred
+Error: Failed to collect page data for /</code></pre>
+      <p>Nothing on the site used that data — it rendered an empty array of users. It was a
+      “can I talk to Postgres from a server action” spike.</p>
+      <p><strong>Cleared in <a href="https://github.com/zachlysobey/indoor.rocks/pull/3">PR #3</a>:</strong>
+      removed <code>src/db/</code>, <code>src/actions/todoActions.ts</code>, <code>migrations/</code>,
+      <code>drizzle.config.ts</code>, the <code>&lt;DataRenderer&gt;</code> usage, and the
+      <code>drizzle-*</code>/<code>pg</code>/<code>dotenv</code> dependencies. All of it is preserved on
+      the <a href="https://github.com/zachlysobey/indoor.rocks/tree/park/database"><code>park/database</code></a>
+      branch, documented in <a href="https://github.com/zachlysobey/indoor.rocks/issues/2">issue #2</a>.
+      Build now emits 5/5 static pages; lint is clean. Dropping <code>drizzle-kit</code> also took its
+      <code>esbuild</code> advisories off <code>main</code>.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What the site actually looks like right now</summary>
+    <div class="body">
+      <p>One page, top to bottom:</p>
+      <ul>
+        <li><strong>Header</strong> — <code>h1: indoor.rocks</code>, tagline “indoor rock climbing gym guidebook”, byline linking to zach.lysobey.com. This part is real.</li>
+        <li><s><strong>An empty JSON dump</strong> — the <code>users</code> query result, i.e. <code>[]</code>. Debug leftover.</s> <em>Gone in PR #3.</em></li>
+        <li><strong>“Climbing Gyms in New York (NY)”</strong> — 4 gyms, each with name, description, and a table whose Address cell is <code>JSON.stringify(address)</code> in a <code>&lt;pre&gt;</code>.</li>
+        <li><strong>“Climbing Gyms in Connecticut (CT)”</strong> — 1 gym, same treatment.</li>
+        <li><s><strong>Four Vercel starter cards</strong> — Docs / Learn / Templates / Deploy. Untouched from the scaffold.</s> <em>Gone in PR #5.</em></li>
+      </ul>
+      <p>There's also an artificial <code>delay(1000)</code> before data loads, added while
+      demoing React Suspense — <strong>kept on purpose.</strong> Because <code>/</code> is statically
+      prerendered, that second is paid once at build time and baked out; the shipped HTML carries the
+      resolved gym lists, so no visitor waits on it. It still does its job in <code>next dev</code>.</p>
+      <p><s>Browser tab still reads <em>“Create Next App”</em>.</s> <em>Fixed in PR #5</em> — now reads
+      “indoor.rocks”. A stray <code>console.log('ct', …)</code> that dumped the CT gyms into
+      <code>next build</code> output went in the same PR.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The gym data &amp; type model (the genuinely reusable part)</summary>
+    <div class="body">
+      <p><code>src/app/dataModel.ts</code> is a sensible little schema: <code>TopLevelEntity → Place → Gym → ClimbingGym</code>,
+      with <code>Address</code>, <code>GymAmenity</code>, and a <code>Company</code> for gym chains.</p>
+      <table>
+        <thead><tr><th>Gym</th><th>State</th><th>File</th></tr></thead>
+        <tbody>
+          <tr><td>Vital Brooklyn</td><td>NY</td><td><code>src/app/data/nyc-gyms/vitalBrooklyn.ts</code></td></tr>
+          <tr><td>Brooklyn Boulders</td><td>NY</td><td><code>src/app/data/nyc-gyms/brooklynBoulders.ts</code></td></tr>
+          <tr><td>The Cliffs LIC</td><td>NY</td><td><code>src/app/data/nyc-gyms/theCliffLic.ts</code></td></tr>
+          <tr><td>MetroRock Brooklyn</td><td>NY</td><td><code>src/app/data/nyc-gyms/metroRockBrooklyn.ts</code></td></tr>
+          <tr><td>Rock Climb Fairfield</td><td>CT</td><td><code>src/app/data/ct-gyms/ct-gyms.ts</code></td></tr>
+        </tbody>
+      </table>
+      <p>8 amenities defined in <code>amenityMap.ts</code>: free-weights, machines, bouldering,
+      auto-belays, top-rope, sauna, yoga, arial-silks <span class="note">(sic — typo for “aerial”)</span>.</p>
+      <p>Declared but never populated: <code>latitude</code>/<code>longitude</code>, <code>parent</code> company,
+      and <code>description</code> on most gyms. No hours, no pricing, no URLs, no photos.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Infrastructure: what's real vs. what's a stub</summary>
+    <div class="body">
+      <div class="diagram">
+        <div class="lane"><span class="box live">indoor.rocks</span><span class="arrow">→ DNS (IONOS) →</span><span class="box live">74.208.236.153</span><span class="arrow">→</span><span class="box">static “Under Construction”</span></div>
+        <div class="lane"><span class="box live">Next.js app (builds)</span><span class="arrow">→</span><span class="box none">no host</span><span class="arrow">→</span><span class="box none">no CI</span><span class="arrow">→</span><span class="box none">no deploy</span></div>
+        <div class="lane"><span class="box none">Drizzle / pg — parked on <code>park/database</code></span></div>
+        <div class="lane"><span class="box live">GCS: indoor-rocks-terraform-state</span><span class="arrow">→</span><span class="box warn">state: 4 orphaned resources</span></div>
+      </div>
+      <p class="legend">Green = exists and works · Red = exists but broken · Dashed = doesn't exist</p>
+      <p><strong>The Terraform on <code>main</code> was empty</strong>, and is now off <code>main</code> entirely
+      (PR #7). <code>terraform/main.tf</code> contained a GCS backend block and a <code>google</code> provider
+      block — and not a single <code>resource</code>. No compute, no Cloud Run, no database, no DNS, no load
+      balancer was ever declared.</p>
+      <p><strong>⚠️ But the remote state isn't empty</strong> (serial 6, Terraform 1.9.3). It tracks:</p>
+      <ul>
+        <li><code>google_monitoring_notification_channel.email</code></li>
+        <li><code>google_pubsub_topic.budget_notifications</code></li>
+        <li><code>google_project_service.monitoring</code></li>
+        <li><code>google_project_service.serviceusage</code></li>
+      </ul>
+      <p>Those were a cost-guardrail setup. Running <code>terraform apply</code> against that state
+      would plan to <strong>destroy all four</strong> — including disabling two project services.
+      Reconcile before you ever apply. <code>terraform plan</code> is safe.</p>
+      <p><strong>Correction to an earlier claim here:</strong> the <code>.tf</code> files that created
+      them were <em>not</em> lost. They were never merged to <code>main</code>, but they're sitting on the
+      unmerged <a href="https://github.com/zachlysobey/indoor.rocks/tree/terraform-progress"><code>terraform-progress</code></a>
+      branch (<code>22a92cc</code>, “trying to get billing usage alerts”), and all four state resources
+      map exactly to resource blocks there. That branch declares <em>nine</em> resources — the five that
+      never got created are the three IAM bindings, the billing budget, and the logging sink, which is
+      what a half-failed apply looks like when the service account can't touch billing. So this is
+      recoverable drift, not archaeology.</p>
+      <p>State verified directly (serial 6, Terraform 1.9.3) rather than inferred. All four are in
+      <code>indoor-rocks-sandbox-01</code> and still running — nothing has been destroyed.</p>
+      <p><code>terraform/</code> came off <code>main</code> in <a href="https://github.com/zachlysobey/indoor.rocks/pull/7">PR #7</a>
+      and lives on <a href="https://github.com/zachlysobey/indoor.rocks/tree/park/terraform"><code>park/terraform</code></a>;
+      the full write-up is in <a href="https://github.com/zachlysobey/indoor.rocks/issues/6">issue #6</a>.</p>
+      <p>Also note: your active gcloud project is <code>z-megarepo</code>, not <code>indoor-rocks-sandbox-01</code> — confirmed.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Toolchain &amp; housekeeping</summary>
+    <div class="body">
+      <table>
+        <thead><tr><th>Thing</th><th>State</th></tr></thead>
+        <tbody>
+          <tr><td>Next.js</td><td><strong>14.2.35</strong> (was 14.2.5, PR #9) — the one <em>critical</em> is cleared. Still two majors behind (15, 16); tracked in issue #13</td></tr>
+          <tr><td>React</td><td>18.3.1 — React 19 is current (issue #13)</td></tr>
+          <tr><td>Node</td><td><code>.nvmrc</code> is <strong><code>lts/jod</code></strong> (22), was <code>lts/iron</code> (20, EOL) in PR #11. Machine runs v24.11.1, so it still disagrees — Node 24 tracked in issue #12</td></tr>
+          <tr><td><code>npm audit</code></td><td><strong>9 high, 0 critical.</strong> All downstream of <code>next</code> / <code>eslint-config-next</code> (postcss et al) and only clearable by a major bump — that's issue #13</td></tr>
+          <tr><td>Install / compile</td><td><code>npm ci</code> clean; TypeScript compiles clean; <code>next lint</code> clean</td></tr>
+          <tr><td>Tests</td><td>None. No test runner installed.</td></tr>
+          <tr><td>CI</td><td>None. No <code>.github/</code> directory.</td></tr>
+          <tr><td>Styling</td><td>CSS Modules from the scaffold. No design system.</td></tr>
+          <tr><td>Git</td><td>Clean tree on <code>main</code>. Public repo. 26 commits.</td></tr>
+          <tr><td><code>DEVLOG.md</code></td><td>Was stopping at “July 29th” with no year and never mentioning the DB work. Rewritten in PR #16 — <em>open at the time of this snapshot</em></td></tr>
+        </tbody>
+      </table>
+      <p><code>npm ci</code> also warns that <code>caniuse-lite</code> is outdated — cosmetic.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Original intent, per your own notes</summary>
+    <div class="body">
+      <p>From <code>README.md</code>: <em>“this is very much a work-in-progress, and isn't yet near the
+      point where it's giving any value”</em> — still accurate, and still there. It <em>used</em> to also
+      claim infrastructure was “setup (or will be setup*)” in Google Cloud under
+      <code>indoor-rocks-sandbox-01</code> — an asterisk with no footnote, and not true of anything
+      deployable. That claim came out in PR #18; the contributing invitation stayed.</p>
+      <p><code>DEVLOG.md</code> records three days of work in late July 2024: breaking ground,
+      a Suspense pairing session with a collaborator, and the GCP/Terraform setup. The August 2024
+      commits (Drizzle, dotenv, pg, the DB scaffold PR) were never logged.</p>
+      <p>So the historical trajectory was: <strong>Next.js app → GCP infra → database</strong>, and it
+      stalled at the database step, before anything was ever deployed.</p>
+    </div>
+  </details>
+
+  <footer>
+    Plan 001 (<code>plans/001-get-things-cleaned-up.md</code>) is all but done — the DEVLOG rewrite
+    (PR #16) and one “toolchain additions” issue are what's left. Next is
+    <code>plans/002-get-something-deployed.md</code>: get something real on the domain.<br><br>
+    This file is a <strong>dated snapshot</strong>, re-stamped at the end of each plan rather than
+    edited continuously — so it stays a record, not a second README. Day-to-day story lives in
+    <code>DEVLOG.md</code>; open work lives in the issues.
+  </footer>
+
+</main>
+</body>
+</html>
