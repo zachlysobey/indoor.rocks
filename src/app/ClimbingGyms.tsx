@@ -1,7 +1,5 @@
-import { Address, ClimbingGym } from './dataModel'
-
-const formatAddress = (a: Address): string =>
-  `${a.streetNumber} ${a.streetName}, ${a.city}, ${a.state} ${a.postalCode}`;
+import { ClimbingGym } from './dataModel'
+import styles from "./page.module.css";
 
 type Props = {
   dataPromise: Promise<ClimbingGym[]>
@@ -16,7 +14,7 @@ export const ClimbingGyms = async ({ dataPromise }: Props) => {
         <tbody>
           <tr>
             <td>Address:</td>
-            <td>{formatAddress(gym.address)}</td>
+            <td><code className={styles.code}><pre>{JSON.stringify(gym.address, null, 2)}</pre></code></td>
           </tr>
           <tr>
             <td>Amenities:</td>
