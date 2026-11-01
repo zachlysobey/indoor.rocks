@@ -33,7 +33,7 @@ gets confirmed before it runs.
 | Thing | Have | Need for v1 |
 |---|---|---|
 | Domain | **registered at GoDaddy** (2024-07-27, **expires 2027-07-27**). DNS hosted at IONOS as an "external domain" on an IONOS hosting contract; nameservers `ns1045.ui-dns.{com,de,org,biz}`. DNSSEC off. Apex + `www` → IONOS placeholder (a "Lysobey.com / Under Construction" page) | nameservers → Cloudflare, changed **at GoDaddy**; registration stays at GoDaddy |
-| Mail | **none.** No `@indoor.rocks` mailbox has ever existed (IONOS offers to "Create an email address"). The MX/SPF/DKIM/DMARC records are IONOS defaults | nothing to protect; replace the defaults with explicit "this domain sends no mail" records (step 4) |
+| Mail | **none.** No `@indoor.rocks` mailbox has ever existed (IONOS offers to "Create an email address"). The MX/SPF/DKIM/DMARC records are IONOS defaults | nothing to protect; the IONOS defaults were not carried over. Cloudflare has explicit "this domain sends no mail" records instead (step 2) |
 | App | Next.js App Router, one static page, builds clean | `output: 'export'` → plain files in `out/` |
 | Content | 5 gyms, hardcoded TS | same 5 |
 | Hosting | nothing | bucket `indoor.rocks` in `indoor-rocks-sandbox-01` (billing enabled; **no budget**: #6 shows the 2024 attempt created the plumbing, never the budget itself) |
@@ -75,9 +75,13 @@ host; the zone below), **Cloudflare** (new DNS host).
 
 1. *(Zach)* Create a Cloudflare account (Free plan) and add the zone `indoor.rocks`. Cloudflare
    scans and imports the existing records.
-2. Check the import against the snapshot below. Only the apex + `www` A/AAAA records matter (the
-   placeholder). The mail defaults can come along as-is; step 4 replaces them. Don't bother with
-   the IONOS-internal ones (`_dep_ws_mutex`, `_domainconnect`).
+2. Records: rather than importing, create exactly what's needed (done 2026-11-01 with the `cf` CLI,
+   zone `9f0d22c0ad694eebaff688f771033aff`, nameservers `jasper`/`sierra.ns.cloudflare.com`):
+   - The placeholder, unchanged: A + AAAA for `@` and `www` → the IONOS addresses, **DNS-only**.
+   - No-mail records, moved up from step 4 (no point copying IONOS mail defaults just to delete
+     them): `MX @ 0 .` (null MX), `TXT @ "v=spf1 -all"`, `TXT _dmarc "v=DMARC1; p=reject;"`.
+   - The IONOS mail defaults and IONOS-internal records (`_dep_ws_mutex`, `_domainconnect`) are
+     not carried over.
 3. *(Zach)* **At GoDaddy:** set the domain's nameservers to Cloudflare's two. (DNSSEC is already
    off at the registry, so there's nothing to disable first.)
 4. Verify: `dig NS indoor.rocks @1.1.1.1` shows Cloudflare; the placeholder still loads.
@@ -133,10 +137,7 @@ In Cloudflare:
 4. Cache rule on `indoor.rocks`: eligible for cache, **Edge TTL: ignore cache-control header,
    use e.g. 1 day**, Browser TTL: respect origin. Without the override, Cloudflare honors the
    HTML's `max-age=0` and every page view still goes to GCS. Deploys purge (step 5).
-5. No-mail records: delete the IONOS mail defaults (MX, SPF, the three DKIM CNAMEs, `_dmarc`,
-   `autodiscover`) and add `MX @ 0 .` (null MX), `TXT @ "v=spf1 -all"`, and
-   `TXT _dmarc "v=DMARC1; p=reject;"`, so nobody can send mail as `@indoor.rocks`.
-6. Verify: `https://indoor.rocks` serves our page with a valid cert; `http://` → `https://`;
+5. Verify: `https://indoor.rocks` serves our page with a valid cert; `http://` → `https://`;
    `www` → apex; a bogus path gives our 404.
 
 **At this point the goal is met except for automation.**
