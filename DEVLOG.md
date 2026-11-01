@@ -1,21 +1,12 @@
 # Development Log
 
-## July 27th, 2024
+## July 2024
 
-* Break ground, init new Next.js app
-
-## July 28th, 2024
-
-* Pairing with SHABI, Moshood Olawale <shabimoshood07@gmail.com>, adding React Suspense
-
-## July 29th, 2024
-
+* Broke ground: initialized a new Next.js app
+* Paired with SHABI, Moshood Olawale <shabimoshood07@gmail.com>, adding React Suspense
 * A little refactoring
 * Set up new GCP project: [`indoor-rocks-sandbox-01`](https://console.cloud.google.com/iam-admin/iam?authuser=1&project=indoor-rocks-sandbox-01)
 * Set up GCP service account for Terraform
-
-## July 31st, 2024
-
 * Moved Terraform state to a remote GCS backend, `gs://indoor-rocks-terraform-state`
 
 ## August 6th, 2024

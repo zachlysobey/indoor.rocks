@@ -29,8 +29,8 @@ already had PRs #1–#2 before this plan started, and issues share the same coun
 | 3 — Park the Terraform debris | PR [#7](https://github.com/zachlysobey/indoor.rocks/pull/7), issue [#6](https://github.com/zachlysobey/indoor.rocks/issues/6), draft PR [#8](https://github.com/zachlysobey/indoor.rocks/pull/8) | merged (#8 stays draft) |
 | 4 — Security patches + Node | PRs [#9](https://github.com/zachlysobey/indoor.rocks/pull/9), [#10](https://github.com/zachlysobey/indoor.rocks/pull/10) → re-landed as [#17](https://github.com/zachlysobey/indoor.rocks/pull/17), [#11](https://github.com/zachlysobey/indoor.rocks/pull/11); issues [#12](https://github.com/zachlysobey/indoor.rocks/issues/12)–[#14](https://github.com/zachlysobey/indoor.rocks/issues/14) | merged |
 | 5 — README truth-fix | PR [#18](https://github.com/zachlysobey/indoor.rocks/pull/18) | merged |
-| 6 — Publish `current-status.html` | PR [#19](https://github.com/zachlysobey/indoor.rocks/pull/19) (`docs/current-status`) | open |
-| 7 — DEVLOG + commit `plans/` | PR [#16](https://github.com/zachlysobey/indoor.rocks/pull/16) (`docs/devlog`), rebased onto step 6 | open |
+| 6 — Publish `current-status.html` | PR [#19](https://github.com/zachlysobey/indoor.rocks/pull/19) (`docs/current-status`) | merged |
+| 7 — DEVLOG + commit `plans/` | PR [#16](https://github.com/zachlysobey/indoor.rocks/pull/16) (`docs/devlog`) | open |
 | Housekeeping — "Toolchain additions" issue | — | **not filed** |
 
 ---
@@ -152,8 +152,13 @@ Added in the rework:
   quietly swapping the link.
 - Date range extended to August 2nd; `npm audit` figures replaced with verified current ones.
 
-Still open — **Zach's call**: the **July 29th, 2024** entry describes work whose commits are all
-dated July 30th. Left as written, year added only.
+The July 2024 entries were collapsed into a single **July 2024** heading. The day-level dates
+didn't match the commits (the "July 29th" work is all dated the 30th), and two years on, the
+month is all that matters.
+
+After #19 squash-merged, #16 was rebased onto `main` and retargeted. Without that, it would still
+have carried #19's pre-squash commit, undoing the path fix made to `current-status.html` before
+it merged.
 
 ## Housekeeping (no PR)
 

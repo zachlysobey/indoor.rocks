@@ -15,7 +15,7 @@ to pass before any of this is possible.
 
 What we have vs. what we need. Revisit once 001 is done.
 
-| | Have | Need for v1 |
+| Thing | Have | Need for v1 |
 |---|---|---|
 | Domain | registered, IONOS DNS, serving a placeholder | DNS pointed at the new host |
 | App | Next.js App Router, one page, builds clean (after 001) | one page worth reading |
