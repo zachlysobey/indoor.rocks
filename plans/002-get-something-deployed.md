@@ -32,8 +32,8 @@ gets confirmed before it runs.
 
 | Thing | Have | Need for v1 |
 |---|---|---|
-| Domain | registered at IONOS, IONOS nameservers, apex + `www` → IONOS placeholder (`74.208.236.153`, a "Lysobey.com / Under Construction" page) | nameservers → Cloudflare; registration stays at IONOS |
-| Mail | **IONOS mail is live:** MX `mx00`/`mx01.ionos.com`, SPF TXT | must survive the nameserver move untouched |
+| Domain | **registered at GoDaddy** (2024-07-27, **expires 2027-07-27**). DNS hosted at IONOS as an "external domain" on an IONOS hosting contract; nameservers `ns1045.ui-dns.{com,de,org,biz}`. DNSSEC off. Apex + `www` → IONOS placeholder (a "Lysobey.com / Under Construction" page) | nameservers → Cloudflare, changed **at GoDaddy**; registration stays at GoDaddy |
+| Mail | **none.** No `@indoor.rocks` mailbox has ever existed (IONOS offers to "Create an email address"). The MX/SPF/DKIM/DMARC records are IONOS defaults | nothing to protect; replace the defaults with explicit "this domain sends no mail" records (step 4) |
 | App | Next.js App Router, one static page, builds clean | `output: 'export'` → plain files in `out/` |
 | Content | 5 gyms, hardcoded TS | same 5 |
 | Hosting | nothing | bucket `indoor.rocks` in `indoor-rocks-sandbox-01` (already has billing + budget alerts) |
@@ -66,18 +66,42 @@ issue, filed in step 6.
 
 ### Step 2 — Move DNS to Cloudflare (no PR, no site change)
 
-The risky part, done alone so a problem can only be a DNS problem. The site keeps pointing at
-the IONOS placeholder throughout.
+Done alone so a problem can only be a DNS problem. The site keeps pointing at the IONOS
+placeholder throughout. With no mail on the domain, the stakes are low: the worst case is the
+placeholder going briefly unreachable.
+
+Three parties: **GoDaddy** (registrar; owns the nameserver setting), **IONOS** (current DNS
+host; the zone below), **Cloudflare** (new DNS host).
 
 1. *(Zach)* Create a Cloudflare account (Free plan) and add the zone `indoor.rocks`. Cloudflare
    scans and imports the existing records.
-2. Compare the import against the IONOS DNS panel, **not just `dig`** (`dig` can't list
-   everything; check for DKIM, `autodiscover`, `_dmarc` and any other CNAME/TXT records). Must have:
-   both MX records, the SPF TXT, apex + `www` A records. Mail records stay **DNS-only** (grey cloud).
-3. *(Zach)* At IONOS: turn DNSSEC off if it's on, then switch the domain to Cloudflare's two
-   nameservers.
-4. Verify: `dig NS indoor.rocks @1.1.1.1` shows Cloudflare; MX/SPF still resolve; send an email to
-   an `@indoor.rocks` address and confirm it arrives; the placeholder still loads.
+2. Check the import against the snapshot below. Only the apex + `www` A/AAAA records matter (the
+   placeholder). The mail defaults can come along as-is; step 4 replaces them. Don't bother with
+   the IONOS-internal ones (`_dep_ws_mutex`, `_domainconnect`).
+3. *(Zach)* **At GoDaddy:** set the domain's nameservers to Cloudflare's two. (DNSSEC is already
+   off at the registry, so there's nothing to disable first.)
+4. Verify: `dig NS indoor.rocks @1.1.1.1` shows Cloudflare; the placeholder still loads.
+5. Later (step 6): remove `indoor.rocks` from the IONOS contract ("Remove external domain"). Not
+   before Cloudflare is answering.
+
+#### IONOS zone snapshot (2026-11-01)
+
+| Type | Host | Value | IONOS "service" |
+|---|---|---|---|
+| CNAME | `_dmarc` | `dmarc.ionos.com` | DMARC |
+| CNAME | `_domainconnect` | `_domainconnect.ionos.com` | Domain Connect |
+| MX | `@` | `mx00.ionos.com` | Mail |
+| MX | `@` | `mx01.ionos.com` | Mail |
+| TXT | `@` | `v=spf1 include:_spf-us.ionos.com ~all` | Mail |
+| CNAME | `s1-ionos._domainkey` | `s1.dkim.ionos.com` | Mail |
+| CNAME | `s2-ionos._domainkey` | `s2.dkim.ionos.com` | Mail |
+| CNAME | `s42582890._domainkey` | `s42582890.dkim.ionos.com` | Mail |
+| CNAME | `autodiscover` | `adsredir.ionos.info` | Mail |
+| A | `@` | `74.208.236.153` | Webhosting |
+| AAAA | `@` | `2607:f1c0:100f:f000::2d4` | Webhosting |
+| TXT | `_dep_ws_mutex` | `b171896e…a6a_1756221162974` (IONOS deploy lock) | Webhosting |
+| A | `www` | `74.208.236.153` | Webhosting |
+| AAAA | `www` | `2607:f1c0:100f:f000::2d4` | Webhosting |
 
 ### Step 3 — Bucket (no PR)
 
@@ -97,15 +121,18 @@ the IONOS placeholder throughout.
 
 In Cloudflare:
 
-1. Apex: replace the IONOS A record with `CNAME indoor.rocks → c.storage.googleapis.com`,
+1. Apex: replace the IONOS A **and AAAA** records with `CNAME indoor.rocks → c.storage.googleapis.com`,
    **proxied** (Cloudflare flattens CNAMEs at the apex).
 2. `www`: proxied `CNAME www → indoor.rocks`, plus a redirect rule `www.indoor.rocks/*` →
    `https://indoor.rocks/${1}` (301, keep the query string).
 3. SSL/TLS mode **Flexible**; **Always Use HTTPS** on.
 4. Cache rule: cache everything on `indoor.rocks`, so HTML is served from the edge too. Deploys
    purge (step 5).
-5. Verify: `https://indoor.rocks` serves our page with a valid cert; `http://` → `https://`;
-   `www` → apex; a bogus path gives our 404; mail still works.
+5. No-mail records: delete the IONOS mail defaults (MX, SPF, the three DKIM CNAMEs, `_dmarc`,
+   `autodiscover`) and add `MX @ 0 .` (null MX), `TXT @ "v=spf1 -all"`, and
+   `TXT _dmarc "v=DMARC1; p=reject;"`, so nobody can send mail as `@indoor.rocks`.
+6. Verify: `https://indoor.rocks` serves our page with a valid cert; `http://` → `https://`;
+   `www` → apex; a bogus path gives our 404.
 
 **At this point the goal is met except for automation.**
 
@@ -139,11 +166,12 @@ Action versions pinned. Verify by merging this PR itself: its merge commit shoul
 - DEVLOG entry for the whole plan.
 - Re-snapshot `current-status.html` (frozen-per-plan, as decided in 001).
 - Comment on #6: what now exists in GCP that Terraform should eventually own.
+- *(Zach)* IONOS: remove `indoor.rocks` from the contract ("Remove external domain").
+- *(Zach)* GoDaddy: confirm auto-renew is on. The domain expires **2027-07-27**.
 - File issues: "Close the Cloudflare → GCS HTTP hop" and "GCP load balancer, when there's a
   second backend".
 
 ---
 
 **Done when:** https://indoor.rocks loads our page over HTTPS, `www` and `http://` redirect to it,
-`@indoor.rocks` mail still works, and a commit to `main` updates the site without anyone touching
-a console.
+and a commit to `main` updates the site without anyone touching a console.
