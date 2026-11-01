@@ -25,7 +25,7 @@ gets confirmed before it runs.
 | Why not the GCP load balancer? | Deferred, not rejected | ~$18/mo for one static page. It earns its keep once there's a second thing to route to (e.g. a Cloud Run API under `/api`). The bucket we build now becomes its backend bucket, so nothing is thrown away; the upgrade is "create the LB, change one DNS record". |
 | Why not Firebase / Cloudflare Pages? | Considered | Firebase doesn't give us a bucket we manage. Pages drops GCP entirely. |
 | v1 content | **The existing 5 gyms** | Proof of life; coverage is a non-goal. |
-| How much design? | **Publish what's there** | It's already readable. Only optional tweak: see step 1. |
+| How much design? | **Publish what's there**, as-is | It's already readable. |
 | Orphaned Terraform state | **Stays parked** ([#6](https://github.com/zachlysobey/indoor.rocks/issues/6)) | v1's GCP resources are created by hand with documented commands; Terraform adopts them later. Still: **do not `terraform apply`.** |
 
 ### Inventory, after the decisions
@@ -59,8 +59,8 @@ issue, filed in step 6.
 - `out/` → `.gitignore`.
 - Serve `out/` locally (`npx serve out`) and look at it.
 - `delay(1000)` **stays** (001 step 2 kept it deliberately; it's paid at build time only).
-- **Optional, decide at review:** render the address as one line ("221 N 14th St, Brooklyn, NY
-  11249") instead of `JSON.stringify` in a `<pre>`. That's the one bit that looks broken. ~5 lines.
+- One-line address formatting (instead of `JSON.stringify` in a `<pre>`) was tried in #23 and
+  dropped at review: out of scope. The page ships as-is.
 - Title and description in `layout.tsx` are already real. Favicon is whatever's there; a better one
   isn't v1.
 
