@@ -13,7 +13,7 @@ passes on `main` (2026-11-01: `/` and `/_not-found` both prerender as static).
 logged in the DEVLOG and documented in step 6. Anything that touches DNS or creates cloud resources
 gets confirmed before it runs.
 
-> Status: in progress. Decisions settled 2026-11-01. Step 1 merged (#23).
+> Status: in progress. **Live at https://indoor.rocks since 2026-11-02** (steps 1–4 done). Next: step 5, push-to-deploy.
 
 ---
 
@@ -40,13 +40,15 @@ gets confirmed before it runs.
 | Pipeline | nothing | GitHub Action on push to `main` → `gcloud storage rsync` → Cloudflare cache purge |
 | Infra-as-code | parked on `park/terraform` | out of scope; document the manual commands instead |
 
-### Known compromise: Cloudflare → GCS is plain HTTP
+### Known compromise: Cloudflare → GCS certificate isn't validated
 
-GCS's website mode (index page, 404 page, `CNAME c.storage.googleapis.com`) only works over HTTP
-on a custom hostname. Visitors get HTTPS to Cloudflare, and Cloudflare fetches from Google over
-HTTP: SSL mode **Flexible**. That's acceptable for a public, static, form-less site. Fixing it
-(a Worker fetching `https://storage.googleapis.com/indoor.rocks/...`, or the LB) is a follow-up
-issue, filed in step 6.
+*Originally planned as "plain HTTP / SSL mode Flexible". Testing in step 4 showed that was wrong.*
+
+GCS's website mode (index page, 404 page) **does** work over HTTPS when the request carries
+SNI + `Host: indoor.rocks`. GCS presents `*.storage.googleapis.com`, which doesn't match, so SSL
+mode is **Full** (encrypted, certificate not validated), not Full (strict). That's acceptable for
+a public, static, form-less site. Going to strict (e.g. a Worker fetching
+`https://storage.googleapis.com/indoor.rocks/...`, or the LB) is a follow-up issue, filed in step 6.
 
 ---
 
@@ -73,8 +75,10 @@ placeholder going briefly unreachable.
 Three parties: **GoDaddy** (registrar; owns the nameserver setting), **IONOS** (current DNS
 host; the zone below), **Cloudflare** (new DNS host).
 
-1. *(Zach)* Create a Cloudflare account (Free plan) and add the zone `indoor.rocks`. Cloudflare
-   scans and imports the existing records.
+✅ **Done 2026-11-01.** Zone active 2026-11-02 01:16 UTC.
+
+1. *(Zach)* Create a Cloudflare account (Free plan, Google sign-in) and add the zone `indoor.rocks`
+   (`cf zones create`).
 2. Records: rather than importing, create exactly what's needed (done 2026-11-01 with the `cf` CLI,
    zone `9f0d22c0ad694eebaff688f771033aff`, nameservers `jasper`/`sierra.ns.cloudflare.com`):
    - The placeholder, unchanged: A + AAAA for `@` and `www` → the IONOS addresses, **DNS-only**.
@@ -107,12 +111,17 @@ host; the zone below), **Cloudflare** (new DNS host).
 | A | `www` | `74.208.236.153` | Webhosting |
 | AAAA | `www` | `2607:f1c0:100f:f000::2d4` | Webhosting |
 
-### Step 3 — Bucket (no PR)
+### Step 3 — Bucket (no PR) ✅
+
+**Done 2026-11-02.** All checks in item 6 passed.
 
 1. Confirm the gcloud account and project (`gcloud config list`; 001 found the active project wasn't
    the one you'd expect). Target: `indoor-rocks-sandbox-01`.
 2. *(Zach)* Verify `indoor.rocks` in Google Search Console with the same Google account gcloud uses
    (a TXT record, now added at Cloudflare). GCS refuses to create a domain-named bucket otherwise.
+   Use "Any DNS provider", not the Cloudflare auto-flow, and put the **whole**
+   `google-site-verification=…` string in the content of a TXT record on `@` (first attempt put
+   it on a `google-site-verification` subdomain and failed).
 3. *(Zach)* Create a billing budget on the project **before anything goes public**: console is
    fine, e.g. $5/month with email alerts at 50/90/100%. (Alerts notify; they don't cap spend.
    Cloudflare absorbs most traffic, but the bucket is also directly reachable at
@@ -125,19 +134,27 @@ host; the zone below), **Cloudflare** (new DNS host).
    uniform bucket-level access, `allUsers` → `roles/storage.objectViewer`, website config
    main page `index.html` / error page `404.html`.
 5. Upload `out/` by hand, using the same two `rsync` commands as the step 5 workflow.
+   Verified: `--exclude='^_next/'` also skips `_next/` objects **at the destination**, so the delete
+   pass can't remove old assets (dummy object under `_next/`, dry run listed only the 6 non-`_next`
+   objects, nothing marked for removal).
 6. Test **before touching DNS**:
    `curl -si -H 'Host: indoor.rocks' http://c.storage.googleapis.com/` (GET, not `-I`, so the body
    comes back) returns 200 and contains a gym name; a bogus path returns our 404 page.
 
-### Step 4 — Cut over (no PR)
+### Step 4 — Cut over (no PR) ✅
+
+**Done 2026-11-02** with the `cf` CLI; the JSON bodies get committed in step 6. All checks in
+item 5 passed: edge cache MISS then HIT, both redirects are a single 301 hop, cert
+`CN=indoor.rocks` (Let's Encrypt via Cloudflare Universal SSL).
 
 In Cloudflare:
 
 1. Apex: replace the IONOS A **and AAAA** records with `CNAME indoor.rocks → c.storage.googleapis.com`,
    **proxied** (Cloudflare flattens CNAMEs at the apex).
-2. `www`: proxied `CNAME www → indoor.rocks`, plus a redirect rule `www.indoor.rocks/*` →
-   `https://indoor.rocks/${1}` (301, keep the query string).
-3. SSL/TLS mode **Flexible**; **Always Use HTTPS** on.
+2. `www`: proxied `CNAME www → indoor.rocks`, plus a redirect rule (`http_request_dynamic_redirect`)
+   `http.host eq "www.indoor.rocks"` → `concat("https://indoor.rocks", http.request.uri.path)`
+   (301, keep the query string).
+3. SSL/TLS mode **Full** (not Flexible; see "Known compromise"); **Always Use HTTPS** on.
 4. Cache rule on `indoor.rocks`: eligible for cache, **Edge TTL: ignore cache-control header,
    use e.g. 1 day**, Browser TTL: respect origin. Without the override, Cloudflare honors the
    HTML's `max-age=0` and every page view still goes to GCS. Deploys purge (step 5).
@@ -188,7 +205,8 @@ Action versions pinned. Verify by merging this PR itself: its merge commit shoul
 - Comment on #6: what now exists in GCP that Terraform should eventually own.
 - *(Zach)* IONOS: remove `indoor.rocks` from the contract ("Remove external domain").
 - *(Zach)* GoDaddy: confirm auto-renew is on. The domain expires **2027-07-27**.
-- File issues: "Close the Cloudflare → GCS HTTP hop" and "GCP load balancer, when there's a
+- Commit the `cf` request bodies used in steps 2 and 4 (DNS batch, redirect rule, cache rule).
+- File issues: "Cloudflare → GCS: SSL Full → Full (strict)" and "GCP load balancer, when there's a
   second backend".
 
 ---
