@@ -1,0 +1,65 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time; a newer push waits rather than cancelling one mid-upload.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  BUCKET: gs://indoor.rocks
+  CLOUDFLARE_ZONE_ID: 9f0d22c0ad694eebaff688f771033aff
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # OIDC token for Workload Identity Federation
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          workload_identity_provider: projects/453152369355/locations/global/workloadIdentityPools/github/providers/github-oidc
+          service_account: indoor-rocks-deployer@indoor-rocks-sandbox-01.iam.gserviceaccount.com
+
+      - uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3.0.1
+
+      # Hashed assets first, and never deleted: HTML still cached at the edge or open in a
+      # browser keeps working mid-deploy.
+      - name: Upload hashed assets
+        run: >-
+          gcloud storage rsync --recursive
+          --cache-control='public, max-age=31536000, immutable'
+          out/_next "$BUCKET/_next"
+
+      # Then everything else, with deletes. --exclude also shields _next/ at the destination.
+      - name: Upload pages
+        run: >-
+          gcloud storage rsync --recursive --delete-unmatched-destination-objects
+          --exclude='^_next/'
+          --cache-control='public, max-age=0, must-revalidate'
+          out/ "$BUCKET"
+
+      - name: Purge Cloudflare cache
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          curl --fail-with-body -sS -X POST \
+            "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'
