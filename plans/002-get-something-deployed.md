@@ -117,6 +117,10 @@ host; the zone below), **Cloudflare** (new DNS host).
    fine, e.g. $5/month with email alerts at 50/90/100%. (Alerts notify; they don't cap spend.
    Cloudflare absorbs most traffic, but the bucket is also directly reachable at
    `storage.googleapis.com/indoor.rocks`.) The parked Terraform state is not touched.
+   **Done 2026-11-01:** `indoor-rocks-budget-alerts`, ordinary alert-only budget (no spend cap),
+   monthly, $5, project `indoor-rocks-sandbox-01`, all services, all credits counted, email
+   alerts at 50/90/100% actual + 100% forecasted, no Pub/Sub topic. Created in the console;
+   Terraform can `import` it later (#6).
 4. Create the bucket: `gs://indoor.rocks`, region **`us-east1`** (inside the GCS always-free tier),
    uniform bucket-level access, `allUsers` → `roles/storage.objectViewer`, website config
    main page `index.html` / error page `404.html`.
