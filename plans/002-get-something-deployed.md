@@ -13,7 +13,7 @@ passes on `main` (2026-11-01: `/` and `/_not-found` both prerender as static).
 logged in the DEVLOG and documented in step 6. Anything that touches DNS or creates cloud resources
 gets confirmed before it runs.
 
-> Status: in progress. **Live at https://indoor.rocks since 2026-11-02** (steps 1–4 done). Next: step 5, push-to-deploy.
+> Status: in progress. **Live at https://indoor.rocks since 2026-11-02** (steps 1–4 done). Step 5 set up; its PR (#24) awaits merge.
 
 ---
 
@@ -163,24 +163,38 @@ In Cloudflare:
 
 **At this point the goal is met except for automation.**
 
-### Step 5 — Push-to-deploy (PR)
+### Step 5 — Push-to-deploy (PR [#24](https://github.com/zachlysobey/indoor.rocks/pull/24))
+
+**Setup done 2026-11-02** (GCP + Cloudflare token + repo secret, all verified). Remaining: merge
+#24 and watch the first run.
 
 One-time GCP setup (documented commands, run with confirmation):
 
 - Service account `indoor-rocks-deployer`, with `roles/storage.objectAdmin` **on the bucket only**.
-- Workload Identity Federation: a pool + GitHub OIDC provider, with an attribute condition
-  limited to `zachlysobey/indoor.rocks` on `refs/heads/main`. No JSON keys anywhere.
+- APIs: `iam`, `iamcredentials`, `sts`.
+- Workload Identity Federation: pool `github` + OIDC provider `github-oidc`, with an attribute
+  condition limited to this repo **by numeric ID** (`834660985`, so a renamed/recreated repo of the
+  same name can't match) on `refs/heads/main`. No JSON keys anywhere.
 - `roles/iam.workloadIdentityUser` on the service account, granted to the pool's principal set
   for this repo. That's what lets the GitHub identity impersonate the deployer.
-- *(Zach)* Cloudflare API token scoped to "Cache Purge" on the `indoor.rocks` zone → GitHub repo
-  secret, plus the zone ID.
+- *(Zach)* Cloudflare API token scoped to "Cache Purge" on the `indoor.rocks` zone → repo secret
+  `CLOUDFLARE_API_TOKEN`. The zone ID, bucket, provider and service account aren't secret; they
+  live in the workflow file.
+- Gotcha: binding the bucket role immediately after creating the service account failed with
+  "does not exist" (IAM propagation lag). Re-running it seconds later worked.
 
 `.github/workflows/deploy.yml`, on push to `main` + `workflow_dispatch`:
 
 Job `permissions: { contents: read, id-token: write }`. Without `id-token: write` there's no OIDC
 token to exchange.
 
-1. `actions/setup-node` with `node-version-file: .nvmrc`, `npm ci`, `npm run build`.
+Workflow-level `concurrency: { group: deploy, cancel-in-progress: false }`: one deploy at a time,
+in push order, and a newer push replaces any queued one, so an older commit can never finish
+after a newer one and roll the site back. (Not cancelling avoids killing a run mid-upload.) The
+one remaining way to deploy old code is manually re-running an *old* run; don't.
+
+1. `actions/checkout`, then `actions/setup-node` with `node-version-file: .nvmrc`, `npm ci`,
+   `npm run build`.
 2. `google-github-actions/auth` (WIF) + `setup-gcloud`.
 3. Hashed assets first, **never deleted**:
    `gcloud storage rsync --recursive --cache-control='public, max-age=31536000, immutable' out/_next gs://indoor.rocks/_next`.
@@ -188,11 +202,11 @@ token to exchange.
    working mid-deploy. They're a few hundred KB per deploy; pruning is a someday chore.
 4. Then everything else, with deletes:
    `gcloud storage rsync --recursive --delete-unmatched-destination-objects --exclude='^_next/' --cache-control='public, max-age=0, must-revalidate' out/ gs://indoor.rocks`.
-   (Confirm `--exclude` also shields `_next/` objects at the destination from deletion before
-   relying on it.)
+   (`--exclude` also shields `_next/` objects at the destination from deletion: verified in
+   step 3.)
 5. Purge the Cloudflare zone cache.
 
-Action versions pinned. Verify by merging this PR itself: its merge commit should deploy.
+Action versions pinned to commit SHAs. Verify by merging this PR itself: its merge commit should deploy.
 
 ### Step 6 — Write it down (PR)
 
