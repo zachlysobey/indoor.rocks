@@ -1,22 +1,11 @@
-import type { ClimbingGym, DataModel } from "./dataModel";
-import { vitalBrooklyn } from './data/nyc-gyms/vitalBrooklyn';
-import { brooklynBoulders } from "./data/nyc-gyms/brooklynBoulders";
-import { theCliffsLic } from "./data/nyc-gyms/theCliffLic";
-import { metroRockBrooklyn } from "./data/nyc-gyms/metroRockBrooklyn";
-import { rockClimbFairfield } from "./data/ct-gyms/ct-gyms";
+import type { DataModel } from "./dataModel";
+import { nycGyms } from "./data/gyms/nyc";
+import { nySuburbsGyms } from "./data/gyms/ny-suburbs";
+import { njGyms } from "./data/gyms/nj";
+import { ctGyms } from "./data/gyms/ct";
 
 export function getData (): DataModel {
-  const data: DataModel = {
-    climbingGyms: Object.values(climbingGymDictionary),
-  }
-  return data
+  return {
+    climbingGyms: [...nycGyms, ...nySuburbsGyms, ...njGyms, ...ctGyms],
+  };
 };
-
-const climbingGymDictionary: Record<string, ClimbingGym> = {
-  vitalBrooklyn,
-  brooklynBoulders,
-  theCliffsLic,
-  metroRockBrooklyn,
-  rockClimbFairfield,
-};
-

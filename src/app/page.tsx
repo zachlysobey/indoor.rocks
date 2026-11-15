@@ -8,6 +8,7 @@ const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(r
 export default function Home() {
   const dataPromise = delay(1000).then(getData);
   const nyGymPromise = dataPromise.then(d => d.climbingGyms.filter(g => g.address.state === "NY"))
+  const njGymPromise = dataPromise.then(d => d.climbingGyms.filter(g => g.address.state === "NJ"))
   const ctGymPromise = dataPromise.then(d => d.climbingGyms.filter(g => g.address.state === "CT"))
 
   return (
@@ -26,6 +27,11 @@ export default function Home() {
         <h2>Climbing Gyms in New York (NY)</h2>
         <Suspense fallback={(<p>Loading...</p>)}>
           <ClimbingGyms dataPromise={nyGymPromise} />
+        </Suspense>
+
+        <h2>Climbing Gyms in New Jersey (NJ)</h2>
+        <Suspense fallback={(<p>Loading...</p>)}>
+          <ClimbingGyms dataPromise={njGymPromise} />
         </Suspense>
 
         <h2>Climbing Gyms in Connecticut (CT)</h2>
