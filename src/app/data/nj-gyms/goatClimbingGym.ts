@@ -12,6 +12,8 @@ export const goatClimbingGym: ClimbingGym = {
     state: 'NJ',
     postalCode: '07601',
     country: 'USA',
+    latitude: 40.880,
+    longitude: -74.040,
   },
   amenities: amenities('bouldering'),
 };

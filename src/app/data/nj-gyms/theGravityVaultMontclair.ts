@@ -14,6 +14,8 @@ export const theGravityVaultMontclair: ClimbingGym = {
     state: 'NJ',
     postalCode: '07042',
     country: 'USA',
+    latitude: 40.812,
+    longitude: -74.216,
   },
   amenities: amenities('bouldering', 'machines', 'free-weights', 'yoga'),
 };

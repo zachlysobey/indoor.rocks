@@ -13,6 +13,8 @@ export const movementGowanus: ClimbingGym = {
     state: 'NY',
     postalCode: '11217',
     country: 'USA',
+    latitude: 40.682,
+    longitude: -73.986,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'yoga', 'sauna'),
 };

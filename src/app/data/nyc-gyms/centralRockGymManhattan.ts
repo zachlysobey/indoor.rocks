@@ -13,6 +13,8 @@ export const centralRockGymManhattan: ClimbingGym = {
     state: 'NY',
     postalCode: '10069',
     country: 'USA',
+    latitude: 40.773,
+    longitude: -73.990,
   },
   amenities: amenities('bouldering', 'top-rope'),
 };

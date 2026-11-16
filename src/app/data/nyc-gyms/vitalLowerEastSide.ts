@@ -13,6 +13,8 @@ export const vitalLowerEastSide: ClimbingGym = {
     state: 'NY',
     postalCode: '10002',
     country: 'USA',
+    latitude: 40.717,
+    longitude: -73.986,
   },
   amenities: amenities('bouldering', 'yoga'),
 };

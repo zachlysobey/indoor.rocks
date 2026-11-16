@@ -13,6 +13,8 @@ export const metroRockBushwick: ClimbingGym = {
     state: 'NY',
     postalCode: '11237',
     country: 'USA',
+    latitude: 40.709,
+    longitude: -73.922,
   },
   amenities: amenities('bouldering', 'top-rope', 'auto-belays', 'machines', 'free-weights'),
 };

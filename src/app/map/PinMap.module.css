@@ -1,0 +1,11 @@
+.map {
+  height: 70dvh;
+  min-height: 20rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.pin {
+  stroke: var(--accent);
+  fill: var(--accent);
+}

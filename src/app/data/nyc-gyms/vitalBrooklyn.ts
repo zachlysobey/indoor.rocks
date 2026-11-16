@@ -13,6 +13,8 @@ export const vitalBrooklyn: ClimbingGym = {
     state: 'NY',
     postalCode: '11249',
     country: 'USA',
+    latitude: 40.723,
+    longitude: -73.955,
   },
   amenities: amenities('bouldering', 'machines', 'free-weights', 'yoga', 'sauna'),
 };

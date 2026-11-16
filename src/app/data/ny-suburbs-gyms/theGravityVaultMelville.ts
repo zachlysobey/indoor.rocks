@@ -13,6 +13,8 @@ export const theGravityVaultMelville: ClimbingGym = {
     state: 'NY',
     postalCode: '11747',
     country: 'USA',
+    latitude: 40.77540,
+    longitude: -73.41322,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'free-weights', 'yoga'),
 };

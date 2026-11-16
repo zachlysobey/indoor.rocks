@@ -12,33 +12,21 @@ export default function Home() {
   const ctGymPromise = dataPromise.then(d => d.climbingGyms.filter(g => g.address.state === "CT"))
 
   return (
-    <main className={styles.main}>
-      <header className={styles.header}>
-        <h1>indoor.rocks</h1>
-        <p>
-          indoor rock climbing gym guidebook
-        </p>
-        <div>
-          By: <a href="https://zach.lysobey.com/">Zach Lysobey</a>
-        </div>
-      </header>
+    <main className={styles.content}>
+      <h2>Climbing Gyms in New York (NY)</h2>
+      <Suspense fallback={(<p>Loading...</p>)}>
+        <ClimbingGyms dataPromise={nyGymPromise} />
+      </Suspense>
 
-      <div className={styles.content}>
-        <h2>Climbing Gyms in New York (NY)</h2>
-        <Suspense fallback={(<p>Loading...</p>)}>
-          <ClimbingGyms dataPromise={nyGymPromise} />
-        </Suspense>
+      <h2>Climbing Gyms in New Jersey (NJ)</h2>
+      <Suspense fallback={(<p>Loading...</p>)}>
+        <ClimbingGyms dataPromise={njGymPromise} />
+      </Suspense>
 
-        <h2>Climbing Gyms in New Jersey (NJ)</h2>
-        <Suspense fallback={(<p>Loading...</p>)}>
-          <ClimbingGyms dataPromise={njGymPromise} />
-        </Suspense>
-
-        <h2>Climbing Gyms in Connecticut (CT)</h2>
-        <Suspense fallback={(<p>Loading...</p>)}>
-          <ClimbingGyms dataPromise={ctGymPromise} />
-        </Suspense>
-      </div>
+      <h2>Climbing Gyms in Connecticut (CT)</h2>
+      <Suspense fallback={(<p>Loading...</p>)}>
+        <ClimbingGyms dataPromise={ctGymPromise} />
+      </Suspense>
     </main>
   );
 }

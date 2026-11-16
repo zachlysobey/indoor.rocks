@@ -14,6 +14,8 @@ export const movementLic: ClimbingGym = {
     state: 'NY',
     postalCode: '11101',
     country: 'USA',
+    latitude: 40.74869,
+    longitude: -73.94869,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'machines', 'free-weights', 'yoga'),
 };

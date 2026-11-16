@@ -12,6 +12,8 @@ export const brooklynUprising: ClimbingGym = {
     state: 'NY',
     postalCode: '11201',
     country: 'USA',
+    latitude: 40.705,
+    longitude: -73.987,
   },
   amenities: amenities('bouldering', 'free-weights', 'sauna'),
 };

@@ -13,6 +13,8 @@ export const centralRockGymGlastonbury: ClimbingGym = {
     state: 'CT',
     postalCode: '06033',
     country: 'USA',
+    latitude: 41.723,
+    longitude: -72.579,
   },
   amenities: amenities('bouldering', 'top-rope', 'auto-belays'),
 };
