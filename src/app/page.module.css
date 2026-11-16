@@ -64,12 +64,13 @@
   line-height: 1.3;
 }
 
-.content article a,
+.content address,
 .content article p {
   font-size: 0.9rem;
 }
 
-.content article a {
+.content address {
+  font-style: normal;
   color: var(--muted);
 }
 
@@ -94,10 +95,30 @@
   font-size: 0.75rem;
 }
 
+.content article footer {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.content article footer a {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
 @media (hover: hover) {
-  .header a:hover,
-  .content article a:hover {
-    color: var(--accent);
+  .header a:hover {
     text-decoration: underline;
+  }
+
+  .content article footer a:hover {
+    border-color: var(--accent);
+    background: var(--chip);
   }
 }
