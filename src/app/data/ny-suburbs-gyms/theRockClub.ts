@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const theRockClub: ClimbingGym = {
   name: 'The Rock Club',
+  website: 'https://pinebrookfitness.com/',
   description: 'Inside the Pine Brook Fitness building.',
   address: {
     streetNumber: '130',

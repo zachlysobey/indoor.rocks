@@ -4,6 +4,7 @@ import { centralRockGym } from "../companies/centralRockGym";
 
 export const centralRockGymWestHartford: ClimbingGym = {
   name: 'Central Rock Gym West Hartford',
+  website: 'https://centralrockgym.com/west-hartford/',
   description: 'Bouldering only. Opened 2023.',
   parent: centralRockGym,
   address: {

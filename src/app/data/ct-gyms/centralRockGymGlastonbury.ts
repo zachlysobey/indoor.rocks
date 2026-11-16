@@ -4,6 +4,7 @@ import { centralRockGym } from "../companies/centralRockGym";
 
 export const centralRockGymGlastonbury: ClimbingGym = {
   name: 'Central Rock Gym Glastonbury',
+  website: 'https://centralrockgym.com/glastonbury/',
   parent: centralRockGym,
   address: {
     streetNumber: '259',

@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const rockClimbFairfield: ClimbingGym = {
   name: 'Rock Climb Fairfield',
+  website: 'https://www.rockclimbfairfield.com/',
   address: {
     streetNumber: '85',
     streetName: 'Mill Plain Rd, Bldg T',

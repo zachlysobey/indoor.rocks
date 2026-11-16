@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const goatClimbingGym: ClimbingGym = {
   name: 'GOAT Climbing Gym',
+  website: 'https://goatclimbinggym.com/',
   description: 'Two floors of bouldering.',
   address: {
     streetNumber: '77',

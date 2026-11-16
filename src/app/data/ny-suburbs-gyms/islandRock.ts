@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const islandRock: ClimbingGym = {
   name: 'Island Rock',
+  website: 'https://www.islandrock.com/',
   description: "Long Island's oldest climbing gym, open since 1996.",
   address: {
     streetNumber: '60',

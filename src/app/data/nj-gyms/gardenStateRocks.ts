@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const gardenStateRocks: ClimbingGym = {
   name: 'Garden State Rocks',
+  website: 'https://www.gardenstaterocks.com/',
   address: {
     streetNumber: '705',
     streetName: 'Ginesi Dr',

@@ -4,6 +4,7 @@ import { gravityVault } from "../companies/gravityVault";
 
 export const theGravityVaultHoboken: ClimbingGym = {
   name: 'The Gravity Vault Hoboken',
+  website: 'https://gravityvault.com/locations/hoboken-nj',
   parent: gravityVault,
   address: {
     streetNumber: '1423',

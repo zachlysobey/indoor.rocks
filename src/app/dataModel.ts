@@ -16,6 +16,7 @@ export type Address = {
 export type Place = TopLevelEntity & {
   name: string;
   description?: string;
+  website?: string;
   address: Address;
 };
 
