@@ -1,21 +1,17 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenityMap } from "../amenityMap";
+import { amenities } from "../amenities";
+import { vital } from "../companies/vital";
 
 export const vitalBrooklyn: ClimbingGym = {
   name: 'Vital Brooklyn',
+  parent: vital,
   address: {
-    state: 'NY',
     streetNumber: '221',
     streetName: 'N 14th St',
     city: 'Brooklyn',
+    state: 'NY',
     postalCode: '11249',
-    country: 'USA'
+    country: 'USA',
   },
-  amenities: [
-    amenityMap['bouldering'],
-    amenityMap['machines'],
-    amenityMap['free-weights'],
-    amenityMap['yoga'],
-    amenityMap['sauna'],
-  ],
+  amenities: amenities('bouldering', 'machines', 'free-weights', 'yoga', 'sauna'),
 };

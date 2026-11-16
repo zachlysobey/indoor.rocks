@@ -31,6 +31,7 @@ export type GymAmenity = {
     |'bouldering'
     |'auto-belays'
     |'top-rope'
+    |'lead'
     |'sauna'
     |'yoga'
     |'arial-silks'

@@ -1,22 +1,76 @@
 import type { ClimbingGym, DataModel } from "./dataModel";
-import { vitalBrooklyn } from './data/nyc-gyms/vitalBrooklyn';
-import { brooklynBoulders } from "./data/nyc-gyms/brooklynBoulders";
-import { theCliffsLic } from "./data/nyc-gyms/theCliffLic";
-import { metroRockBrooklyn } from "./data/nyc-gyms/metroRockBrooklyn";
-import { rockClimbFairfield } from "./data/ct-gyms/ct-gyms";
+import { boulderingProjectGowanus } from "./data/nyc-gyms/boulderingProjectGowanus";
+import { movementGowanus } from "./data/nyc-gyms/movementGowanus";
+import { vitalBrooklyn } from "./data/nyc-gyms/vitalBrooklyn";
+import { metroRockBushwick } from "./data/nyc-gyms/metroRockBushwick";
+import { gp81 } from "./data/nyc-gyms/gp81";
+import { brooklynUprising } from "./data/nyc-gyms/brooklynUprising";
+import { movementLic } from "./data/nyc-gyms/movementLic";
+import { brooklynBouldersQueensbridge } from "./data/nyc-gyms/brooklynBouldersQueensbridge";
+import { vitalLowerEastSide } from "./data/nyc-gyms/vitalLowerEastSide";
+import { centralRockGymChelsea } from "./data/nyc-gyms/centralRockGymChelsea";
+import { centralRockGymManhattan } from "./data/nyc-gyms/centralRockGymManhattan";
+import { vitalUpperEastSide } from "./data/nyc-gyms/vitalUpperEastSide";
+import { movementHarlem } from "./data/nyc-gyms/movementHarlem";
+import { vitalWestHarlem } from "./data/nyc-gyms/vitalWestHarlem";
+import { movementValhalla } from "./data/ny-suburbs-gyms/movementValhalla";
+import { theRockClub } from "./data/ny-suburbs-gyms/theRockClub";
+import { islandRock } from "./data/ny-suburbs-gyms/islandRock";
+import { theGravityVaultWestbury } from "./data/ny-suburbs-gyms/theGravityVaultWestbury";
+import { theGravityVaultMelville } from "./data/ny-suburbs-gyms/theGravityVaultMelville";
+import { theGravityVaultHoboken } from "./data/nj-gyms/theGravityVaultHoboken";
+import { goatClimbingGym } from "./data/nj-gyms/goatClimbingGym";
+import { methodClimbing } from "./data/nj-gyms/methodClimbing";
+import { theGravityVaultMontclair } from "./data/nj-gyms/theGravityVaultMontclair";
+import { theGravityVaultUpperSaddleRiver } from "./data/nj-gyms/theGravityVaultUpperSaddleRiver";
+import { theGravityVaultChatham } from "./data/nj-gyms/theGravityVaultChatham";
+import { newJerseyRockGym } from "./data/nj-gyms/newJerseyRockGym";
+import { gardenStateRocks } from "./data/nj-gyms/gardenStateRocks";
+import { rockClimbFairfield } from "./data/ct-gyms/rockClimbFairfield";
+import { cityClimbGym } from "./data/ct-gyms/cityClimbGym";
+import { rockSpotClimbingWallingford } from "./data/ct-gyms/rockSpotClimbingWallingford";
+import { centralRockGymWestHartford } from "./data/ct-gyms/centralRockGymWestHartford";
+import { centralRockGymGlastonbury } from "./data/ct-gyms/centralRockGymGlastonbury";
+import { stoneAgeRockGym } from "./data/ct-gyms/stoneAgeRockGym";
 
 export function getData (): DataModel {
-  const data: DataModel = {
+  return {
     climbingGyms: Object.values(climbingGymDictionary),
-  }
-  return data
+  };
 };
 
 const climbingGymDictionary: Record<string, ClimbingGym> = {
+  boulderingProjectGowanus,
+  movementGowanus,
   vitalBrooklyn,
-  brooklynBoulders,
-  theCliffsLic,
-  metroRockBrooklyn,
+  metroRockBushwick,
+  gp81,
+  brooklynUprising,
+  movementLic,
+  brooklynBouldersQueensbridge,
+  vitalLowerEastSide,
+  centralRockGymChelsea,
+  centralRockGymManhattan,
+  vitalUpperEastSide,
+  movementHarlem,
+  vitalWestHarlem,
+  movementValhalla,
+  theRockClub,
+  islandRock,
+  theGravityVaultWestbury,
+  theGravityVaultMelville,
+  theGravityVaultHoboken,
+  goatClimbingGym,
+  methodClimbing,
+  theGravityVaultMontclair,
+  theGravityVaultUpperSaddleRiver,
+  theGravityVaultChatham,
+  newJerseyRockGym,
+  gardenStateRocks,
   rockClimbFairfield,
+  cityClimbGym,
+  rockSpotClimbingWallingford,
+  centralRockGymWestHartford,
+  centralRockGymGlastonbury,
+  stoneAgeRockGym,
 };
-
