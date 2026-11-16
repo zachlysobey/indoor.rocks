@@ -4,6 +4,7 @@ import { gravityVault } from "../companies/gravityVault";
 
 export const theGravityVaultUpperSaddleRiver: ClimbingGym = {
   name: 'The Gravity Vault Upper Saddle River',
+  website: 'https://gravityvault.com/locations/upper-saddle-river-nj',
   parent: gravityVault,
   address: {
     streetNumber: '107',

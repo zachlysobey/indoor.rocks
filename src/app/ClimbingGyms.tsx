@@ -21,6 +21,7 @@ export const ClimbingGyms = async ({ dataPromise }: Props) => {
       </ul>
       <footer>
         <a href={mapsUrl(gym)}>Map ↗</a>
+        {gym.website && <a href={gym.website}>Website ↗</a>}
       </footer>
     </article>
   ))

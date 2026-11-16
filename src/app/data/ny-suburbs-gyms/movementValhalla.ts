@@ -4,6 +4,7 @@ import { movement } from "../companies/movement";
 
 export const movementValhalla: ClimbingGym = {
   name: 'Movement Valhalla',
+  website: 'https://movementgyms.com/valhalla/',
   description: 'Formerly The Cliffs at Valhalla.',
   parent: movement,
   address: {

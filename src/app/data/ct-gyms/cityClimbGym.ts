@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const cityClimbGym: ClimbingGym = {
   name: 'City Climb Gym',
+  website: 'https://www.cityclimbgym.com/',
   description: 'Moved from Shelton Ave to Science Park.',
   address: {
     streetNumber: '342',

@@ -4,6 +4,7 @@ import { boulderingProject } from "../companies/boulderingProject";
 
 export const boulderingProjectGowanus: ClimbingGym = {
   name: 'Bouldering Project Gowanus',
+  website: 'https://boulderingproject.com/location/gowanus',
   description: 'Formerly Brooklyn Boulders Gowanus; reopened under Bouldering Project in January 2024.',
   parent: boulderingProject,
   address: {

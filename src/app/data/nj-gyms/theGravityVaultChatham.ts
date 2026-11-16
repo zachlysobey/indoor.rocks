@@ -4,6 +4,7 @@ import { gravityVault } from "../companies/gravityVault";
 
 export const theGravityVaultChatham: ClimbingGym = {
   name: 'The Gravity Vault Chatham',
+  website: 'https://gravityvault.com/locations/chatham-nj',
   parent: gravityVault,
   address: {
     streetNumber: '40',

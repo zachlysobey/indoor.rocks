@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const methodClimbing: ClimbingGym = {
   name: 'Method Climbing',
+  website: 'https://methodclimb.com/',
   address: {
     streetNumber: '16',
     streetName: 'Lombardy St',

@@ -4,6 +4,7 @@ import { movement } from "../companies/movement";
 
 export const movementLic: ClimbingGym = {
   name: 'Movement LIC',
+  website: 'https://movementgyms.com/lic/',
   description: 'Formerly The Cliffs at LIC.',
   parent: movement,
   address: {
