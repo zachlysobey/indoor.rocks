@@ -4,6 +4,7 @@ import { gravityVault } from "../companies/gravityVault";
 
 export const theGravityVaultMontclair: ClimbingGym = {
   name: 'The Gravity Vault Montclair',
+  website: 'https://gravityvault.com/locations/montclair-nj',
   description: "Gravity Vault's first bouldering-only gym.",
   parent: gravityVault,
   address: {

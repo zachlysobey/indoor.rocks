@@ -4,6 +4,7 @@ import { rockSpot } from "../companies/rockSpot";
 
 export const rockSpotClimbingWallingford: ClimbingGym = {
   name: 'Rock Spot Climbing Wallingford',
+  website: 'https://rockspotclimbing.com/locations/ct/wallingford/',
   parent: rockSpot,
   address: {
     streetNumber: '340',

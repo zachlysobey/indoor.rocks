@@ -4,6 +4,7 @@ import { metroRock } from "../companies/metroRock";
 
 export const metroRockBushwick: ClimbingGym = {
   name: 'MetroRock Bushwick',
+  website: 'https://bushwick.metrorock.com/',
   parent: metroRock,
   address: {
     streetNumber: '321',

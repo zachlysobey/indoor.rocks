@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const gp81: ClimbingGym = {
   name: 'GP81',
+  website: 'https://www.gp-81.com/',
   description: 'Moved from Greenpoint to Bushwick.',
   address: {
     streetNumber: '379',

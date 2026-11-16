@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const brooklynUprising: ClimbingGym = {
   name: 'Brooklyn Uprising',
+  website: 'https://www.bkup.nyc/',
   description: 'Bouldering gym in DUMBO, opened 2026. Ages 16 and up.',
   address: {
     streetNumber: '20',

@@ -4,6 +4,7 @@ import { gravityVault } from "../companies/gravityVault";
 
 export const theGravityVaultMelville: ClimbingGym = {
   name: 'The Gravity Vault Melville',
+  website: 'https://gravityvault.com/locations/melville-ny',
   parent: gravityVault,
   address: {
     streetNumber: '40',

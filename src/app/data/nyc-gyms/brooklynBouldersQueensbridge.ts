@@ -4,6 +4,7 @@ import { brooklynBoulders } from "../companies/brooklynBoulders";
 
 export const brooklynBouldersQueensbridge: ClimbingGym = {
   name: 'Brooklyn Boulders Queensbridge',
+  website: 'https://qb.brooklynboulders.com/',
   description: 'Despite the name, this one is in Queens.',
   parent: brooklynBoulders,
   address: {

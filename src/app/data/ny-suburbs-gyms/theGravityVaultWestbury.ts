@@ -4,6 +4,7 @@ import { gravityVault } from "../companies/gravityVault";
 
 export const theGravityVaultWestbury: ClimbingGym = {
   name: 'The Gravity Vault Westbury',
+  website: 'https://gravityvault.com/locations/westbury-ny',
   description: '2nd floor of the Samanea New York Mall.',
   parent: gravityVault,
   address: {

@@ -4,6 +4,7 @@ import { vital } from "../companies/vital";
 
 export const vitalWestHarlem: ClimbingGym = {
   name: 'Vital West Harlem',
+  website: 'https://www.vitalclimbinggym.com/wh-ues-west-harlem',
   parent: vital,
   address: {
     streetNumber: '3225',
