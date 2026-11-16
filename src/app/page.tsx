@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
+      <header className={styles.header}>
         <h1>indoor.rocks</h1>
         <p>
           indoor rock climbing gym guidebook
@@ -21,7 +21,7 @@ export default function Home() {
         <div>
           By: <a href="https://zach.lysobey.com/">Zach Lysobey</a>
         </div>
-      </div>
+      </header>
 
       <div className={styles.content}>
         <h2>Climbing Gyms in New York (NY)</h2>
