@@ -11,6 +11,3 @@ export const amenityMap: Record<GymAmenity['name'], GymAmenity> = {
   'yoga': { name: 'yoga' },
   'arial-silks': { name: 'arial-silks' }
 }
-
-export const amenities = (...names: GymAmenity['name'][]): GymAmenity[] =>
-  names.map(name => amenityMap[name]);

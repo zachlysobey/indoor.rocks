@@ -1,6 +1,6 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenities } from "../amenityMap";
-import { movement } from "../companies";
+import { amenities } from "../amenities";
+import { movement } from "../companies/movement";
 
 export const movementHarlem: ClimbingGym = {
   name: 'Movement Harlem',

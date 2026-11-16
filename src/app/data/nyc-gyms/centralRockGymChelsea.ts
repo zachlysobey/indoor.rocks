@@ -1,6 +1,6 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenities } from "../amenityMap";
-import { centralRockGym } from "../companies";
+import { amenities } from "../amenities";
+import { centralRockGym } from "../companies/centralRockGym";
 
 export const centralRockGymChelsea: ClimbingGym = {
   name: 'Central Rock Gym Chelsea',

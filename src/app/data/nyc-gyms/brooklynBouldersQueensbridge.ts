@@ -1,6 +1,6 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenities } from "../amenityMap";
-import { brooklynBoulders } from "../companies";
+import { amenities } from "../amenities";
+import { brooklynBoulders } from "../companies/brooklynBoulders";
 
 export const brooklynBouldersQueensbridge: ClimbingGym = {
   name: 'Brooklyn Boulders Queensbridge',

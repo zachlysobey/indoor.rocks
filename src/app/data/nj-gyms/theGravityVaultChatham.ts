@@ -1,6 +1,6 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenities } from "../amenityMap";
-import { gravityVault } from "../companies";
+import { amenities } from "../amenities";
+import { gravityVault } from "../companies/gravityVault";
 
 export const theGravityVaultChatham: ClimbingGym = {
   name: 'The Gravity Vault Chatham',

@@ -1,6 +1,6 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenities } from "../amenityMap";
-import { metroRock } from "../companies";
+import { amenities } from "../amenities";
+import { metroRock } from "../companies/metroRock";
 
 export const metroRockBushwick: ClimbingGym = {
   name: 'MetroRock Bushwick',

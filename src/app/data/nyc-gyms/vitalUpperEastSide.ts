@@ -1,6 +1,6 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenities } from "../amenityMap";
-import { vital } from "../companies";
+import { amenities } from "../amenities";
+import { vital } from "../companies/vital";
 
 export const vitalUpperEastSide: ClimbingGym = {
   name: 'Vital Upper East Side',

@@ -1,5 +1,5 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenities } from "../amenityMap";
+import { amenities } from "../amenities";
 
 export const stoneAgeRockGym: ClimbingGym = {
   name: 'Stone Age Rock Gym',

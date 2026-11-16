@@ -1,6 +1,6 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenities } from "../amenityMap";
-import { rockSpot } from "../companies";
+import { amenities } from "../amenities";
+import { rockSpot } from "../companies/rockSpot";
 
 export const rockSpotClimbingWallingford: ClimbingGym = {
   name: 'Rock Spot Climbing Wallingford',

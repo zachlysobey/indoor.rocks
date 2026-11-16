@@ -1,6 +1,6 @@
 import type { ClimbingGym } from "@/app/dataModel";
-import { amenities } from "../amenityMap";
-import { boulderingProject } from "../companies";
+import { amenities } from "../amenities";
+import { boulderingProject } from "../companies/boulderingProject";
 
 export const boulderingProjectGowanus: ClimbingGym = {
   name: 'Bouldering Project Gowanus',
