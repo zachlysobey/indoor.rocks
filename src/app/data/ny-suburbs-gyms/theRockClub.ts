@@ -12,6 +12,8 @@ export const theRockClub: ClimbingGym = {
     state: 'NY',
     postalCode: '10801',
     country: 'USA',
+    latitude: 40.91764,
+    longitude: -73.77682,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead'),
 };

@@ -14,6 +14,8 @@ export const centralRockGymWestHartford: ClimbingGym = {
     state: 'CT',
     postalCode: '06110',
     country: 'USA',
+    latitude: 41.727,
+    longitude: -72.722,
   },
   amenities: amenities('bouldering'),
 };

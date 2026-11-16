@@ -11,6 +11,8 @@ export const stoneAgeRockGym: ClimbingGym = {
     state: 'CT',
     postalCode: '06042',
     country: 'USA',
+    latitude: 41.79024,
+    longitude: -72.54961,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead'),
 };

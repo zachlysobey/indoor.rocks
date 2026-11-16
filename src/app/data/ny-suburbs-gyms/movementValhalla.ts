@@ -14,6 +14,8 @@ export const movementValhalla: ClimbingGym = {
     state: 'NY',
     postalCode: '10595',
     country: 'USA',
+    latitude: 41.08812,
+    longitude: -73.78723,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'free-weights', 'yoga'),
 };

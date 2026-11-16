@@ -12,6 +12,8 @@ export const islandRock: ClimbingGym = {
     state: 'NY',
     postalCode: '11803',
     country: 'USA',
+    latitude: 40.78775,
+    longitude: -73.46541,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'yoga'),
 };

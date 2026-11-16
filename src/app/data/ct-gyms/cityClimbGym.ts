@@ -12,6 +12,8 @@ export const cityClimbGym: ClimbingGym = {
     state: 'CT',
     postalCode: '06511',
     country: 'USA',
+    latitude: 41.326,
+    longitude: -72.929,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead'),
 };

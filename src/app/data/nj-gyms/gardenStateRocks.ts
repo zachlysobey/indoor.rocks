@@ -11,6 +11,8 @@ export const gardenStateRocks: ClimbingGym = {
     state: 'NJ',
     postalCode: '07751',
     country: 'USA',
+    latitude: 40.35180,
+    longitude: -74.29320,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead'),
 };

@@ -14,6 +14,8 @@ export const theGravityVaultWestbury: ClimbingGym = {
     state: 'NY',
     postalCode: '11590',
     country: 'USA',
+    latitude: 40.745,
+    longitude: -73.570,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'machines', 'free-weights', 'yoga'),
 };

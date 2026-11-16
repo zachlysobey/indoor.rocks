@@ -13,6 +13,8 @@ export const rockSpotClimbingWallingford: ClimbingGym = {
     state: 'CT',
     postalCode: '06492',
     country: 'USA',
+    latitude: 41.456,
+    longitude: -72.834,
   },
   amenities: amenities('bouldering', 'top-rope', 'auto-belays', 'yoga'),
 };

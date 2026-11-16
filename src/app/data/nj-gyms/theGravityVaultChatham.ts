@@ -13,6 +13,8 @@ export const theGravityVaultChatham: ClimbingGym = {
     state: 'NJ',
     postalCode: '07928',
     country: 'USA',
+    latitude: 40.737,
+    longitude: -74.375,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'free-weights', 'yoga'),
 };

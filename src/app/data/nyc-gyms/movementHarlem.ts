@@ -14,6 +14,8 @@ export const movementHarlem: ClimbingGym = {
     state: 'NY',
     postalCode: '10027',
     country: 'USA',
+    latitude: 40.810,
+    longitude: -73.950,
   },
   amenities: amenities('bouldering', 'free-weights', 'yoga'),
 };

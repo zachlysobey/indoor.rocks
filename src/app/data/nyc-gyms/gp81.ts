@@ -12,6 +12,8 @@ export const gp81: ClimbingGym = {
     state: 'NY',
     postalCode: '11237',
     country: 'USA',
+    latitude: 40.704,
+    longitude: -73.924,
   },
   amenities: amenities('bouldering', 'free-weights'),
 };

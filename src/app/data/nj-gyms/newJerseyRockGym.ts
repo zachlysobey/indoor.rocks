@@ -11,6 +11,8 @@ export const newJerseyRockGym: ClimbingGym = {
     state: 'NJ',
     postalCode: '07004',
     country: 'USA',
+    latitude: 40.881,
+    longitude: -74.296,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays'),
 };

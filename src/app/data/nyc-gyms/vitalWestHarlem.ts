@@ -13,6 +13,8 @@ export const vitalWestHarlem: ClimbingGym = {
     state: 'NY',
     postalCode: '10027',
     country: 'USA',
+    latitude: 40.818,
+    longitude: -73.958,
   },
   amenities: amenities('bouldering', 'free-weights', 'yoga'),
 };

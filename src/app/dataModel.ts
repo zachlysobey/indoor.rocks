@@ -9,8 +9,8 @@ export type Address = {
   state: string;
   postalCode: string;
   country: string;
-  latitude?: number;
-  longitude?: number;
+  latitude: number;
+  longitude: number;
 }
 
 export type Place = TopLevelEntity & {

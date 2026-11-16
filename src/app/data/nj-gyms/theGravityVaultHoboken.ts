@@ -13,6 +13,8 @@ export const theGravityVaultHoboken: ClimbingGym = {
     state: 'NJ',
     postalCode: '07030',
     country: 'USA',
+    latitude: 40.754,
+    longitude: -74.031,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'free-weights', 'yoga'),
 };

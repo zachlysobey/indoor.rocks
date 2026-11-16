@@ -13,6 +13,8 @@ export const theGravityVaultUpperSaddleRiver: ClimbingGym = {
     state: 'NJ',
     postalCode: '07458',
     country: 'USA',
+    latitude: 41.053,
+    longitude: -74.113,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'free-weights', 'yoga'),
 };

@@ -11,6 +11,8 @@ export const rockClimbFairfield: ClimbingGym = {
     state: 'CT',
     postalCode: '06824',
     country: 'USA',
+    latitude: 41.145,
+    longitude: -73.263,
   },
   amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'machines', 'free-weights', 'yoga'),
 };

@@ -14,6 +14,8 @@ export const brooklynBouldersQueensbridge: ClimbingGym = {
     state: 'NY',
     postalCode: '11101',
     country: 'USA',
+    latitude: 40.753,
+    longitude: -73.941,
   },
   amenities: amenities('bouldering', 'free-weights', 'yoga', 'sauna'),
 };
