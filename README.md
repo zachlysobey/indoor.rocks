@@ -26,6 +26,15 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Testing
+
+Unit tests use [Vitest](https://vitest.dev/) and live next to the code they cover, as `*.test.ts`:
+
+```bash
+npm test            # run once
+npm run test:watch  # re-run on change
+```
+
 ## Contributing
 
 Reach out to me if you wanna help! I'd be thrilled to have folks to pair with and am open to suggestions and contributions.
