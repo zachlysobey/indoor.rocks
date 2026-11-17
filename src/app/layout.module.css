@@ -43,6 +43,10 @@
   color: var(--accent);
 }
 
+.header h1 a {
+  color: inherit;
+}
+
 @media (hover: hover) {
   .header a:hover,
   .footer a:hover {
