@@ -38,6 +38,10 @@
   color: var(--accent);
 }
 
+.header h1 a {
+  color: inherit;
+}
+
 @media (hover: hover) {
   .header a:hover {
     text-decoration: underline;

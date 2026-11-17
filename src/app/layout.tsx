@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className={styles.shell}>
           <header className={styles.header}>
-            <h1>indoor.rocks</h1>
+            <h1>
+              <Link href="/">indoor.rocks</Link>
+            </h1>
             <p>
               indoor rock climbing gym guidebook
             </p>
