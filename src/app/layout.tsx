@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "indoor.rocks",
-  description: "indoor rock climbing gym guidebook",
+  description: "indoor rock climbing guidebook",
 };
 
 export default function RootLayout({
@@ -21,12 +21,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className={styles.shell}>
           <header className={styles.header}>
-            <h1>
-              <Link href="/">indoor.rocks</Link>
-            </h1>
-            <p>
-              indoor rock climbing gym guidebook
-            </p>
+            <hgroup>
+              <h1>
+                <Link href="/">indoor.rocks</Link>
+              </h1>
+              <p>indoor rock climbing guidebook</p>
+            </hgroup>
             <nav>
               <Link href="/">Home</Link>
               <Link href="/climbing-gyms">Gyms</Link>
