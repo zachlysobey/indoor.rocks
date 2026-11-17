@@ -1,32 +1,17 @@
-import { Suspense } from "react";
-import { ClimbingGyms } from "./ClimbingGyms";
-import { getData } from "./getData";
+import Link from "next/link";
 import styles from "./page.module.css";
 
-const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));
-
 export default function Home() {
-  const dataPromise = delay(1000).then(getData);
-  const nyGymPromise = dataPromise.then(d => d.climbingGyms.filter(g => g.address.state === "NY"))
-  const njGymPromise = dataPromise.then(d => d.climbingGyms.filter(g => g.address.state === "NJ"))
-  const ctGymPromise = dataPromise.then(d => d.climbingGyms.filter(g => g.address.state === "CT"))
-
   return (
-    <main className={styles.content}>
-      <h2>Climbing Gyms in New York (NY)</h2>
-      <Suspense fallback={(<p>Loading...</p>)}>
-        <ClimbingGyms dataPromise={nyGymPromise} />
-      </Suspense>
-
-      <h2>Climbing Gyms in New Jersey (NJ)</h2>
-      <Suspense fallback={(<p>Loading...</p>)}>
-        <ClimbingGyms dataPromise={njGymPromise} />
-      </Suspense>
-
-      <h2>Climbing Gyms in Connecticut (CT)</h2>
-      <Suspense fallback={(<p>Loading...</p>)}>
-        <ClimbingGyms dataPromise={ctGymPromise} />
-      </Suspense>
+    <main className={styles.main}>
+      <ul>
+        <li>
+          <Link href="/climbing-gyms">Climbing gyms</Link> — every gym, by state
+        </li>
+        <li>
+          <Link href="/climbing-gyms?view=map">Map</Link> — every gym, plotted on a map
+        </li>
+      </ul>
     </main>
   );
 }

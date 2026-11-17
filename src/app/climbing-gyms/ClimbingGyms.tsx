@@ -1,5 +1,5 @@
-import { formatAddress } from './address'
-import { ClimbingGym } from './dataModel'
+import { formatAddress } from '../address'
+import { ClimbingGym } from '../dataModel'
 
 const mapsUrl = (gym: ClimbingGym): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${gym.name}, ${formatAddress(gym.address)}`)}`;

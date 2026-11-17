@@ -26,8 +26,8 @@ export default function RootLayout({
               indoor rock climbing gym guidebook
             </p>
             <nav>
-              <Link href="/">List</Link>
-              <Link href="/map">Map</Link>
+              <Link href="/">Home</Link>
+              <Link href="/climbing-gyms">Gyms</Link>
             </nav>
             <div>
               By: <a href="https://zach.lysobey.com/">Zach Lysobey</a>
