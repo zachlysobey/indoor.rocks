@@ -29,11 +29,11 @@ export default function RootLayout({
               <Link href="/">Home</Link>
               <Link href="/climbing-gyms">Gyms</Link>
             </nav>
-            <div>
-              By: <a href="https://zach.lysobey.com/">Zach Lysobey</a>
-            </div>
           </header>
           {children}
+          <footer className={styles.footer}>
+            By: <a href="https://zach.lysobey.com/">Zach Lysobey</a>
+          </footer>
         </div>
       </body>
     </html>
