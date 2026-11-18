@@ -1,0 +1,31 @@
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+  transition:
+    color 0.15s,
+    text-decoration-color 0.15s;
+}
+
+.nav a[aria-current="page"] {
+  color: var(--text);
+  text-decoration-color: var(--accent);
+}
+
+@media (hover: hover) {
+  .nav a:hover {
+    color: var(--text);
+    text-decoration-color: var(--border);
+  }
+
+  .nav a[aria-current="page"]:hover {
+    text-decoration-color: var(--accent);
+  }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import HeaderNav from "./HeaderNav";
 import "./globals.css";
 import styles from "./layout.module.css";
 
@@ -27,10 +28,7 @@ export default function RootLayout({
               </h1>
               <p>indoor rock climbing guidebook</p>
             </hgroup>
-            <nav>
-              <Link href="/">Home</Link>
-              <Link href="/climbing-gyms">Gyms</Link>
-            </nav>
+            <HeaderNav />
           </header>
           {children}
           <footer className={styles.footer}>
