@@ -1,11 +1,16 @@
+/* Sized by whoever places it. Isolated so Leaflet's z-indexed panes stay inside the map. */
 .map {
-  height: 70dvh;
-  min-height: 20rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  isolation: isolate;
+  min-height: 0;
 }
 
 .pin {
   stroke: var(--accent);
   fill: var(--accent);
+}
+
+.selected {
+  fill-opacity: 0.9;
+  stroke: var(--text);
+  stroke-width: 3;
 }
