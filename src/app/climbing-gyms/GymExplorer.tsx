@@ -51,6 +51,22 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
   // The gym under the pointer (or keyboard focus) in the list, so the map can show its name.
   const [hovered, setHovered] = useState<string>();
 
+  // States start collapsed. Selecting a gym (from the URL or a map pin) opens its state, during
+  // render rather than in an effect, so its card exists by the time the reveal below runs.
+  const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set());
+  const [openedFor, setOpenedFor] = useState<string>();
+  if (selected !== openedFor) {
+    setOpenedFor(selected);
+    const state = gyms.find(gym => gymSlug(gym) === selected)?.address.state;
+    if (state && !expanded.has(state)) setExpanded(new Set(expanded).add(state));
+  }
+  const toggle = (code: string) =>
+    setExpanded(prev => {
+      const next = new Set(prev);
+      if (!next.delete(code)) next.add(code);
+      return next;
+    });
+
   // Picking a pin on the map should bring its card into view in the list.
   const list = useRef<HTMLElement>(null);
   const selectedItem = useRef<HTMLLIElement>(null);
@@ -61,13 +77,26 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
   return (
     <div className={styles.explorer}>
       <section ref={list} className={styles.list} aria-label="Climbing gyms">
-        {states.map(state => (
-          <section key={state.code} aria-labelledby={`state-${state.code}`}>
-            <h2 id={`state-${state.code}`}>{state.name}</h2>
-            <ul>
-              {gyms
-                .filter(gym => gym.address.state === state.code)
-                .map(gym => {
+        {states.map(state => {
+          const stateGyms = gyms.filter(gym => gym.address.state === state.code);
+          const isExpanded = expanded.has(state.code);
+          return (
+            <section key={state.code} aria-labelledby={`state-${state.code}`}>
+              <h2>
+                <button
+                  type="button"
+                  id={`state-${state.code}`}
+                  aria-expanded={isExpanded}
+                  aria-controls={`state-${state.code}-gyms`}
+                  onClick={() => toggle(state.code)}
+                >
+                  <span>{state.name}</span>
+                  <span className={styles.count}>{stateGyms.length}</span>
+                </button>
+              </h2>
+              {/* hidden rather than unrendered, so the prerendered page still links every gym. */}
+              <ul id={`state-${state.code}-gyms`} hidden={!isExpanded}>
+                {stateGyms.map(gym => {
                   const slug = gymSlug(gym);
                   const isSelected = slug === selected;
                   const next = isSelected ? undefined : slug;
@@ -98,9 +127,10 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                     </li>
                   );
                 })}
-            </ul>
-          </section>
-        ))}
+              </ul>
+            </section>
+          );
+        })}
       </section>
       <PinMap
         className={styles.map}
