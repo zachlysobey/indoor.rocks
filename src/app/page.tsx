@@ -6,10 +6,7 @@ export default function Home() {
     <main className={styles.main}>
       <ul>
         <li>
-          <Link href="/climbing-gyms">Climbing gyms</Link> — every gym, by state
-        </li>
-        <li>
-          <Link href="/climbing-gyms?view=map">Map</Link> — every gym, plotted on a map
+          <Link href="/climbing-gyms">Climbing gyms</Link> — every gym, by state and on a map
         </li>
       </ul>
     </main>

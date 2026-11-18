@@ -1,7 +1,21 @@
+/* A centered column between two gutters. Children sit in the column; a page can span all three
+   (grid-column: 1 / -1) to go full bleed. At least a screen tall, with the page (the middle row)
+   taking up the slack, so the footer sits at the bottom and a page can fill the space above it. */
 .shell {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem) 4rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(var(--max-width) - 2 * var(--gutter), 100% - 2 * var(--gutter))
+    1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+  padding-block: clamp(2rem, 6vw, 4rem) 4rem;
+}
+
+.shell > * {
+  grid-column: 2;
+  min-width: 0;
 }
 
 .header {
