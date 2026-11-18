@@ -34,7 +34,10 @@ export default function RootLayout({
           </header>
           {children}
           <footer className={styles.footer}>
-            By: <a href="https://zach.lysobey.com/">Zach Lysobey</a>
+            By: <a href="https://zach.lysobey.com/">Zach Lysobey</a> ·{" "}
+            <a href="https://github.com/zachlysobey/indoor.rocks">
+              Source on GitHub
+            </a>
           </footer>
         </div>
       </body>
