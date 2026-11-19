@@ -42,6 +42,33 @@ import { centralRockGymGlastonbury } from "./data/ct-gyms/centralRockGymGlastonb
 import { stoneAgeRockGym } from "./data/ct-gyms/stoneAgeRockGym";
 import { rockSpotClimbingNewHaven } from "./data/ct-gyms/rockSpotClimbingNewHaven";
 import { ascentNewHaven } from "./data/ct-gyms/ascentNewHaven";
+import { centralRockGymHadley } from "./data/ma-gyms/centralRockGymHadley";
+import { centralRockGymNorthStation } from "./data/ma-gyms/centralRockGymNorthStation";
+import { centralRockGymCambridge } from "./data/ma-gyms/centralRockGymCambridge";
+import { centralRockGymFenway } from "./data/ma-gyms/centralRockGymFenway";
+import { centralRockGymFramingham } from "./data/ma-gyms/centralRockGymFramingham";
+import { centralRockGymHarvardSquare } from "./data/ma-gyms/centralRockGymHarvardSquare";
+import { centralRockGymRandolph } from "./data/ma-gyms/centralRockGymRandolph";
+import { centralRockGymStoneham } from "./data/ma-gyms/centralRockGymStoneham";
+import { centralRockGymWaltham } from "./data/ma-gyms/centralRockGymWaltham";
+import { centralRockGymWatertown } from "./data/ma-gyms/centralRockGymWatertown";
+import { centralRockGymArsenalYards } from "./data/ma-gyms/centralRockGymArsenalYards";
+import { centralRockGymWorcester } from "./data/ma-gyms/centralRockGymWorcester";
+import { metroRockEverett } from "./data/ma-gyms/metroRockEverett";
+import { metroRockTyngsboro } from "./data/ma-gyms/metroRockTyngsboro";
+import { metroRockLittleton } from "./data/ma-gyms/metroRockLittleton";
+import { rockSpotClimbingBoston } from "./data/ma-gyms/rockSpotClimbingBoston";
+import { rockSpotClimbingSouthBoston } from "./data/ma-gyms/rockSpotClimbingSouthBoston";
+import { rockSpotClimbingBrookline } from "./data/ma-gyms/rockSpotClimbingBrookline";
+import { rockSpotClimbingMalden } from "./data/ma-gyms/rockSpotClimbingMalden";
+import { boulderingProjectSomerville } from "./data/ma-gyms/boulderingProjectSomerville";
+import { carabinersClimbingAndFitness } from "./data/ma-gyms/carabinersClimbingAndFitness";
+import { berkshireBoulders } from "./data/ma-gyms/berkshireBoulders";
+import { petraCliffs } from "./data/vt-gyms/petraCliffs";
+import { metroRockVermont } from "./data/vt-gyms/metroRockVermont";
+import { greenMountainRockClimbingCenter } from "./data/vt-gyms/greenMountainRockClimbingCenter";
+import { brattCaveBoulderingGym } from "./data/vt-gyms/brattCaveBoulderingGym";
+import { climbStratton } from "./data/vt-gyms/climbStratton";
 
 export function getData (): DataModel {
   return {
@@ -93,4 +120,31 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   stoneAgeRockGym,
   rockSpotClimbingNewHaven,
   ascentNewHaven,
+  centralRockGymHadley,
+  centralRockGymNorthStation,
+  centralRockGymCambridge,
+  centralRockGymFenway,
+  centralRockGymFramingham,
+  centralRockGymHarvardSquare,
+  centralRockGymRandolph,
+  centralRockGymStoneham,
+  centralRockGymWaltham,
+  centralRockGymWatertown,
+  centralRockGymArsenalYards,
+  centralRockGymWorcester,
+  metroRockEverett,
+  metroRockTyngsboro,
+  metroRockLittleton,
+  rockSpotClimbingBoston,
+  rockSpotClimbingSouthBoston,
+  rockSpotClimbingBrookline,
+  rockSpotClimbingMalden,
+  boulderingProjectSomerville,
+  carabinersClimbingAndFitness,
+  berkshireBoulders,
+  petraCliffs,
+  metroRockVermont,
+  greenMountainRockClimbingCenter,
+  brattCaveBoulderingGym,
+  climbStratton,
 };

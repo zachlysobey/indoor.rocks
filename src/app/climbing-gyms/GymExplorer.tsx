@@ -16,6 +16,8 @@ const states = [
   { code: "NY", name: "New York" },
   { code: "NJ", name: "New Jersey" },
   { code: "CT", name: "Connecticut" },
+  { code: "MA", name: "Massachusetts" },
+  { code: "VT", name: "Vermont" },
 ];
 
 const toPin = (gym: ClimbingGym): Pin => ({
