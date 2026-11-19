@@ -19,6 +19,25 @@ import { rocksteadyClimbingGym } from "./data/ny-suburbs-gyms/rocksteadyClimbing
 import { islandRock } from "./data/ny-suburbs-gyms/islandRock";
 import { theGravityVaultWestbury } from "./data/ny-suburbs-gyms/theGravityVaultWestbury";
 import { theGravityVaultMelville } from "./data/ny-suburbs-gyms/theGravityVaultMelville";
+import { albanysIndoorRockgym } from "./data/ny-upstate-gyms/albanysIndoorRockgym";
+import { hudsonBoulders } from "./data/ny-upstate-gyms/hudsonBoulders";
+import { theEdgeHalfmoon } from "./data/ny-upstate-gyms/theEdgeHalfmoon";
+import { centralRockGymTroy } from "./data/ny-upstate-gyms/centralRockGymTroy";
+import { rocksport } from "./data/ny-upstate-gyms/rocksport";
+import { hiNotchIndoorClimbing } from "./data/ny-upstate-gyms/hiNotchIndoorClimbing";
+import { theCrux } from "./data/ny-upstate-gyms/theCrux";
+import { theGravityVaultPoughkeepsie } from "./data/ny-upstate-gyms/theGravityVaultPoughkeepsie";
+import { mustangsBouldering } from "./data/ny-upstate-gyms/mustangsBouldering";
+import { bcsNewPaltzClimbingGym } from "./data/ny-upstate-gyms/bcsNewPaltzClimbingGym";
+import { centralRockGymSyracuse } from "./data/ny-upstate-gyms/centralRockGymSyracuse";
+import { tableRockBouldering } from "./data/ny-upstate-gyms/tableRockBouldering";
+import { cayugaClimbs } from "./data/ny-upstate-gyms/cayugaClimbs";
+import { thePadClimbingBinghamton } from "./data/ny-upstate-gyms/thePadClimbingBinghamton";
+import { centralRockGymRochester } from "./data/ny-upstate-gyms/centralRockGymRochester";
+import { rocVenturesClimbingGym } from "./data/ny-upstate-gyms/rocVenturesClimbingGym";
+import { sunriseBouldering } from "./data/ny-upstate-gyms/sunriseBouldering";
+import { centralRockGymBuffalo } from "./data/ny-upstate-gyms/centralRockGymBuffalo";
+import { niagaraClimbingCenter } from "./data/ny-upstate-gyms/niagaraClimbingCenter";
 import { theGravityVaultHoboken } from "./data/nj-gyms/theGravityVaultHoboken";
 import { goatClimbingGym } from "./data/nj-gyms/goatClimbingGym";
 import { methodClimbing } from "./data/nj-gyms/methodClimbing";
@@ -64,11 +83,27 @@ import { rockSpotClimbingMalden } from "./data/ma-gyms/rockSpotClimbingMalden";
 import { boulderingProjectSomerville } from "./data/ma-gyms/boulderingProjectSomerville";
 import { carabinersClimbingAndFitness } from "./data/ma-gyms/carabinersClimbingAndFitness";
 import { berkshireBoulders } from "./data/ma-gyms/berkshireBoulders";
+import { boulderUnion } from "./data/ma-gyms/boulderUnion";
 import { petraCliffs } from "./data/vt-gyms/petraCliffs";
 import { metroRockVermont } from "./data/vt-gyms/metroRockVermont";
 import { greenMountainRockClimbingCenter } from "./data/vt-gyms/greenMountainRockClimbingCenter";
 import { brattCaveBoulderingGym } from "./data/vt-gyms/brattCaveBoulderingGym";
 import { climbStratton } from "./data/vt-gyms/climbStratton";
+import { rockSpotClimbingLincoln } from "./data/ri-gyms/rockSpotClimbingLincoln";
+import { rockSpotClimbingPeaceDale } from "./data/ri-gyms/rockSpotClimbingPeaceDale";
+import { rockSpotClimbingProvidence } from "./data/ri-gyms/rockSpotClimbingProvidence";
+import { centralRockGymWarwick } from "./data/ri-gyms/centralRockGymWarwick";
+import { nhClimbingAndFitness } from "./data/nh-gyms/nhClimbingAndFitness";
+import { verticalDreams } from "./data/nh-gyms/verticalDreams";
+import { indoorAscent } from "./data/nh-gyms/indoorAscent";
+import { theNotchClimbingGym } from "./data/nh-gyms/theNotchClimbingGym";
+import { northCountryClimbingCenter } from "./data/nh-gyms/northCountryClimbingCenter";
+import { saltPumpPortsmouth } from "./data/nh-gyms/saltPumpPortsmouth";
+import { seacoastClimb } from "./data/nh-gyms/seacoastClimb";
+import { climbMonadnock } from "./data/nh-gyms/climbMonadnock";
+import { saltPumpScarborough } from "./data/me-gyms/saltPumpScarborough";
+import { evoRockAndFitnessPortland } from "./data/me-gyms/evoRockAndFitnessPortland";
+import { voltaClimbing } from "./data/me-gyms/voltaClimbing";
 
 export function getData (): DataModel {
   return {
@@ -97,6 +132,25 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   islandRock,
   theGravityVaultWestbury,
   theGravityVaultMelville,
+  albanysIndoorRockgym,
+  hudsonBoulders,
+  theEdgeHalfmoon,
+  centralRockGymTroy,
+  rocksport,
+  hiNotchIndoorClimbing,
+  theCrux,
+  theGravityVaultPoughkeepsie,
+  mustangsBouldering,
+  bcsNewPaltzClimbingGym,
+  centralRockGymSyracuse,
+  tableRockBouldering,
+  cayugaClimbs,
+  thePadClimbingBinghamton,
+  centralRockGymRochester,
+  rocVenturesClimbingGym,
+  sunriseBouldering,
+  centralRockGymBuffalo,
+  niagaraClimbingCenter,
   theGravityVaultHoboken,
   goatClimbingGym,
   methodClimbing,
@@ -142,9 +196,25 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   boulderingProjectSomerville,
   carabinersClimbingAndFitness,
   berkshireBoulders,
+  boulderUnion,
   petraCliffs,
   metroRockVermont,
   greenMountainRockClimbingCenter,
   brattCaveBoulderingGym,
   climbStratton,
+  rockSpotClimbingLincoln,
+  rockSpotClimbingPeaceDale,
+  rockSpotClimbingProvidence,
+  centralRockGymWarwick,
+  nhClimbingAndFitness,
+  verticalDreams,
+  indoorAscent,
+  theNotchClimbingGym,
+  northCountryClimbingCenter,
+  saltPumpPortsmouth,
+  seacoastClimb,
+  climbMonadnock,
+  saltPumpScarborough,
+  evoRockAndFitnessPortland,
+  voltaClimbing,
 };

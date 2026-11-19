@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import type { ClimbingGym } from "../dataModel";
 import { gymSlug } from "../gymSlug";
+import { states } from "../states";
 import { GymDetails } from "./GymDetails";
 import styles from "./GymExplorer.module.css";
 import { PinMap, type Pin } from "./PinMap";
@@ -11,14 +12,6 @@ import { PinMap, type Pin } from "./PinMap";
 type Props = {
   gyms: ClimbingGym[];
 };
-
-const states = [
-  { code: "NY", name: "New York" },
-  { code: "NJ", name: "New Jersey" },
-  { code: "CT", name: "Connecticut" },
-  { code: "MA", name: "Massachusetts" },
-  { code: "VT", name: "Vermont" },
-];
 
 const toPin = (gym: ClimbingGym): Pin => ({
   id: gymSlug(gym),
