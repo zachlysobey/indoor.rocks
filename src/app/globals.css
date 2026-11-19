@@ -12,6 +12,18 @@
   --border: #e3ddd5;
   --chip: #f1ece6;
   --accent: #c2410c;
+
+  /* The page background is a climbing wall: plywood panels, a staggered grid of t-nut holes, and a
+     gritty paint texture. `--hole-gap` sets the scale; panels are 3 × 6 holes, the shape of a 4' × 8'
+     sheet. */
+  --hole-gap: 96px;
+  --panel-w: calc(3 * var(--hole-gap));
+  --panel-h: calc(6 * var(--hole-gap));
+  --wall-seam: rgb(60 45 30 / 0.08);
+  --wall-seam-shine: rgb(255 255 255 / 0.35);
+  --wall-panel-tint: rgb(60 45 30 / 0.005);
+  --wall-hole: rgb(40 32 24 / 0.3);
+  --wall-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .15 0 0 0 0 .1 1.1 0 0 0 -.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.35'/%3E%3C/svg%3E");
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,6 +36,12 @@
     --border: #2f2a25;
     --chip: #2a2520;
     --accent: #fb923c;
+
+    --wall-seam: rgb(0 0 0 / 0.3);
+    --wall-seam-shine: rgb(255 255 255 / 0.025);
+    --wall-panel-tint: rgb(255 255 255 / 0.003);
+    --wall-hole: rgb(0 0 0 / 0.75);
+    --wall-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .9 1.1 0 0 0 -.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.12'/%3E%3C/svg%3E");
   }
 }
 
@@ -39,9 +57,57 @@ body {
   overflow-x: hidden;
 }
 
+/* Layers, top to bottom: grit; two offset hole grids (together, a staggered diamond pattern); vertical
+   and horizontal panel seams, each a dark line with a lit edge; a checkerboard tint so neighboring
+   panels read as separate sheets; the paint. The seams sit a quarter gap off the hole grid, so every
+   panel's edge holes are the same distance in from its sides. */
 body {
+  position: relative; /* the containing block for the ClimbingWall layer */
+  --hole: radial-gradient(
+    circle,
+    var(--wall-hole) 0 2px,
+    transparent 3.5px
+  );
+  --seam-offset: calc(var(--hole-gap) / 4);
+
   color: var(--text);
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    var(--wall-grit),
+    var(--hole),
+    var(--hole),
+    linear-gradient(
+      90deg,
+      var(--wall-seam) 0 1px,
+      var(--wall-seam-shine) 1px 2px,
+      transparent 2px
+    ),
+    linear-gradient(
+      var(--wall-seam) 0 1px,
+      var(--wall-seam-shine) 1px 2px,
+      transparent 2px
+    ),
+    conic-gradient(
+      var(--wall-panel-tint) 0 25%,
+      transparent 0 50%,
+      var(--wall-panel-tint) 0 75%,
+      transparent 0
+    );
+  background-size:
+    180px 180px,
+    var(--hole-gap) var(--hole-gap),
+    var(--hole-gap) var(--hole-gap),
+    var(--panel-w) 100%,
+    100% var(--panel-h),
+    calc(2 * var(--panel-w)) calc(2 * var(--panel-h));
+  background-position:
+    0 0,
+    0 0,
+    calc(var(--hole-gap) / 2) calc(var(--hole-gap) / 2),
+    var(--seam-offset) 0,
+    0 var(--seam-offset),
+    var(--seam-offset) var(--seam-offset);
+  background-repeat: repeat, repeat, repeat, repeat-x, repeat-y, repeat;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
