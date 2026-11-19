@@ -8,6 +8,9 @@ export default function Home() {
         <li>
           <Link href="/climbing-gyms">Climbing gyms</Link> — every gym, by state and on a map
         </li>
+        <li>
+          <Link href="/home-walls">Home walls</Link> — communities and resources for building your own
+        </li>
       </ul>
     </main>
   );

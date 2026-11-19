@@ -7,6 +7,7 @@ import styles from "./HeaderNav.module.css";
 const links = [
   { href: "/", label: "Home" },
   { href: "/climbing-gyms", label: "Gyms" },
+  { href: "/home-walls", label: "Home walls" },
 ];
 
 /* Muted links, with the current section in full text color and an accent underline. */

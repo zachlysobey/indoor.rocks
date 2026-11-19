@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.main h4 {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+.main ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  list-style: none;
+}
+
+.main a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  .main a:hover {
+    text-decoration: underline;
+  }
+}
