@@ -4,6 +4,7 @@ import Link from "next/link";
 import HeaderNav from "./HeaderNav";
 import "./globals.css";
 import styles from "./layout.module.css";
+import ClimbingWall from "./wall/ClimbingWall";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <ClimbingWall />
         <div className={styles.shell}>
           <header className={styles.header}>
             <hgroup>

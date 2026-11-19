@@ -62,6 +62,7 @@ body {
    panels read as separate sheets; the paint. The seams sit a quarter gap off the hole grid, so every
    panel's edge holes are the same distance in from its sides. */
 body {
+  position: relative; /* the containing block for the ClimbingWall layer */
   --hole: radial-gradient(
     circle,
     var(--wall-hole) 0 2px,
