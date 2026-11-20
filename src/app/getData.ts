@@ -104,6 +104,40 @@ import { climbMonadnock } from "./data/nh-gyms/climbMonadnock";
 import { saltPumpScarborough } from "./data/me-gyms/saltPumpScarborough";
 import { evoRockAndFitnessPortland } from "./data/me-gyms/evoRockAndFitnessPortland";
 import { voltaClimbing } from "./data/me-gyms/voltaClimbing";
+import { movementCallowhill } from "./data/pa-gyms/movementCallowhill";
+import { movementFishtown } from "./data/pa-gyms/movementFishtown";
+import { philadelphiaRockGymsFishtown } from "./data/pa-gyms/philadelphiaRockGymsFishtown";
+import { philadelphiaRockGymsEastFalls } from "./data/pa-gyms/philadelphiaRockGymsEastFalls";
+import { philadelphiaRockGymsOaks } from "./data/pa-gyms/philadelphiaRockGymsOaks";
+import { philadelphiaRockGymsWyncote } from "./data/pa-gyms/philadelphiaRockGymsWyncote";
+import { philadelphiaRockGymsMalvern } from "./data/pa-gyms/philadelphiaRockGymsMalvern";
+import { tufasBoulderLounge } from "./data/pa-gyms/tufasBoulderLounge";
+import { reachClimbingAndFitness } from "./data/pa-gyms/reachClimbingAndFitness";
+import { theGravityVaultRadnor } from "./data/pa-gyms/theGravityVaultRadnor";
+import { theGravityVaultLehighValley } from "./data/pa-gyms/theGravityVaultLehighValley";
+import { downingtownRockGym } from "./data/pa-gyms/downingtownRockGym";
+import { doylestownRockGym } from "./data/pa-gyms/doylestownRockGym";
+import { northSummitClimbingGym } from "./data/pa-gyms/northSummitClimbingGym";
+import { chakstoneIndoorClimbing } from "./data/pa-gyms/chakstoneIndoorClimbing";
+import { readingRocks } from "./data/pa-gyms/readingRocks";
+import { nookClimbingGym } from "./data/pa-gyms/nookClimbingGym";
+import { climbnasium } from "./data/pa-gyms/climbnasium";
+import { climbNittany } from "./data/pa-gyms/climbNittany";
+import { miltonRockGym } from "./data/pa-gyms/miltonRockGym";
+import { ascendSouthSide } from "./data/pa-gyms/ascendSouthSide";
+import { ascendPointBreeze } from "./data/pa-gyms/ascendPointBreeze";
+import { ascendErie } from "./data/pa-gyms/ascendErie";
+import { ironCityBoulders } from "./data/pa-gyms/ironCityBoulders";
+import { faClimbingStationSquare } from "./data/pa-gyms/faClimbingStationSquare";
+import { climbNorth } from "./data/pa-gyms/climbNorth";
+import { theGoatFort } from "./data/pa-gyms/theGoatFort";
+import { movementHampden } from "./data/md-gyms/movementHampden";
+import { movementColumbia } from "./data/md-gyms/movementColumbia";
+import { movementRockville } from "./data/md-gyms/movementRockville";
+import { movementTimonium } from "./data/md-gyms/movementTimonium";
+import { sportrockRio } from "./data/md-gyms/sportrockRio";
+import { theBoulderYard } from "./data/md-gyms/theBoulderYard";
+import { delawareRockGym } from "./data/de-gyms/delawareRockGym";
 
 export function getData (): DataModel {
   return {
@@ -217,4 +251,38 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   saltPumpScarborough,
   evoRockAndFitnessPortland,
   voltaClimbing,
+  movementCallowhill,
+  movementFishtown,
+  philadelphiaRockGymsFishtown,
+  philadelphiaRockGymsEastFalls,
+  philadelphiaRockGymsOaks,
+  philadelphiaRockGymsWyncote,
+  philadelphiaRockGymsMalvern,
+  tufasBoulderLounge,
+  reachClimbingAndFitness,
+  theGravityVaultRadnor,
+  theGravityVaultLehighValley,
+  downingtownRockGym,
+  doylestownRockGym,
+  northSummitClimbingGym,
+  chakstoneIndoorClimbing,
+  readingRocks,
+  nookClimbingGym,
+  climbnasium,
+  climbNittany,
+  miltonRockGym,
+  ascendSouthSide,
+  ascendPointBreeze,
+  ascendErie,
+  ironCityBoulders,
+  faClimbingStationSquare,
+  climbNorth,
+  theGoatFort,
+  movementHampden,
+  movementColumbia,
+  movementRockville,
+  movementTimonium,
+  sportrockRio,
+  theBoulderYard,
+  delawareRockGym,
 };
