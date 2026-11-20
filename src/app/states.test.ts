@@ -21,6 +21,11 @@ const bounds: Record<string, [number, number, number, number]> = {
 describe("states", () => {
   const gyms = getData().climbingGyms;
 
+  it("is alphabetical by name", () => {
+    const names = states.map(state => state.name);
+    expect(names).toEqual(names.toSorted((a, b) => a.localeCompare(b, "en")));
+  });
+
   it("lists every state that has a gym", () => {
     const listed = states.map(state => state.code);
     for (const gym of gyms) expect(listed, gym.name).toContain(gym.address.state);
