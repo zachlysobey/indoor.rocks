@@ -97,7 +97,7 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                   <span className={styles.count}>{stateGyms.length}</span>
                 </button>
               </h2>
-              {/* hidden rather than unrendered, so the prerendered page still links every gym. */}
+              {/* hidden rather than unrendered, so the prerendered page still links every gym's page. */}
               <ul id={`state-${state.code}-gyms`} hidden={!isExpanded}>
                 {stateGyms.map(gym => {
                   const slug = gymSlug(gym);
@@ -110,8 +110,12 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                         className={isSelected ? styles.selected : undefined}
                       >
                         <h3>
+                          {/* Links to the gym's own page, which is what a new tab, a copied link or
+                              a crawler gets. A plain click selects the gym here instead (or
+                              deselects it). A plain <a>, not <Link>: Link would prefetch every
+                              gym page in view. */}
                           <a
-                            href={gymRoutes.list(next)}
+                            href={gymRoutes.page(slug)}
                             aria-current={isSelected ? "true" : undefined}
                             onMouseEnter={() => setHovered(slug)}
                             onMouseLeave={() => setHovered(undefined)}
