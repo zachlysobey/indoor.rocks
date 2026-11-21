@@ -8,7 +8,7 @@ import { siteUrl } from "./siteUrl";
 export const dynamic = "force-static";
 
 // Every page that isn't one per gym. sitemap.test.ts fails if a page is added without one here.
-const pages = ["/", gymRoutes.index(), gymRoutes.map(), "/home-walls/"];
+const pages = ["/", gymRoutes.index(), gymRoutes.map(), gymRoutes.list(), "/home-walls/"];
 
 // Served as /sitemap.xml: every page, then every gym's page. Just URLs: the build can't know when a
 // page last changed, and Google ignores changeFrequency and priority.

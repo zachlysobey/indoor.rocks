@@ -10,4 +10,6 @@ export const gymRoutes = {
   index: (): string => "/climbing-gyms/",
   page: (slug: string): string => `/climbing-gym/${slug}/`,
   map: (slug?: string): string => `/climbing-gyms/map/${slug ? `?focus=${slug}` : ""}`,
+  // Every gym on one page, by state, without the map.
+  list: (): string => "/climbing-gyms/list/",
 };
