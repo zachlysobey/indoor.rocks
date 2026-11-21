@@ -4,6 +4,7 @@ import Link from "next/link";
 import HeaderNav from "./HeaderNav";
 import "./globals.css";
 import styles from "./layout.module.css";
+import { PopStateFirst } from "./PopStateFirst";
 import { siteUrl } from "./siteUrl";
 import ClimbingWall from "./wall/ClimbingWall";
 
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <PopStateFirst />
         <ClimbingWall />
         <div className={styles.shell}>
           <header className={styles.header}>

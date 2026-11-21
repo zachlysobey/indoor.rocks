@@ -1,15 +1,19 @@
 import { ViewTransition, type ReactNode } from "react";
 import "./GymMorph.css";
 import styles from "./GymMorph.module.css";
+import { MorphOnTraverse } from "./MorphOnTraverse";
 
 // The animation between a gym's card in the list and the gym's own page: the card grows into the
 // page (and shrinks back), its name moves on its own, and the pages around it fade. Everything that
 // knows about view transitions is here and in GymMorph.css.
 //
-// It plays only on navigations tagged with one of these types, by the expand and collapse links.
-// Any other navigation (the header nav, Back) swaps pages as usual.
+// It plays only on navigations tagged with one of these types: by the expand and collapse links,
+// and by Back and Forward between the list and a gym's page (MorphOnTraverse). Any other
+// navigation (the header nav, say) swaps pages as usual.
 const OPEN = "gym-open";
 const CLOSE = "gym-close";
+const open = [OPEN];
+const close = [CLOSE];
 
 // A class for both tagged navigations, and nothing for any other.
 const onMorph = (className: string) => ({ [OPEN]: className, [CLOSE]: className, default: "none" });
@@ -40,11 +44,14 @@ function Name({ slug, children }: Props) {
 // Everything around the card: the list page fades out as the gym's page fades in, and back.
 function Page({ children }: { children: ReactNode }) {
   return (
-    <ViewTransition enter={onMorph("gym-page")} exit={onMorph("gym-page")} default="none">
-      {children}
-    </ViewTransition>
+    <>
+      <MorphOnTraverse open={open} close={close} />
+      <ViewTransition enter={onMorph("gym-page")} exit={onMorph("gym-page")} default="none">
+        {children}
+      </ViewTransition>
+    </>
   );
 }
 
 // open and close are the transitionTypes for the expand and collapse links.
-export const GymMorph = { Card, Name, Page, open: [OPEN], close: [CLOSE] };
+export const GymMorph = { Card, Name, Page, open, close };
