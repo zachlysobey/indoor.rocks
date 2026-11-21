@@ -4,13 +4,13 @@ import Link from "next/link";
 import HeaderNav from "./HeaderNav";
 import "./globals.css";
 import styles from "./layout.module.css";
+import { siteUrl } from "./siteUrl";
 import ClimbingWall from "./wall/ClimbingWall";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  // Where relative URLs in any page's metadata (like a canonical URL) resolve.
-  metadataBase: new URL("https://indoor.rocks"),
+  metadataBase: siteUrl,
   title: "indoor.rocks",
   description: "indoor rock climbing guidebook",
 };
