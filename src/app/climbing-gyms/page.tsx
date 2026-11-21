@@ -23,6 +23,12 @@ export default function ClimbingGymsPage() {
             <span>Every gym on a map, with a list by state alongside</span>
           </Link>
         </li>
+        <li>
+          <Link href={gymRoutes.list()}>
+            <strong>List</strong>
+            <span>Every gym at a glance, by state, on one page</span>
+          </Link>
+        </li>
       </ul>
     </main>
   );
