@@ -9,6 +9,8 @@ import ClimbingWall from "./wall/ClimbingWall";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  // Where relative URLs in any page's metadata (like a canonical URL) resolve.
+  metadataBase: new URL("https://indoor.rocks"),
   title: "indoor.rocks",
   description: "indoor rock climbing guidebook",
 };

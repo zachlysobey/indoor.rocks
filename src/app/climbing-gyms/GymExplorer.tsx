@@ -24,12 +24,11 @@ const toPin = (gym: ClimbingGym): Pin => ({
   title: gym.name,
 });
 
-const hrefFor = (slug: string | undefined): string => (slug ? `?gym=${slug}` : "?");
-
-// The selection lives in ?gym=, so a gym can be linked to and Back deselects it. pushState rather
-// than a router navigation: Next folds it into useSearchParams without fetching the page again.
+// The selection lives in ?focus= (gymRoutes.list), so a gym can be linked to and Back deselects it.
+// pushState rather than a router navigation: Next folds it into useSearchParams without fetching
+// the page again.
 function select(slug: string | undefined) {
-  window.history.pushState(null, "", slug ? hrefFor(slug) : window.location.pathname);
+  window.history.pushState(null, "", gymRoutes.list(slug));
 }
 
 // Scroll the list, and only the list, so the item is fully in view below its sticky state heading.
@@ -112,7 +111,7 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                       >
                         <h3>
                           <a
-                            href={hrefFor(next)}
+                            href={gymRoutes.list(next)}
                             aria-current={isSelected ? "true" : undefined}
                             onMouseEnter={() => setHovered(slug)}
                             onMouseLeave={() => setHovered(undefined)}
@@ -162,11 +161,11 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
 }
 
 function ExplorerFromQuery(props: Props) {
-  const selected = useSearchParams().get("gym") ?? undefined;
+  const selected = useSearchParams().get("focus") ?? undefined;
   return <Explorer {...props} selected={selected} />;
 }
 
-// The page is a static export, so ?gym= is only known in the browser. The prerendered HTML has
+// The page is a static export, so ?focus= is only known in the browser. The prerendered HTML has
 // nothing selected (the fallback), and the query takes over once the page hydrates.
 export function GymExplorer(props: Props) {
   return (
