@@ -3,6 +3,7 @@
 // gym's state is here.
 export const states = [
   { code: "AL", name: "Alabama" },
+  { code: "AR", name: "Arkansas" },
   { code: "CT", name: "Connecticut" },
   { code: "DE", name: "Delaware" },
   { code: "DC", name: "District of Columbia" },
@@ -10,10 +11,13 @@ export const states = [
   { code: "GA", name: "Georgia" },
   { code: "IN", name: "Indiana" },
   { code: "KY", name: "Kentucky" },
+  { code: "LA", name: "Louisiana" },
   { code: "ME", name: "Maine" },
   { code: "MD", name: "Maryland" },
   { code: "MA", name: "Massachusetts" },
   { code: "MI", name: "Michigan" },
+  { code: "MS", name: "Mississippi" },
+  { code: "MO", name: "Missouri" },
   { code: "NH", name: "New Hampshire" },
   { code: "NJ", name: "New Jersey" },
   { code: "NY", name: "New York" },

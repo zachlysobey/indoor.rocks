@@ -286,6 +286,27 @@ import { appalachianBoulderingCenter } from "./data/tn-gyms/appalachianBoulderin
 import { highPointBirmingham } from "./data/al-gyms/highPointBirmingham";
 import { highPointMidcity } from "./data/al-gyms/highPointMidcity";
 import { highPointLincolnMill } from "./data/al-gyms/highPointLincolnMill";
+import { theHangoutRidgeland } from "./data/ms-gyms/theHangoutRidgeland";
+import { climbBentonville } from "./data/ar-gyms/climbBentonville";
+import { climbConway } from "./data/ar-gyms/climbConway";
+import { littleRockClimbingCenter } from "./data/ar-gyms/littleRockClimbingCenter";
+import { bouldersAndBrews } from "./data/ar-gyms/bouldersAndBrews";
+import { ozarkClimbingGym } from "./data/ar-gyms/ozarkClimbingGym";
+import { verticalHorizons } from "./data/ar-gyms/verticalHorizons";
+import { newOrleansBoulderLounge } from "./data/la-gyms/newOrleansBoulderLounge";
+import { uptownClimbing } from "./data/la-gyms/uptownClimbing";
+import { southernStone } from "./data/la-gyms/southernStone";
+import { risenRock } from "./data/la-gyms/risenRock";
+import { climbSoIllPowerPlant } from "./data/mo-gyms/climbSoIllPowerPlant";
+import { climbSoIllSteelShop } from "./data/mo-gyms/climbSoIllSteelShop";
+import { upperLimitsMarylandHeights } from "./data/mo-gyms/upperLimitsMarylandHeights";
+import { upperLimitsChesterfield } from "./data/mo-gyms/upperLimitsChesterfield";
+import { comoRocks } from "./data/mo-gyms/comoRocks";
+import { theBoulderingGardenColumbia } from "./data/mo-gyms/theBoulderingGardenColumbia";
+import { zenithClimbingCenter } from "./data/mo-gyms/zenithClimbingCenter";
+import { ibexClimbingGym } from "./data/mo-gyms/ibexClimbingGym";
+import { rokcNorth } from "./data/mo-gyms/rokcNorth";
+import { sequenceClimbing } from "./data/mo-gyms/sequenceClimbing";
 
 export function getData (): DataModel {
   return {
@@ -581,4 +602,25 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   highPointBirmingham,
   highPointMidcity,
   highPointLincolnMill,
+  theHangoutRidgeland,
+  climbBentonville,
+  climbConway,
+  littleRockClimbingCenter,
+  bouldersAndBrews,
+  ozarkClimbingGym,
+  verticalHorizons,
+  newOrleansBoulderLounge,
+  uptownClimbing,
+  southernStone,
+  risenRock,
+  climbSoIllPowerPlant,
+  climbSoIllSteelShop,
+  upperLimitsMarylandHeights,
+  upperLimitsChesterfield,
+  comoRocks,
+  theBoulderingGardenColumbia,
+  zenithClimbingCenter,
+  ibexClimbingGym,
+  rokcNorth,
+  sequenceClimbing,
 };
