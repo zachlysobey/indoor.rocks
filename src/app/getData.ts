@@ -266,6 +266,26 @@ import { theEdgeRockGymJacksonville } from "./data/fl-gyms/theEdgeRockGymJackson
 import { theKnot } from "./data/fl-gyms/theKnot";
 import { alchemyClimbing } from "./data/fl-gyms/alchemyClimbing";
 import { rockOutClimbing } from "./data/fl-gyms/rockOutClimbing";
+import { highPointDowntown } from "./data/tn-gyms/highPointDowntown";
+import { highPointRiverside } from "./data/tn-gyms/highPointRiverside";
+import { highPointCleveland } from "./data/tn-gyms/highPointCleveland";
+import { highPointMemphis } from "./data/tn-gyms/highPointMemphis";
+import { synergyClimbing } from "./data/tn-gyms/synergyClimbing";
+import { memphisRox } from "./data/tn-gyms/memphisRox";
+import { climbNashvilleWest } from "./data/tn-gyms/climbNashvilleWest";
+import { climbNashvilleEast } from "./data/tn-gyms/climbNashvilleEast";
+import { climbKraft } from "./data/tn-gyms/climbKraft";
+import { climbMurfreesboro } from "./data/tn-gyms/climbMurfreesboro";
+import { theCragNashville } from "./data/tn-gyms/theCragNashville";
+import { theCragFranklin } from "./data/tn-gyms/theCragFranklin";
+import { theAscent } from "./data/tn-gyms/theAscent";
+import { onsightRockGym } from "./data/tn-gyms/onsightRockGym";
+import { theClimbingCenterKnoxville } from "./data/tn-gyms/theClimbingCenterKnoxville";
+import { climbingRoots } from "./data/tn-gyms/climbingRoots";
+import { appalachianBoulderingCenter } from "./data/tn-gyms/appalachianBoulderingCenter";
+import { highPointBirmingham } from "./data/al-gyms/highPointBirmingham";
+import { highPointMidcity } from "./data/al-gyms/highPointMidcity";
+import { highPointLincolnMill } from "./data/al-gyms/highPointLincolnMill";
 
 export function getData (): DataModel {
   return {
@@ -541,4 +561,24 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   theKnot,
   alchemyClimbing,
   rockOutClimbing,
+  highPointDowntown,
+  highPointRiverside,
+  highPointCleveland,
+  highPointMemphis,
+  synergyClimbing,
+  memphisRox,
+  climbNashvilleWest,
+  climbNashvilleEast,
+  climbKraft,
+  climbMurfreesboro,
+  theCragNashville,
+  theCragFranklin,
+  theAscent,
+  onsightRockGym,
+  theClimbingCenterKnoxville,
+  climbingRoots,
+  appalachianBoulderingCenter,
+  highPointBirmingham,
+  highPointMidcity,
+  highPointLincolnMill,
 };
