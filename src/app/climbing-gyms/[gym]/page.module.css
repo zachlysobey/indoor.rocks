@@ -1,0 +1,48 @@
+main.content {
+  margin-top: 1.5rem;
+}
+
+/* The list's selected card, writ large. */
+.card {
+  composes: card from "../GymCard.module.css";
+  font-size: 1.1rem;
+}
+
+.card header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem 0.75rem;
+}
+
+.card h2 {
+  flex: 1;
+  color: var(--accent);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.details {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.collapse {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 1.125rem;
+}
+
+@media (hover: hover) {
+  .collapse:hover {
+    border-color: var(--accent);
+    background: var(--chip);
+    color: var(--accent);
+  }
+}

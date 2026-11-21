@@ -5,10 +5,16 @@ import styles from "./GymDetails.module.css";
 const mapsUrl = (gym: ClimbingGym): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${gym.name}, ${formatAddress(gym.address)}`)}`;
 
-// Everything about a gym but its name, which the list already shows as the heading.
-export function GymDetails({ gym }: { gym: ClimbingGym }) {
+type Props = {
+  gym: ClimbingGym;
+  // Spacing around the details is up to wherever they're placed.
+  className?: string;
+};
+
+// Everything about a gym but its name, which wherever it's shown already has as a heading.
+export function GymDetails({ gym, className }: Props) {
   return (
-    <div className={styles.details}>
+    <div className={className ? `${styles.details} ${className}` : styles.details}>
       <address>{formatAddress(gym.address)}</address>
       {gym.description && <p>{gym.description}</p>}
       {gym.amenities.length > 0 && (
