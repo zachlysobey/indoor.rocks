@@ -25,11 +25,11 @@ const toPin = (gym: ClimbingGym): Pin => ({
   title: gym.name,
 });
 
-// The selection lives in ?focus= (gymRoutes.list), so a gym can be linked to and Back deselects it.
+// The selection lives in ?focus= (gymRoutes.map), so a gym can be linked to and Back deselects it.
 // pushState rather than a router navigation: Next folds it into useSearchParams without fetching
 // the page again.
 function select(slug: string | undefined) {
-  window.history.pushState(null, "", gymRoutes.list(slug));
+  window.history.pushState(null, "", gymRoutes.map(slug));
 }
 
 // Scroll the list, and only the list, so the item is fully in view below its sticky state heading.

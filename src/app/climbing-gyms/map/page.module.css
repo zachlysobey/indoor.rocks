@@ -1,0 +1,9 @@
+/* Full bleed: span the layout's gutters too, so the map gets the whole width. `main` outranks the
+   layout's own `.shell > *`, whichever stylesheet loads last. A flex column so the explorer can
+   fill the height the layout gives the page. */
+main.content {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}

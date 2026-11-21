@@ -4,7 +4,7 @@ main.content {
 
 /* The list's selected card, writ large. */
 .card {
-  composes: card from "../GymCard.module.css";
+  composes: card from "../../climbing-gyms/GymCard.module.css";
   font-size: 1.1rem;
 }
 
