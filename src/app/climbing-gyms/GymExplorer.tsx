@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useLayoutEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import type { ClimbingGym } from "../dataModel";
 import { gymSlug } from "../gymSlug";
@@ -45,6 +45,7 @@ function reveal(list: HTMLElement, item: HTMLElement, behavior: ScrollBehavior) 
 }
 
 function Explorer({ gyms, selected }: Props & { selected?: string }) {
+  const router = useRouter();
   const pins = useMemo(() => gyms.map(toPin), [gyms]);
   // The gym under the pointer (or keyboard focus) in the list, so the map can show its name.
   const [hovered, setHovered] = useState<string>();
@@ -97,12 +98,11 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                   <span className={styles.count}>{stateGyms.length}</span>
                 </button>
               </h2>
-              {/* hidden rather than unrendered, so the prerendered page still links every gym. */}
+              {/* hidden rather than unrendered, so the prerendered page still links every gym's page. */}
               <ul id={`state-${state.code}-gyms`} hidden={!isExpanded}>
                 {stateGyms.map(gym => {
                   const slug = gymSlug(gym);
                   const isSelected = slug === selected;
-                  const next = isSelected ? undefined : slug;
                   return (
                     <GymMorph.Card key={slug} slug={slug}>
                       <li
@@ -110,8 +110,12 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                         className={isSelected ? styles.selected : undefined}
                       >
                         <h3>
+                          {/* Links to the gym's own page, which is what a new tab, a copied link or
+                              a crawler gets. A plain click selects the gym here first, then opens
+                              its page as the expand link does. A plain <a>, not <Link>: Link would
+                              prefetch every gym page in view. */}
                           <a
-                            href={gymRoutes.list(next)}
+                            href={gymRoutes.page(slug)}
                             aria-current={isSelected ? "true" : undefined}
                             onMouseEnter={() => setHovered(slug)}
                             onMouseLeave={() => setHovered(undefined)}
@@ -120,7 +124,11 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                             onClick={(event: MouseEvent) => {
                               if (event.metaKey || event.ctrlKey || event.shiftKey) return;
                               event.preventDefault();
-                              select(next);
+                              if (!isSelected) select(slug);
+                              else
+                                router.push(gymRoutes.page(slug), {
+                                  transitionTypes: GymMorph.open,
+                                });
                             }}
                           >
                             <GymMorph.Name slug={slug}>{gym.name}</GymMorph.Name>
