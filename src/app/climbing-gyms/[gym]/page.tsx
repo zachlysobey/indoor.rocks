@@ -6,6 +6,7 @@ import { gymBySlug } from "../../gymBySlug";
 import { gymSlug } from "../../gymSlug";
 import { CornerArrows } from "../CornerArrows";
 import { GymDetails } from "../GymDetails";
+import { GymMorph } from "../GymMorph";
 import { gymRoutes } from "../gymRoutes";
 import styles from "./page.module.css";
 
@@ -32,26 +33,34 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return { title: `${gym.name} · indoor.rocks` };
 }
 
-// A gym's own page: its card from the list, grown to fill the page.
+// A gym's own page: its card from the list, grown to fill the page (and animated that way, from the
+// expand link).
 export default async function GymPage(props: Props) {
   const { gym, slug } = await findGym(props);
 
   return (
-    <main className={styles.content}>
-      <article className={styles.card}>
-        <header>
-          <h2>{gym.name}</h2>
-          <Link
-            href={gymRoutes.list(slug)}
-            className={styles.collapse}
-            aria-label="Back to the gym list"
-            title="Back to the gym list"
-          >
-            <CornerArrows direction="in" />
-          </Link>
-        </header>
-        <GymDetails gym={gym} className={styles.details} />
-      </article>
-    </main>
+    <GymMorph.Page>
+      <main className={styles.content}>
+        <GymMorph.Card slug={slug}>
+          <article className={styles.card}>
+            <header>
+              <h2>
+                <GymMorph.Name slug={slug}>{gym.name}</GymMorph.Name>
+              </h2>
+              <Link
+                href={gymRoutes.list(slug)}
+                transitionTypes={GymMorph.close}
+                className={styles.collapse}
+                aria-label="Back to the gym list"
+                title="Back to the gym list"
+              >
+                <CornerArrows direction="in" />
+              </Link>
+            </header>
+            <GymDetails gym={gym} className={styles.details} />
+          </article>
+        </GymMorph.Card>
+      </main>
+    </GymMorph.Page>
   );
 }

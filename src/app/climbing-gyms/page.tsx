@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getData } from "../getData";
 import { GymExplorer } from "./GymExplorer";
+import { GymMorph } from "./GymMorph";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -9,8 +10,10 @@ export const metadata: Metadata = {
 
 export default function ClimbingGymsPage() {
   return (
-    <main className={styles.content}>
-      <GymExplorer gyms={getData().climbingGyms} />
-    </main>
+    <GymMorph.Page>
+      <main className={styles.content}>
+        <GymExplorer gyms={getData().climbingGyms} />
+      </main>
+    </GymMorph.Page>
   );
 }

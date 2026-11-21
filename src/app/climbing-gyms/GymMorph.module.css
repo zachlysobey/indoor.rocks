@@ -1,0 +1,4 @@
+/* Inline-block so the name is one box the transition can move and scale. */
+.name {
+  display: inline-block;
+}

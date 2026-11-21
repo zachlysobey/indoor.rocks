@@ -1,7 +1,8 @@
 /* A gym's card: the selected gym in the list, and the whole of the gym's own page. One definition,
-   composed by both, so the two always look like the same card. */
+   composed by both, so the two always look like the same card. Its values are tokens so the
+   animation between the two (GymMorph.css) draws the same card too. */
 .card {
-  background: var(--bg);
-  border: 1px solid var(--accent);
+  background: var(--card-bg);
+  border: var(--card-border);
   border-radius: var(--radius);
 }

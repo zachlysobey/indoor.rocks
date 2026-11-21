@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
+import { Suspense, useLayoutEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import type { ClimbingGym } from "../dataModel";
 import { gymSlug } from "../gymSlug";
 import { states } from "../states";
 import { CornerArrows } from "./CornerArrows";
 import { GymDetails } from "./GymDetails";
 import styles from "./GymExplorer.module.css";
+import { GymMorph } from "./GymMorph";
 import { gymRoutes } from "./gymRoutes";
 import { PinMap, type Pin } from "./PinMap";
 
@@ -33,7 +34,7 @@ function select(slug: string | undefined) {
 
 // Scroll the list, and only the list, so the item is fully in view below its sticky state heading.
 // scrollIntoView would scroll the page as well.
-function reveal(list: HTMLElement, item: HTMLElement) {
+function reveal(list: HTMLElement, item: HTMLElement, behavior: ScrollBehavior) {
   const heading = item.closest("section")?.querySelector("h2")?.offsetHeight ?? 0;
   const view = list.getBoundingClientRect();
   const box = item.getBoundingClientRect();
@@ -41,7 +42,7 @@ function reveal(list: HTMLElement, item: HTMLElement) {
   const below = box.bottom - view.bottom;
   // Too tall to fit? Keep its top in view.
   const by = above < 0 ? above : below > 0 ? Math.min(above, below) : 0;
-  if (by) list.scrollBy({ top: by, behavior: "smooth" });
+  if (by) list.scrollBy({ top: by, behavior });
 }
 
 function Explorer({ gyms, selected }: Props & { selected?: string }) {
@@ -65,11 +66,16 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
       return next;
     });
 
-  // Picking a pin on the map should bring its card into view in the list.
+  // Picking a pin on the map scrolls its card into view in the list. When the list first appears
+  // with a gym already selected (a shared link, or collapsing back from the gym's page) it jumps
+  // there instead, before paint, so the card is in place for the collapse animation to land on.
   const list = useRef<HTMLElement>(null);
   const selectedItem = useRef<HTMLLIElement>(null);
-  useEffect(() => {
-    if (list.current && selectedItem.current) reveal(list.current, selectedItem.current);
+  const mounted = useRef(false);
+  useLayoutEffect(() => {
+    if (list.current && selectedItem.current)
+      reveal(list.current, selectedItem.current, mounted.current ? "smooth" : "instant");
+    mounted.current = true;
   }, [selected]);
 
   return (
@@ -99,42 +105,44 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                   const isSelected = slug === selected;
                   const next = isSelected ? undefined : slug;
                   return (
-                    <li
-                      key={slug}
-                      ref={isSelected ? selectedItem : undefined}
-                      className={isSelected ? styles.selected : undefined}
-                    >
-                      <h3>
-                        <a
-                          href={hrefFor(next)}
-                          aria-current={isSelected ? "true" : undefined}
-                          onMouseEnter={() => setHovered(slug)}
-                          onMouseLeave={() => setHovered(undefined)}
-                          onFocus={() => setHovered(slug)}
-                          onBlur={() => setHovered(undefined)}
-                          onClick={(event: MouseEvent) => {
-                            if (event.metaKey || event.ctrlKey || event.shiftKey) return;
-                            event.preventDefault();
-                            select(next);
-                          }}
-                        >
-                          {gym.name}
-                        </a>
-                      </h3>
-                      {isSelected && (
-                        <>
-                          <Link
-                            href={gymRoutes.page(slug)}
-                            className={styles.expand}
-                            aria-label={`${gym.name}'s page`}
-                            title="Open the gym's page"
+                    <GymMorph.Card key={slug} slug={slug}>
+                      <li
+                        ref={isSelected ? selectedItem : undefined}
+                        className={isSelected ? styles.selected : undefined}
+                      >
+                        <h3>
+                          <a
+                            href={hrefFor(next)}
+                            aria-current={isSelected ? "true" : undefined}
+                            onMouseEnter={() => setHovered(slug)}
+                            onMouseLeave={() => setHovered(undefined)}
+                            onFocus={() => setHovered(slug)}
+                            onBlur={() => setHovered(undefined)}
+                            onClick={(event: MouseEvent) => {
+                              if (event.metaKey || event.ctrlKey || event.shiftKey) return;
+                              event.preventDefault();
+                              select(next);
+                            }}
                           >
-                            <CornerArrows direction="out" />
-                          </Link>
-                          <GymDetails gym={gym} className={styles.details} />
-                        </>
-                      )}
-                    </li>
+                            <GymMorph.Name slug={slug}>{gym.name}</GymMorph.Name>
+                          </a>
+                        </h3>
+                        {isSelected && (
+                          <>
+                            <Link
+                              href={gymRoutes.page(slug)}
+                              transitionTypes={GymMorph.open}
+                              className={styles.expand}
+                              aria-label={`${gym.name}'s page`}
+                              title="Open the gym's page"
+                            >
+                              <CornerArrows direction="out" />
+                            </Link>
+                            <GymDetails gym={gym} className={styles.details} />
+                          </>
+                        )}
+                      </li>
+                    </GymMorph.Card>
                   );
                 })}
               </ul>
