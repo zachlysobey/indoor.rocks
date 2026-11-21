@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getData } from "../../getData";
 import { gymBySlug } from "../../gymBySlug";
 import { gymSlug } from "../../gymSlug";
-import { CornerArrows } from "../CornerArrows";
+import { CollapseLink } from "../CollapseLink";
 import { GymDetails } from "../GymDetails";
 import { GymMorph } from "../GymMorph";
-import { gymRoutes } from "../gymRoutes";
 import styles from "./page.module.css";
 
 type Props = {
@@ -47,15 +45,7 @@ export default async function GymPage(props: Props) {
               <h2>
                 <GymMorph.Name slug={slug}>{gym.name}</GymMorph.Name>
               </h2>
-              <Link
-                href={gymRoutes.list(slug)}
-                transitionTypes={GymMorph.close}
-                className={styles.collapse}
-                aria-label="Back to the gym list"
-                title="Back to the gym list"
-              >
-                <CornerArrows direction="in" />
-              </Link>
+              <CollapseLink slug={slug} className={styles.collapse} />
             </header>
             <GymDetails gym={gym} className={styles.details} />
           </article>

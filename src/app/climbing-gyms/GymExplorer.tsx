@@ -11,6 +11,7 @@ import { GymDetails } from "./GymDetails";
 import styles from "./GymExplorer.module.css";
 import { GymMorph } from "./GymMorph";
 import { gymRoutes } from "./gymRoutes";
+import { openedFromList } from "./openedFromList";
 import { PinMap, type Pin } from "./PinMap";
 
 type Props = {
@@ -142,11 +143,11 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                             onClick={(event: MouseEvent) => {
                               if (event.metaKey || event.ctrlKey || event.shiftKey) return;
                               event.preventDefault();
-                              if (!isSelected) select(slug);
-                              else
-                                router.push(gymRoutes.page(slug), {
-                                  transitionTypes: GymMorph.open,
-                                });
+                              if (!isSelected) return select(slug);
+                              openedFromList.mark(slug);
+                              router.push(gymRoutes.page(slug), {
+                                transitionTypes: GymMorph.open,
+                              });
                             }}
                           >
                             <GymMorph.Name slug={slug}>{gym.name}</GymMorph.Name>
@@ -157,6 +158,7 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                             <Link
                               href={gymRoutes.page(slug)}
                               transitionTypes={GymMorph.open}
+                              onNavigate={() => openedFromList.mark(slug)}
                               className={styles.expand}
                               aria-label={`${gym.name}'s page`}
                               title="Open the gym's page"
