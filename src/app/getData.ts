@@ -225,6 +225,25 @@ import { cliffHangers } from "./data/nc-gyms/cliffHangers";
 import { cultivateClimbingFoundy } from "./data/nc-gyms/cultivateClimbingFoundy";
 import { center45 } from "./data/nc-gyms/center45";
 import { wilmingtonRockGym } from "./data/nc-gyms/wilmingtonRockGym";
+import { centralRockGymAtlanta } from "./data/ga-gyms/centralRockGymAtlanta";
+import { centralRockGymAtlantaBouldering } from "./data/ga-gyms/centralRockGymAtlantaBouldering";
+import { centralRockGymKennesaw } from "./data/ga-gyms/centralRockGymKennesaw";
+import { centralRockGymMidtown } from "./data/ga-gyms/centralRockGymMidtown";
+import { wallCrawlerRockClub } from "./data/ga-gyms/wallCrawlerRockClub";
+import { theOverlook } from "./data/ga-gyms/theOverlook";
+import { adrenalineClimbing } from "./data/ga-gyms/adrenalineClimbing";
+import { escaladeKennesaw } from "./data/ga-gyms/escaladeKennesaw";
+import { activeClimbingAthens } from "./data/ga-gyms/activeClimbingAthens";
+import { activeClimbingAugusta } from "./data/ga-gyms/activeClimbingAugusta";
+import { maconRocks } from "./data/ga-gyms/maconRocks";
+import { brunswickRocks } from "./data/ga-gyms/brunswickRocks";
+import { blocHaven } from "./data/sc-gyms/blocHaven";
+import { climbAtBlueRidge } from "./data/sc-gyms/climbAtBlueRidge";
+import { coastalClimbing } from "./data/sc-gyms/coastalClimbing";
+import { capitalClimbing } from "./data/sc-gyms/capitalClimbing";
+import { projectRockEasley } from "./data/sc-gyms/projectRockEasley";
+import { trailheadClimbing } from "./data/sc-gyms/trailheadClimbing";
+import { bigfootClimbingGym } from "./data/nc-gyms/bigfootClimbingGym";
 
 export function getData (): DataModel {
   return {
@@ -459,4 +478,23 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   cultivateClimbingFoundy,
   center45,
   wilmingtonRockGym,
+  centralRockGymAtlanta,
+  centralRockGymAtlantaBouldering,
+  centralRockGymKennesaw,
+  centralRockGymMidtown,
+  wallCrawlerRockClub,
+  theOverlook,
+  adrenalineClimbing,
+  escaladeKennesaw,
+  activeClimbingAthens,
+  activeClimbingAugusta,
+  maconRocks,
+  brunswickRocks,
+  blocHaven,
+  climbAtBlueRidge,
+  coastalClimbing,
+  capitalClimbing,
+  projectRockEasley,
+  trailheadClimbing,
+  bigfootClimbingGym,
 };
