@@ -6,7 +6,11 @@ describe("gymRoutes", () => {
     expect(gymRoutes.page("vital-brooklyn")).toBe("/climbing-gyms/vital-brooklyn/");
   });
 
-  it("links back to the list with the gym selected", () => {
-    expect(gymRoutes.list("vital-brooklyn")).toBe("/climbing-gyms/?gym=vital-brooklyn");
+  it("links back to the list with the gym in focus", () => {
+    expect(gymRoutes.list("vital-brooklyn")).toBe("/climbing-gyms/?focus=vital-brooklyn");
+  });
+
+  it("is the bare list with nothing in focus", () => {
+    expect(gymRoutes.list()).toBe("/climbing-gyms/");
   });
 });
