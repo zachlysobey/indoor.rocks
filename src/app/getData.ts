@@ -164,6 +164,38 @@ import { grippedFitness } from "./data/wv-gyms/grippedFitness";
 import { energyRockGym } from "./data/wv-gyms/energyRockGym";
 import { climbingNewHeights } from "./data/wv-gyms/climbingNewHeights";
 import { outsideInClimbingGym } from "./data/wv-gyms/outsideInClimbingGym";
+import { verticalAdventures } from "./data/oh-gyms/verticalAdventures";
+import { chambersPurelyBoulders } from "./data/oh-gyms/chambersPurelyBoulders";
+import { blocGarten } from "./data/oh-gyms/blocGarten";
+import { clevelandRocksClimbing } from "./data/oh-gyms/clevelandRocksClimbing";
+import { climbCleveland } from "./data/oh-gyms/climbCleveland";
+import { shakerRocks } from "./data/oh-gyms/shakerRocks";
+import { nosotrosClimbingWeights } from "./data/oh-gyms/nosotrosClimbingWeights";
+import { kendallCliffs } from "./data/oh-gyms/kendallCliffs";
+import { onTheRocks } from "./data/oh-gyms/onTheRocks";
+import { rockMill } from "./data/oh-gyms/rockMill";
+import { climbYoungstown } from "./data/oh-gyms/climbYoungstown";
+import { adventusClimbing } from "./data/oh-gyms/adventusClimbing";
+import { urbanKrag } from "./data/oh-gyms/urbanKrag";
+import { rockquest } from "./data/oh-gyms/rockquest";
+import { climbTimeBlueAsh } from "./data/oh-gyms/climbTimeBlueAsh";
+import { climbTimeOakley } from "./data/oh-gyms/climbTimeOakley";
+import { climbCincy } from "./data/oh-gyms/climbCincy";
+import { mosaicClimbing } from "./data/oh-gyms/mosaicClimbing";
+import { blockhouseBouldering } from "./data/oh-gyms/blockhouseBouldering";
+import { lefClimbing } from "./data/ky-gyms/lefClimbing";
+import { climbNulu } from "./data/ky-gyms/climbNulu";
+import { rocksportLouisville } from "./data/ky-gyms/rocksportLouisville";
+import { rockGem } from "./data/ky-gyms/rockGem";
+import { verticalExcapeBowlingGreen } from "./data/ky-gyms/verticalExcapeBowlingGreen";
+import { hoosierHeightsBloomington } from "./data/in-gyms/hoosierHeightsBloomington";
+import { hoosierHeightsIndianapolis } from "./data/in-gyms/hoosierHeightsIndianapolis";
+import { northMassBoulder } from "./data/in-gyms/northMassBoulder";
+import { climbTimeIndy } from "./data/in-gyms/climbTimeIndy";
+import { epicClimbing } from "./data/in-gyms/epicClimbing";
+import { verticalExcapeEvansville } from "./data/in-gyms/verticalExcapeEvansville";
+import { summitCityClimbing } from "./data/in-gyms/summitCityClimbing";
+import { columbusRocks } from "./data/in-gyms/columbusRocks";
 
 export function getData (): DataModel {
   return {
@@ -337,4 +369,36 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   energyRockGym,
   climbingNewHeights,
   outsideInClimbingGym,
+  verticalAdventures,
+  chambersPurelyBoulders,
+  blocGarten,
+  clevelandRocksClimbing,
+  climbCleveland,
+  shakerRocks,
+  nosotrosClimbingWeights,
+  kendallCliffs,
+  onTheRocks,
+  rockMill,
+  climbYoungstown,
+  adventusClimbing,
+  urbanKrag,
+  rockquest,
+  climbTimeBlueAsh,
+  climbTimeOakley,
+  climbCincy,
+  mosaicClimbing,
+  blockhouseBouldering,
+  lefClimbing,
+  climbNulu,
+  rocksportLouisville,
+  rockGem,
+  verticalExcapeBowlingGreen,
+  hoosierHeightsBloomington,
+  hoosierHeightsIndianapolis,
+  northMassBoulder,
+  climbTimeIndy,
+  epicClimbing,
+  verticalExcapeEvansville,
+  summitCityClimbing,
+  columbusRocks,
 };
