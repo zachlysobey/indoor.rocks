@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useLayoutEffect, useMemo, useRef, useState, type MouseEvent } from "react";
+import { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import type { ClimbingGym } from "../dataModel";
 import { gymSlug } from "../gymSlug";
 import { states } from "../states";
@@ -54,17 +54,21 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
   // render rather than in an effect, so its card exists by the time the reveal below runs.
   const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set());
   const [openedFor, setOpenedFor] = useState<string>();
+  const selectedState = gyms.find(gym => gymSlug(gym) === selected)?.address.state;
   if (selected !== openedFor) {
     setOpenedFor(selected);
-    const state = gyms.find(gym => gymSlug(gym) === selected)?.address.state;
-    if (state && !expanded.has(state)) setExpanded(new Set(expanded).add(state));
+    if (selectedState && !expanded.has(selectedState))
+      setExpanded(new Set(expanded).add(selectedState));
   }
-  const toggle = (code: string) =>
+  // Collapsing the selected gym's state deselects it too, rather than leave it selected but hidden.
+  const toggle = (code: string) => {
+    if (code === selectedState && expanded.has(code)) select(undefined);
     setExpanded(prev => {
       const next = new Set(prev);
       if (!next.delete(code)) next.add(code);
       return next;
     });
+  };
 
   // Picking a pin on the map scrolls its card into view in the list. When the list first appears
   // with a gym already selected (a shared link, or collapsing back from the gym's page) it jumps
@@ -76,6 +80,20 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
     if (list.current && selectedItem.current)
       reveal(list.current, selectedItem.current, mounted.current ? "smooth" : "instant");
     mounted.current = true;
+  }, [selected]);
+
+  // Escape deselects, from anywhere on the page. If keyboard focus is in the card, it moves to the
+  // gym's title, which stays, rather than be lost with the card's links.
+  useEffect(() => {
+    if (!selected) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || event.defaultPrevented) return;
+      const card = selectedItem.current;
+      if (card?.contains(document.activeElement)) card.querySelector<HTMLElement>("h3 a")?.focus();
+      select(undefined);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
   }, [selected]);
 
   return (
