@@ -244,6 +244,28 @@ import { capitalClimbing } from "./data/sc-gyms/capitalClimbing";
 import { projectRockEasley } from "./data/sc-gyms/projectRockEasley";
 import { trailheadClimbing } from "./data/sc-gyms/trailheadClimbing";
 import { bigfootClimbingGym } from "./data/nc-gyms/bigfootClimbingGym";
+import { centralRockGymTampa } from "./data/fl-gyms/centralRockGymTampa";
+import { centralRockGymCitrusPark } from "./data/fl-gyms/centralRockGymCitrusPark";
+import { centralRockGymOrlando } from "./data/fl-gyms/centralRockGymOrlando";
+import { centralRockGymFortMyers } from "./data/fl-gyms/centralRockGymFortMyers";
+import { highPointOrlando } from "./data/fl-gyms/highPointOrlando";
+import { blueSwanBoulders } from "./data/fl-gyms/blueSwanBoulders";
+import { aiguille } from "./data/fl-gyms/aiguille";
+import { roxClimbing } from "./data/fl-gyms/roxClimbing";
+import { dynoClimb } from "./data/fl-gyms/dynoClimb";
+import { onTheEdgeMelbourne } from "./data/fl-gyms/onTheEdgeMelbourne";
+import { velocityClimbing } from "./data/fl-gyms/velocityClimbing";
+import { theEdgeRockGymMiami } from "./data/fl-gyms/theEdgeRockGymMiami";
+import { projectRockOaklandPark } from "./data/fl-gyms/projectRockOaklandPark";
+import { boulderBloc } from "./data/fl-gyms/boulderBloc";
+import { verticalVentures } from "./data/fl-gyms/verticalVentures";
+import { hexrock } from "./data/fl-gyms/hexrock";
+import { stoneClimbingStAugustine } from "./data/fl-gyms/stoneClimbingStAugustine";
+import { stoneClimbingJacksonville } from "./data/fl-gyms/stoneClimbingJacksonville";
+import { theEdgeRockGymJacksonville } from "./data/fl-gyms/theEdgeRockGymJacksonville";
+import { theKnot } from "./data/fl-gyms/theKnot";
+import { alchemyClimbing } from "./data/fl-gyms/alchemyClimbing";
+import { rockOutClimbing } from "./data/fl-gyms/rockOutClimbing";
 
 export function getData (): DataModel {
   return {
@@ -497,4 +519,26 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   projectRockEasley,
   trailheadClimbing,
   bigfootClimbingGym,
+  centralRockGymTampa,
+  centralRockGymCitrusPark,
+  centralRockGymOrlando,
+  centralRockGymFortMyers,
+  highPointOrlando,
+  blueSwanBoulders,
+  aiguille,
+  roxClimbing,
+  dynoClimb,
+  onTheEdgeMelbourne,
+  velocityClimbing,
+  theEdgeRockGymMiami,
+  projectRockOaklandPark,
+  boulderBloc,
+  verticalVentures,
+  hexrock,
+  stoneClimbingStAugustine,
+  stoneClimbingJacksonville,
+  theEdgeRockGymJacksonville,
+  theKnot,
+  alchemyClimbing,
+  rockOutClimbing,
 };
