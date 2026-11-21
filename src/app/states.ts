@@ -4,6 +4,7 @@
 export const states = [
   { code: "CT", name: "Connecticut" },
   { code: "DE", name: "Delaware" },
+  { code: "DC", name: "District of Columbia" },
   { code: "ME", name: "Maine" },
   { code: "MD", name: "Maryland" },
   { code: "MA", name: "Massachusetts" },
@@ -13,4 +14,6 @@ export const states = [
   { code: "PA", name: "Pennsylvania" },
   { code: "RI", name: "Rhode Island" },
   { code: "VT", name: "Vermont" },
+  { code: "VA", name: "Virginia" },
+  { code: "WV", name: "West Virginia" },
 ];

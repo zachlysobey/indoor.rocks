@@ -138,6 +138,32 @@ import { movementTimonium } from "./data/md-gyms/movementTimonium";
 import { sportrockRio } from "./data/md-gyms/sportrockRio";
 import { theBoulderYard } from "./data/md-gyms/theBoulderYard";
 import { delawareRockGym } from "./data/de-gyms/delawareRockGym";
+import { boulderingProjectEckington } from "./data/dc-gyms/boulderingProjectEckington";
+import { movementCrystalCity } from "./data/va-gyms/movementCrystalCity";
+import { sportrockAlexandria } from "./data/va-gyms/sportrockAlexandria";
+import { sportrockSterling } from "./data/va-gyms/sportrockSterling";
+import { sportrockLorton } from "./data/va-gyms/sportrockLorton";
+import { verticalRockManassas } from "./data/va-gyms/verticalRockManassas";
+import { verticalRockTysons } from "./data/va-gyms/verticalRockTysons";
+import { evolutionBoulders } from "./data/va-gyms/evolutionBoulders";
+import { rappRocksClimbingGym } from "./data/va-gyms/rappRocksClimbingGym";
+import { stateClimb } from "./data/va-gyms/stateClimb";
+import { triangleRockClubRichmond } from "./data/va-gyms/triangleRockClubRichmond";
+import { peakExperiencesRichmond } from "./data/va-gyms/peakExperiencesRichmond";
+import { peakExperiencesMidlothian } from "./data/va-gyms/peakExperiencesMidlothian";
+import { rockRevolution } from "./data/va-gyms/rockRevolution";
+import { rockyTopClimbing } from "./data/va-gyms/rockyTopClimbing";
+import { riseUpClimbing } from "./data/va-gyms/riseUpClimbing";
+import { theRiverRock } from "./data/va-gyms/theRiverRock";
+import { crimpersClimbingGym } from "./data/va-gyms/crimpersClimbingGym";
+import { latitudeNorfolk } from "./data/va-gyms/latitudeNorfolk";
+import { latitudeVirginiaBeach } from "./data/va-gyms/latitudeVirginiaBeach";
+import { latitudeHampton } from "./data/va-gyms/latitudeHampton";
+import { sendItClimbing } from "./data/va-gyms/sendItClimbing";
+import { grippedFitness } from "./data/wv-gyms/grippedFitness";
+import { energyRockGym } from "./data/wv-gyms/energyRockGym";
+import { climbingNewHeights } from "./data/wv-gyms/climbingNewHeights";
+import { outsideInClimbingGym } from "./data/wv-gyms/outsideInClimbingGym";
 
 export function getData (): DataModel {
   return {
@@ -285,4 +311,30 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   sportrockRio,
   theBoulderYard,
   delawareRockGym,
+  boulderingProjectEckington,
+  movementCrystalCity,
+  sportrockAlexandria,
+  sportrockSterling,
+  sportrockLorton,
+  verticalRockManassas,
+  verticalRockTysons,
+  evolutionBoulders,
+  rappRocksClimbingGym,
+  stateClimb,
+  triangleRockClubRichmond,
+  peakExperiencesRichmond,
+  peakExperiencesMidlothian,
+  rockRevolution,
+  rockyTopClimbing,
+  riseUpClimbing,
+  theRiverRock,
+  crimpersClimbingGym,
+  latitudeNorfolk,
+  latitudeVirginiaBeach,
+  latitudeHampton,
+  sendItClimbing,
+  grippedFitness,
+  energyRockGym,
+  climbingNewHeights,
+  outsideInClimbingGym,
 };
