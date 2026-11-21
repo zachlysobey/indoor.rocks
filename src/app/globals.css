@@ -13,6 +13,10 @@
   --chip: #f1ece6;
   --accent: #c2410c;
 
+  /* A gym's card, in the list, on its own page, and mid-animation between the two. */
+  --card-bg: var(--bg);
+  --card-border: 1px solid var(--accent);
+
   /* The page background is a climbing wall: plywood panels, a staggered grid of t-nut holes, and a
      gritty paint texture. `--hole-gap` sets the scale; panels are 3 × 6 holes, the shape of a 4' × 8'
      sheet. */

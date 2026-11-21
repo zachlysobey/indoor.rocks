@@ -1,0 +1,96 @@
+/* The view-transition styles for GymMorph. Global, not a CSS module: the ::view-transition-*
+   pseudo-elements hang off the document, and the classes in them are view-transition classes, not
+   element classes. */
+
+:root {
+  --gym-morph-duration: 400ms;
+  --gym-morph-easing: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Clicks during a transition reach the live page rather than the overlay. */
+::view-transition {
+  pointer-events: none;
+}
+
+/* The card's box moves and resizes to its new place. It's drawn as the card itself, so it reads as
+   one card resizing, and the snapshots inside it are clipped to it. */
+::view-transition-group(.gym-card) {
+  overflow: clip;
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-radius: var(--radius);
+}
+
+::view-transition-group(.gym-card),
+::view-transition-group(.gym-name) {
+  animation-duration: var(--gym-morph-duration);
+  animation-timing-function: var(--gym-morph-easing);
+}
+
+/* The card's contents crossfade at their own size, pinned top left, rather than stretching to the
+   box. The old ones leave quickly, then the new ones arrive, so the two never read as overlapping. */
+::view-transition-old(.gym-card),
+::view-transition-new(.gym-card) {
+  height: 100%;
+  object-fit: none;
+  object-position: left top;
+}
+
+::view-transition-old(.gym-card) {
+  animation: var(--gym-morph-duration) linear both gym-morph-card-out;
+}
+
+::view-transition-new(.gym-card) {
+  animation: var(--gym-morph-duration) linear both gym-morph-card-in;
+}
+
+@keyframes gym-morph-card-out {
+  35%,
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes gym-morph-card-in {
+  from,
+  35% {
+    opacity: 0;
+  }
+}
+
+/* The page around the card: the old one goes quickly, the new one comes in once the card is most of
+   the way there. */
+::view-transition-old(.gym-page) {
+  animation: calc(var(--gym-morph-duration) * 0.4) ease-in both gym-morph-page-out;
+}
+
+::view-transition-new(.gym-page) {
+  animation: calc(var(--gym-morph-duration) * 0.6) ease-out calc(var(--gym-morph-duration) * 0.4)
+    both gym-morph-page-in;
+}
+
+@keyframes gym-morph-page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes gym-morph-page-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(.gym-card),
+  ::view-transition-group(.gym-name),
+  ::view-transition-old(.gym-card),
+  ::view-transition-new(.gym-card),
+  ::view-transition-old(.gym-name),
+  ::view-transition-new(.gym-name),
+  ::view-transition-old(.gym-page),
+  ::view-transition-new(.gym-page) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
