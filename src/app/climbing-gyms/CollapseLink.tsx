@@ -33,7 +33,7 @@ function escapeIsTaken(event: KeyboardEvent): boolean {
 // does the same: the card grows out of the list like a dialog opening, so Escape closes it.
 export function CollapseLink({ slug, className }: Props) {
   const router = useRouter();
-  const href = gymRoutes.list(slug);
+  const href = gymRoutes.map(slug);
   // Only ever true after a client-side navigation from the list, never while hydrating a fresh load,
   // so the server's render (false) always matches.
   const escapes = openedFromList.is(slug);

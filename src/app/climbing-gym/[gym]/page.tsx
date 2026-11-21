@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import { getData } from "../../getData";
 import { gymBySlug } from "../../gymBySlug";
 import { gymSlug } from "../../gymSlug";
-import { CollapseLink } from "../CollapseLink";
-import { GymDetails } from "../GymDetails";
-import { GymMorph } from "../GymMorph";
+import { CollapseLink } from "../../climbing-gyms/CollapseLink";
+import { GymDetails } from "../../climbing-gyms/GymDetails";
+import { GymMorph } from "../../climbing-gyms/GymMorph";
 import styles from "./page.module.css";
 
 type Props = {
