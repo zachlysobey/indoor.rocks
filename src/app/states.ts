@@ -2,6 +2,7 @@
 // missing here gets a pin on the map but no place in the list, so states.test.ts checks every
 // gym's state is here.
 export const states = [
+  { code: "AL", name: "Alabama" },
   { code: "CT", name: "Connecticut" },
   { code: "DE", name: "Delaware" },
   { code: "DC", name: "District of Columbia" },
@@ -21,6 +22,7 @@ export const states = [
   { code: "PA", name: "Pennsylvania" },
   { code: "RI", name: "Rhode Island" },
   { code: "SC", name: "South Carolina" },
+  { code: "TN", name: "Tennessee" },
   { code: "VT", name: "Vermont" },
   { code: "VA", name: "Virginia" },
   { code: "WV", name: "West Virginia" },
