@@ -1,0 +1,7 @@
+/* A gym's card: the selected gym in the list, and the whole of the gym's own page. One definition,
+   composed by both, so the two always look like the same card. */
+.card {
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+}

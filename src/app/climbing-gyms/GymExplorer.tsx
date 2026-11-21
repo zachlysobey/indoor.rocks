@@ -1,12 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import type { ClimbingGym } from "../dataModel";
 import { gymSlug } from "../gymSlug";
 import { states } from "../states";
+import { CornerArrows } from "./CornerArrows";
 import { GymDetails } from "./GymDetails";
 import styles from "./GymExplorer.module.css";
+import { gymRoutes } from "./gymRoutes";
 import { PinMap, type Pin } from "./PinMap";
 
 type Props = {
@@ -118,7 +121,19 @@ function Explorer({ gyms, selected }: Props & { selected?: string }) {
                           {gym.name}
                         </a>
                       </h3>
-                      {isSelected && <GymDetails gym={gym} />}
+                      {isSelected && (
+                        <>
+                          <Link
+                            href={gymRoutes.page(slug)}
+                            className={styles.expand}
+                            aria-label={`${gym.name}'s page`}
+                            title="Open the gym's page"
+                          >
+                            <CornerArrows direction="out" />
+                          </Link>
+                          <GymDetails gym={gym} className={styles.details} />
+                        </>
+                      )}
                     </li>
                   );
                 })}
