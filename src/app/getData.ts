@@ -196,6 +196,35 @@ import { epicClimbing } from "./data/in-gyms/epicClimbing";
 import { verticalExcapeEvansville } from "./data/in-gyms/verticalExcapeEvansville";
 import { summitCityClimbing } from "./data/in-gyms/summitCityClimbing";
 import { columbusRocks } from "./data/in-gyms/columbusRocks";
+import { planetRockAnnArbor } from "./data/mi-gyms/planetRockAnnArbor";
+import { planetRockMadisonHeights } from "./data/mi-gyms/planetRockMadisonHeights";
+import { planetRockGrandRapids } from "./data/mi-gyms/planetRockGrandRapids";
+import { dynoDetroit } from "./data/mi-gyms/dynoDetroit";
+import { terraFirmaGrandRapids } from "./data/mi-gyms/terraFirmaGrandRapids";
+import { terraFirmaEastLansing } from "./data/mi-gyms/terraFirmaEastLansing";
+import { higherGround } from "./data/mi-gyms/higherGround";
+import { insideMoves } from "./data/mi-gyms/insideMoves";
+import { scrapyardClimbing } from "./data/mi-gyms/scrapyardClimbing";
+import { shiftClimbing } from "./data/mi-gyms/shiftClimbing";
+import { climbKalamazoo } from "./data/mi-gyms/climbKalamazoo";
+import { elev8 } from "./data/mi-gyms/elev8";
+import { triangleRockClubMorrisville } from "./data/nc-gyms/triangleRockClubMorrisville";
+import { triangleRockClubRaleigh } from "./data/nc-gyms/triangleRockClubRaleigh";
+import { triangleRockClubSalvageYard } from "./data/nc-gyms/triangleRockClubSalvageYard";
+import { triangleRockClubDurham } from "./data/nc-gyms/triangleRockClubDurham";
+import { triangleRockClubFayetteville } from "./data/nc-gyms/triangleRockClubFayetteville";
+import { progressionClimbing } from "./data/nc-gyms/progressionClimbing";
+import { theBoulderGarden } from "./data/nc-gyms/theBoulderGarden";
+import { innerPeaksSouthEnd } from "./data/nc-gyms/innerPeaksSouthEnd";
+import { innerPeaksNoda } from "./data/nc-gyms/innerPeaksNoda";
+import { innerPeaksMatthews } from "./data/nc-gyms/innerPeaksMatthews";
+import { ruckusClimbingGym } from "./data/nc-gyms/ruckusClimbingGym";
+import { firstHandClimbing } from "./data/nc-gyms/firstHandClimbing";
+import { theClimbingPlace } from "./data/nc-gyms/theClimbingPlace";
+import { cliffHangers } from "./data/nc-gyms/cliffHangers";
+import { cultivateClimbingFoundy } from "./data/nc-gyms/cultivateClimbingFoundy";
+import { center45 } from "./data/nc-gyms/center45";
+import { wilmingtonRockGym } from "./data/nc-gyms/wilmingtonRockGym";
 
 export function getData (): DataModel {
   return {
@@ -401,4 +430,33 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   verticalExcapeEvansville,
   summitCityClimbing,
   columbusRocks,
+  planetRockAnnArbor,
+  planetRockMadisonHeights,
+  planetRockGrandRapids,
+  dynoDetroit,
+  terraFirmaGrandRapids,
+  terraFirmaEastLansing,
+  higherGround,
+  insideMoves,
+  scrapyardClimbing,
+  shiftClimbing,
+  climbKalamazoo,
+  elev8,
+  triangleRockClubMorrisville,
+  triangleRockClubRaleigh,
+  triangleRockClubSalvageYard,
+  triangleRockClubDurham,
+  triangleRockClubFayetteville,
+  progressionClimbing,
+  theBoulderGarden,
+  innerPeaksSouthEnd,
+  innerPeaksNoda,
+  innerPeaksMatthews,
+  ruckusClimbingGym,
+  firstHandClimbing,
+  theClimbingPlace,
+  cliffHangers,
+  cultivateClimbingFoundy,
+  center45,
+  wilmingtonRockGym,
 };
