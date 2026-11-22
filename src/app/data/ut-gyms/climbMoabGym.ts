@@ -14,5 +14,5 @@ export const climbMoabGym: ClimbingGym = {
     latitude: 38.495,
     longitude: -109.452,
   },
-  amenities: amenities('bouldering', 'top-rope', 'yoga', 'arial-silks'),
+  amenities: amenities('bouldering', 'top-rope', 'yoga', 'aerial-silks'),
 };

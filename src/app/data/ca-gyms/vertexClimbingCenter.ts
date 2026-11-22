@@ -14,5 +14,5 @@ export const vertexClimbingCenter: ClimbingGym = {
     latitude: 38.475,
     longitude: -122.735,
   },
-  amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'free-weights', 'machines', 'yoga', 'arial-silks'),
+  amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'free-weights', 'machines', 'yoga', 'aerial-silks'),
 };

@@ -35,7 +35,7 @@ export type GymAmenity = {
     |'lead'
     |'sauna'
     |'yoga'
-    |'arial-silks'
+    |'aerial-silks'
   description?:  string
 };
 

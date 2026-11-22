@@ -9,5 +9,5 @@ export const amenityMap: Record<GymAmenity['name'], GymAmenity> = {
   'lead': { name: 'lead' },
   'sauna': { name: 'sauna' },
   'yoga': { name: 'yoga' },
-  'arial-silks': { name: 'arial-silks' }
+  'aerial-silks': { name: 'aerial-silks' }
 }

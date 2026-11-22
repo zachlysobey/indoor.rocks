@@ -14,5 +14,5 @@ export const ironCliffsGym: ClimbingGym = {
     latitude: 37.686,
     longitude: -113.088,
   },
-  amenities: amenities('bouldering', 'top-rope', 'lead', 'yoga', 'arial-silks'),
+  amenities: amenities('bouldering', 'top-rope', 'lead', 'yoga', 'aerial-silks'),
 };

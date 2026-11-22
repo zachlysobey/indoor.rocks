@@ -14,5 +14,5 @@ export const sanctuaryClimbingFitness: ClimbingGym = {
     latitude: 36.611,
     longitude: -121.844,
   },
-  amenities: amenities('bouldering', 'top-rope', 'free-weights', 'yoga', 'arial-silks'),
+  amenities: amenities('bouldering', 'top-rope', 'free-weights', 'yoga', 'aerial-silks'),
 };
