@@ -5,6 +5,7 @@ import { gymBySlug } from "../../gymBySlug";
 import { gymSlug } from "../../gymSlug";
 import { CollapseLink } from "../../climbing-gyms/CollapseLink";
 import { GymDetails } from "../../climbing-gyms/GymDetails";
+import { gymPageMetadata } from "../../gymPageMetadata";
 import { GymMorph } from "../../climbing-gyms/GymMorph";
 import styles from "./page.module.css";
 
@@ -28,7 +29,7 @@ async function findGym({ params }: Props) {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { gym } = await findGym(props);
-  return { title: `${gym.name} · indoor.rocks` };
+  return gymPageMetadata(gym);
 }
 
 // A gym's own page: its card from the list, grown to fill the page (and animated that way, from the
