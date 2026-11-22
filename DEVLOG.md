@@ -29,7 +29,7 @@
 
 Picked it back up. The goal for this stretch was deliberately small: nothing obviously broken, no
 mysterious loose threads. Not new features — just making the starting place honest. Written up as
-[plan 001, "Get things cleaned up"](./plans/001-get-things-cleaned-up.md).
+[the original cleanup plan (archived in Git history)](https://github.com/zachlysobey/indoor.rocks/blob/c84bfbc4bdc63ffafa806371a535a991574247c6/plans/001-get-things-cleaned-up.md).
 
 **The state it was found in.** `npm run build` was failing on any clean checkout. The homepage
 rendered a server action that imported the Drizzle client, which throws at module load when
@@ -101,8 +101,10 @@ clearest single description of the project. It's in the repo now, re-stamped —
 dated snapshot re-issued at the end of each plan, rather than a document that quietly rots between
 edits.
 
-The plans land here too: [001](./plans/001-get-things-cleaned-up.md) is what this entry describes,
-and [002](./plans/002-get-something-deployed.md) is what's next.
+The historical plans are preserved in Git history: [001](https://github.com/zachlysobey/indoor.rocks/blob/c84bfbc4bdc63ffafa806371a535a991574247c6/plans/001-get-things-cleaned-up.md) records this cleanup;
+[002](https://github.com/zachlysobey/indoor.rocks/blob/c84bfbc4bdc63ffafa806371a535a991574247c6/plans/002-get-something-deployed.md) records the subsequent deployment work.
 
-Next up, then: plan 002, "Get something deployed". The site has been buildable-in-principle and
-undeployed for two years; that's the thing worth fixing.
+At the time, the next goal was getting something live after two years. That was accomplished on
+November 2, 2026 ([#23](https://github.com/zachlysobey/indoor.rocks/pull/23),
+[#24](https://github.com/zachlysobey/indoor.rocks/pull/24)). Outstanding operations documentation
+is tracked in [#117](https://github.com/zachlysobey/indoor.rocks/issues/117).
