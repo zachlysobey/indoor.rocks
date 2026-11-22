@@ -49,6 +49,9 @@ import { orGyms } from "./data/or-gyms";
 import { utGyms } from "./data/ut-gyms";
 import { waGyms } from "./data/wa-gyms";
 import { coGyms } from "./data/co-gyms";
+import { caGyms } from "./data/ca-gyms";
+import { txGyms } from "./data/tx-gyms";
+import { ilGyms } from "./data/il-gyms";
 
 export function getData (): DataModel {
   return {
@@ -103,6 +106,9 @@ export function getData (): DataModel {
       ...utGyms,
       ...waGyms,
       ...coGyms,
+      ...caGyms,
+      ...txGyms,
+      ...ilGyms,
     ],
   };
 }
