@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getData } from "../getData";
 import { gymRoutes } from "./gymRoutes";
+import ctaStyles from "../ctas.module.css";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function ClimbingGymsPage() {
     <main className={styles.content}>
       <h2>Climbing gyms</h2>
       <p className={styles.lede}>{count} indoor climbing gyms, and counting.</p>
-      <ul className={styles.ctas}>
+      <ul className={ctaStyles.ctas}>
         <li>
           <Link href={gymRoutes.map()}>
             <strong>Map</strong>
