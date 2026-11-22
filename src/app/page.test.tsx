@@ -11,6 +11,9 @@ describeLinkPage("home page", Home);
 
 describe("home page", () => {
   const html = renderToStaticMarkup(<Home />);
+  // Outside Next, <Link> doesn't get the trailingSlash config and drops the slash, so compare without it.
+  const unslashed = (href: string) => href.replace(/(.)\/$/, "$1");
+  const hrefs = [...html.matchAll(/href="([^"]*)"/g)].map(([, href]) => unslashed(href));
 
   it("says how many gyms are listed", () => {
     expect(html).toContain(`${getData().climbingGyms.length} climbing gyms`);
@@ -18,11 +21,11 @@ describe("home page", () => {
 
   it("links to each section", () => {
     for (const href of [gymRoutes.index(), "/home-walls", "/climbing-holds", "/tv"])
-      expect(html).toContain(`href="${href}"`);
+      expect(hrefs).toContain(unslashed(href));
   });
 
   it("features a listed gym, linked to its own page", () => {
     expect(getData().climbingGyms).toContain(featuredGym);
-    expect(html).toContain(`href="${gymRoutes.page(gymSlug(featuredGym))}"`);
+    expect(hrefs).toContain(unslashed(gymRoutes.page(gymSlug(featuredGym))));
   });
 });
