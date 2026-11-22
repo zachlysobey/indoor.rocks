@@ -1,0 +1,120 @@
+/* A group's name: the disclosure toggle for its gyms, with its website (if any) beside it. Where the
+   list sits decides its background, and whether the heading sticks. */
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem 0.375rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.toggle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.toggle::before {
+  content: "";
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+
+.toggle[aria-expanded="true"]::before {
+  transform: rotate(45deg);
+}
+
+.count {
+  margin-left: auto;
+  opacity: 0.7;
+}
+
+.website {
+  color: var(--accent);
+}
+
+@media (hover: hover) {
+  .toggle:hover {
+    color: var(--accent);
+  }
+}
+
+.gyms {
+  list-style: none;
+}
+
+.name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.title {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+/* The selected gym's title grows into its full card, with a link to the gym's page in its corner. */
+.selected {
+  composes: card from "./GymCard.module.css";
+  position: relative;
+  margin: 0.375rem 0.5rem;
+}
+
+.selected .name {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* Right padding clears the expand link. */
+.selected .title {
+  padding: 0.75rem 3rem 0.375rem 1rem;
+  color: var(--accent);
+}
+
+.details {
+  padding: 0 1rem 1rem;
+}
+
+.expand {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+  color: var(--muted);
+}
+
+@media (hover: hover) {
+  .expand:hover {
+    background: var(--chip);
+    color: var(--accent);
+  }
+
+  li:not(.selected) .title:hover {
+    background: var(--chip);
+    color: var(--accent);
+  }
+}

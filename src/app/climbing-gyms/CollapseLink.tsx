@@ -29,13 +29,14 @@ function escapeIsTaken(event: KeyboardEvent): boolean {
   );
 }
 
-// The gym page's way back to the list, with the gym in focus. When the list opened this page, Escape
-// does the same: the card grows out of the list like a dialog opening, so Escape closes it.
+// The gym page's way back to the list that opened it (the map's, unless another did), with the gym
+// in focus. When a list opened this page, Escape does the same: the card grows out of the list like
+// a dialog opening, so Escape closes it.
 export function CollapseLink({ slug, className }: Props) {
   const router = useRouter();
-  const href = gymRoutes.map(slug);
-  // Only ever true after a client-side navigation from the list, never while hydrating a fresh load,
-  // so the server's render (false) always matches.
+  // Both only ever differ from the defaults after a client-side navigation from a list, never while
+  // hydrating a fresh load, so the server's render always matches.
+  const href = openedFromList.from(slug) ?? gymRoutes.map(slug);
   const escapes = openedFromList.is(slug);
 
   useEffect(() => {

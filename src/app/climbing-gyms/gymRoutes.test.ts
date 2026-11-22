@@ -25,4 +25,8 @@ describe("gymRoutes", () => {
   it("puts the chains, with their gyms, at /climbing-gyms/chains/", () => {
     expect(gymRoutes.chains()).toBe("/climbing-gyms/chains/");
   });
+
+  it("links back to the chains with the gym in focus", () => {
+    expect(gymRoutes.chains("vital-brooklyn")).toBe("/climbing-gyms/chains/?focus=vital-brooklyn");
+  });
 });
