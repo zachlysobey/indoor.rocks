@@ -19,6 +19,14 @@ describe("chains page", () => {
   const html = renderToStaticMarkup(<GymChainsPage />);
   const chains = gymChains(getData().climbingGyms);
 
+  it("says how many of the gyms are in a chain", () => {
+    const gyms = getData().climbingGyms;
+    const inChains = gyms.filter(gym => gym.parent).length;
+    expect(html).toContain(
+      `Of the ${gyms.length} climbing gyms listed, ${inChains} are part of one of ${chains.length} chains.`,
+    );
+  });
+
   it("lists every chain, biggest first", () => {
     // Each chain's name as React writes it ("Grotto Climbing &amp; Yoga"), in its own bare <span>, so
     // it can't match a gym whose name starts with a chain's.

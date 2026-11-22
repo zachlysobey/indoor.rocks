@@ -5,6 +5,10 @@
   margin-top: 1.5rem;
 }
 
+.lede {
+  color: var(--muted);
+}
+
 /* A grid, not columns: opening a chain only pushes down the rows below it, rather than reflowing
    every chain after it into the next column. */
 .chains {
