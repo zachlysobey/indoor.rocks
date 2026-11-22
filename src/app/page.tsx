@@ -14,6 +14,9 @@ export default function Home() {
         <li>
           <Link href="/tv">Indoor climbing TV</Link> — climbing worth watching
         </li>
+        <li>
+          <Link href="/climbing-holds">Climbing holds</Link> — where to get them, new or used
+        </li>
       </ul>
     </main>
   );

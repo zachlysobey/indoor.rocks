@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import styles from "../linkPage.module.css";
 
 export const metadata: Metadata = {
@@ -10,6 +11,9 @@ export default function HomeWallsPage() {
     <main className={styles.main}>
       <h2>Home walls</h2>
       <p>Resources for building and climbing on a wall of your own.</p>
+      <p>
+        Need holds? See <Link href="/climbing-holds">where to get them</Link>.
+      </p>
 
       <section>
         <h3>Communities</h3>
