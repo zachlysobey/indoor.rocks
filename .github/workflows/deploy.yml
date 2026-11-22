@@ -34,7 +34,7 @@ jobs:
       - run: npm run build
         env:
           # Only production builds load Tag Manager. GA4 and any other tags are set up in GTM.
-          NEXT_PUBLIC_GTM_ID: GTM-TJ7S8Z45
+          NEXT_PUBLIC_GTM_ID: GTM-5NWNTQDB
 
       - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
         with:
