@@ -1,6 +1,6 @@
 # indoor.rocks (<http://indoor.rocks>)
 
-> NOTE: this is very much a work-in-progress, and isn't yet near the point where its giving any value
+A guide to indoor rock climbing gyms, live at <https://indoor.rocks>. Every push to `main` deploys it ([`deploy.yml`](./.github/workflows/deploy.yml)).
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -41,4 +41,4 @@ Reach out to me if you wanna help! I'd be thrilled to have folks to pair with an
 
 ## Development Log
 
-Check out the [Dev Log](./DEVLOG.md) to check out what I've been doing day-to-day (and/or check out the commits!)
+Check out the [Dev Log](./DEVLOG.md) for the story behind the bigger changes, and the commits for everything else.

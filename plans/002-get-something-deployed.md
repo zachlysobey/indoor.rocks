@@ -13,7 +13,7 @@ passes on `main` (2026-11-01: `/` and `/_not-found` both prerender as static).
 logged in the DEVLOG and documented in step 6. Anything that touches DNS or creates cloud resources
 gets confirmed before it runs.
 
-> Status: in progress. **Live at https://indoor.rocks since 2026-11-02** (steps 1–4 done). Step 5 set up; its PR (#24) awaits merge.
+> Status: steps 1–5 done. **Live at https://indoor.rocks since 2026-11-02**, deployed on push to `main` since #24. Step 6 (the write-up) hasn't been done.
 
 ---
 
@@ -163,10 +163,9 @@ In Cloudflare:
 
 **At this point the goal is met except for automation.**
 
-### Step 5 — Push-to-deploy (PR [#24](https://github.com/zachlysobey/indoor.rocks/pull/24))
+### Step 5 — Push-to-deploy (PR [#24](https://github.com/zachlysobey/indoor.rocks/pull/24)) ✅
 
-**Setup done 2026-11-02** (GCP + Cloudflare token + repo secret, all verified). Remaining: merge
-#24 and watch the first run.
+**Setup done 2026-11-02** (GCP + Cloudflare token + repo secret, all verified); #24 merged.
 
 One-time GCP setup (documented commands, run with confirmation):
 

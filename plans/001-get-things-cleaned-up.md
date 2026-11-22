@@ -30,8 +30,8 @@ already had PRs #1–#2 before this plan started, and issues share the same coun
 | 4 — Security patches + Node | PRs [#9](https://github.com/zachlysobey/indoor.rocks/pull/9), [#10](https://github.com/zachlysobey/indoor.rocks/pull/10) → re-landed as [#17](https://github.com/zachlysobey/indoor.rocks/pull/17), [#11](https://github.com/zachlysobey/indoor.rocks/pull/11); issues [#12](https://github.com/zachlysobey/indoor.rocks/issues/12)–[#14](https://github.com/zachlysobey/indoor.rocks/issues/14) | merged |
 | 5 — README truth-fix | PR [#18](https://github.com/zachlysobey/indoor.rocks/pull/18) | merged |
 | 6 — Publish `current-status.html` | PR [#19](https://github.com/zachlysobey/indoor.rocks/pull/19) (`docs/current-status`) | merged |
-| 7 — DEVLOG + commit `plans/` | PR [#16](https://github.com/zachlysobey/indoor.rocks/pull/16) (`docs/devlog`) | open |
-| Housekeeping — "Toolchain additions" issue | — | **not filed** |
+| 7 — DEVLOG + commit `plans/` | PR [#16](https://github.com/zachlysobey/indoor.rocks/pull/16) (`docs/devlog`) | merged |
+| Housekeeping — "Toolchain additions" issue | issue [#21](https://github.com/zachlysobey/indoor.rocks/issues/21) | filed |
 
 ---
 
@@ -162,8 +162,7 @@ it merged.
 
 ## Housekeeping (no PR)
 
-- **Not yet filed:** one GH issue, "Toolchain additions" — Prettier, `typecheck` script, Vitest.
-  CI is neither here nor there; it lands in a future 003. This is the last open housekeeping item.
+- Filed as [#21](https://github.com/zachlysobey/indoor.rocks/issues/21), "Toolchain additions" — Prettier, `typecheck` script, Vitest.
 - `plans/` and `current-status.html` were originally going to stay local. They don't — they land in
   steps 6 and 7.
 - Issues #4 ("Feature idea stubs") and #15 ("hold manufacturers") predate/sit outside this plan.
