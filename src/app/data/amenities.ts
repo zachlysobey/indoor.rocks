@@ -1,5 +1,6 @@
 import type { GymAmenity } from "../dataModel";
-import { amenityMap } from "./amenityMap";
+import { amenityMap, type AmenityName } from "./amenityMap";
 
-export const amenities = (...names: GymAmenity['name'][]): GymAmenity[] =>
-  names.map(name => amenityMap[name]);
+// Keep the concise amenities("bouldering", "lead") API in each gym's data file.
+export const amenities = (...names: AmenityName[]): GymAmenity[] =>
+  names.map(name => ({ name, ...amenityMap[name] }));

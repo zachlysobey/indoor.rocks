@@ -1,13 +1,14 @@
-import { GymAmenity } from "../dataModel";
+// Shared metadata for each known gym amenity. The keys are the stable data identifiers.
+export const amenityMap = {
+  "free-weights": { label: "Free weights" },
+  machines: { label: "Machines" },
+  bouldering: { label: "Bouldering" },
+  "auto-belays": { label: "Auto-belays" },
+  "top-rope": { label: "Top rope" },
+  lead: { label: "Lead climbing" },
+  sauna: { label: "Sauna" },
+  yoga: { label: "Yoga" },
+  "aerial-silks": { label: "Aerial silks" },
+} as const;
 
-export const amenityMap: Record<GymAmenity['name'], GymAmenity> = {
-  'free-weights': { name: 'free-weights' },
-  'machines': { name: 'machines' },
-  'bouldering': { name: 'bouldering' },
-  'auto-belays': { name: 'auto-belays' },
-  'top-rope': { name: 'top-rope' },
-  'lead': { name: 'lead' },
-  'sauna': { name: 'sauna' },
-  'yoga': { name: 'yoga' },
-  'aerial-silks': { name: 'aerial-silks' }
-}
+export type AmenityName = keyof typeof amenityMap;
