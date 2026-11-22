@@ -11,6 +11,9 @@ export default function Home() {
         <li>
           <Link href="/home-walls">Home walls</Link> — communities and resources for building your own
         </li>
+        <li>
+          <Link href="/tv">Indoor climbing TV</Link> — climbing worth watching
+        </li>
       </ul>
     </main>
   );
