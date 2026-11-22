@@ -42,6 +42,8 @@ import { akGyms } from "./data/ak-gyms";
 import { hiGyms } from "./data/hi-gyms";
 import { nmGyms } from "./data/nm-gyms";
 import { nvGyms } from "./data/nv-gyms";
+import { mnGyms } from "./data/mn-gyms";
+import { wiGyms } from "./data/wi-gyms";
 
 export function getData (): DataModel {
   return {
@@ -89,6 +91,8 @@ export function getData (): DataModel {
       ...hiGyms,
       ...nmGyms,
       ...nvGyms,
+      ...mnGyms,
+      ...wiGyms,
     ],
   };
 }
