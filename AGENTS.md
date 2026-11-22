@@ -14,7 +14,6 @@ Some GitHub issues hold long-lived state that outlives any single PR. Read the r
 
 | Issue | Tracks | Update when |
 |---|---|---|
-| #81 | State coverage | A state's gyms land. |
 | #76 | Gym data follow-ups: weak evidence a gym is open, unverified details | A PR leaves something unconfirmed, or settles an item. |
 | #77 | Closed and replaced gyms, which shouldn't be re-added | A gym turns out to be closed or renamed. Remove it from the data in the same PR. |
 | #78 | Announced gyms that aren't open yet | One is announced, opens (add it to the data and tick it off), or falls through. |
