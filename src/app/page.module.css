@@ -1,21 +1,46 @@
 .main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   margin-top: 1.5rem;
 }
 
-.main ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  list-style: none;
+.intro {
+  max-width: 42rem;
+  font-size: 1.125rem;
 }
 
-.main a {
-  color: var(--accent);
+/* The featured gym, as the same card it is in the list and on its own page. */
+.featured {
+  composes: card from "./climbing-gyms/GymCard.module.css";
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.featured h2 {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.featured h3 {
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.featured h3 a {
+  color: var(--accent);
 }
 
 @media (hover: hover) {
-  .main a:hover {
+  .featured h3 a:hover {
     text-decoration: underline;
   }
 }
