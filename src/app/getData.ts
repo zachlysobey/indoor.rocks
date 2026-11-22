@@ -324,6 +324,28 @@ import { bluestemBoulders } from "./data/ia-gyms/bluestemBoulders";
 import { mwClimbingLincoln } from "./data/ne-gyms/mwClimbingLincoln";
 import { mwClimbingOmaha } from "./data/ne-gyms/mwClimbingOmaha";
 import { approachClimbingGym } from "./data/ne-gyms/approachClimbingGym";
+import { fargoClimbing } from "./data/nd-gyms/fargoClimbing";
+import { northernHeightsRockGym } from "./data/nd-gyms/northernHeightsRockGym";
+import { frontierClimbing } from "./data/sd-gyms/frontierClimbing";
+import { blackHillsBasecamp } from "./data/sd-gyms/blackHillsBasecamp";
+import { climberz } from "./data/sd-gyms/climberz";
+import { steepworld } from "./data/mt-gyms/steepworld";
+import { spireMainFacility } from "./data/mt-gyms/spireMainFacility";
+import { spireTrainingCenter } from "./data/mt-gyms/spireTrainingCenter";
+import { freestoneClimbing } from "./data/mt-gyms/freestoneClimbing";
+import { stonetreeClimbing } from "./data/mt-gyms/stonetreeClimbing";
+import { hiLineClimbingCenter } from "./data/mt-gyms/hiLineClimbingCenter";
+import { rockfishClimbing } from "./data/mt-gyms/rockfishClimbing";
+import { recreateClimbing } from "./data/mt-gyms/recreateClimbing";
+import { firstAscentLibby } from "./data/mt-gyms/firstAscentLibby";
+import { elemental } from "./data/wy-gyms/elemental";
+import { commonsClimbingGym } from "./data/id-gyms/commonsClimbingGym";
+import { verticalView } from "./data/id-gyms/verticalView";
+import { coeurClimbing } from "./data/id-gyms/coeurClimbing";
+import { gemstoneClimbing } from "./data/id-gyms/gemstoneClimbing";
+import { rockGymRexburg } from "./data/id-gyms/rockGymRexburg";
+import { tetonRockGym } from "./data/id-gyms/tetonRockGym";
+import { sandpointRockGym } from "./data/id-gyms/sandpointRockGym";
 
 export function getData (): DataModel {
   return {
@@ -657,4 +679,26 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   mwClimbingLincoln,
   mwClimbingOmaha,
   approachClimbingGym,
+  fargoClimbing,
+  northernHeightsRockGym,
+  frontierClimbing,
+  blackHillsBasecamp,
+  climberz,
+  steepworld,
+  spireMainFacility,
+  spireTrainingCenter,
+  freestoneClimbing,
+  stonetreeClimbing,
+  hiLineClimbingCenter,
+  rockfishClimbing,
+  recreateClimbing,
+  firstAscentLibby,
+  elemental,
+  commonsClimbingGym,
+  verticalView,
+  coeurClimbing,
+  gemstoneClimbing,
+  rockGymRexburg,
+  tetonRockGym,
+  sandpointRockGym,
 };
