@@ -1,8 +1,10 @@
 import type { ClimbingGym } from "@/app/dataModel";
 import { amenities } from "../amenities";
+import { rokc } from "../companies/rokc";
 
 export const rokcNorth: ClimbingGym = {
   name: 'RoKC North',
+  parent: rokc,
   address: {
     streetNumber: '1501',
     streetName: 'Howell St',

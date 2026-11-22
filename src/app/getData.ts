@@ -307,6 +307,23 @@ import { zenithClimbingCenter } from "./data/mo-gyms/zenithClimbingCenter";
 import { ibexClimbingGym } from "./data/mo-gyms/ibexClimbingGym";
 import { rokcNorth } from "./data/mo-gyms/rokcNorth";
 import { sequenceClimbing } from "./data/mo-gyms/sequenceClimbing";
+import { rokcOlathe } from "./data/ks-gyms/rokcOlathe";
+import { rendezvousClimbingGym } from "./data/ks-gyms/rendezvousClimbingGym";
+import { climbLawrence } from "./data/ks-gyms/climbLawrence";
+import { blissClimbingAndFitness } from "./data/ks-gyms/blissClimbingAndFitness";
+import { blocworksEdmond } from "./data/ok-gyms/blocworksEdmond";
+import { blocworksMidtown } from "./data/ok-gyms/blocworksMidtown";
+import { thresholdClimbing } from "./data/ok-gyms/thresholdClimbing";
+import { highPlainsClimbing } from "./data/ok-gyms/highPlainsClimbing";
+import { stratusClimbing } from "./data/ok-gyms/stratusClimbing";
+import { climbTulsa } from "./data/ok-gyms/climbTulsa";
+import { gravityBear } from "./data/ok-gyms/gravityBear";
+import { climbIowaGrimes } from "./data/ia-gyms/climbIowaGrimes";
+import { climbIowaEastVillage } from "./data/ia-gyms/climbIowaEastVillage";
+import { bluestemBoulders } from "./data/ia-gyms/bluestemBoulders";
+import { mwClimbingLincoln } from "./data/ne-gyms/mwClimbingLincoln";
+import { mwClimbingOmaha } from "./data/ne-gyms/mwClimbingOmaha";
+import { approachClimbingGym } from "./data/ne-gyms/approachClimbingGym";
 
 export function getData (): DataModel {
   return {
@@ -623,4 +640,21 @@ const climbingGymDictionary: Record<string, ClimbingGym> = {
   ibexClimbingGym,
   rokcNorth,
   sequenceClimbing,
+  rokcOlathe,
+  rendezvousClimbingGym,
+  climbLawrence,
+  blissClimbingAndFitness,
+  blocworksEdmond,
+  blocworksMidtown,
+  thresholdClimbing,
+  highPlainsClimbing,
+  stratusClimbing,
+  climbTulsa,
+  gravityBear,
+  climbIowaGrimes,
+  climbIowaEastVillage,
+  bluestemBoulders,
+  mwClimbingLincoln,
+  mwClimbingOmaha,
+  approachClimbingGym,
 };
