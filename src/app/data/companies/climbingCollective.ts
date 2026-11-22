@@ -1,3 +1,3 @@
 import type { Company } from "@/app/dataModel";
 
-export const climbingCollective: Company = { name: 'Climbing Collective' };
+export const climbingCollective: Company = { name: 'Climbing Collective', website: 'https://climbingcollective.co/' };
