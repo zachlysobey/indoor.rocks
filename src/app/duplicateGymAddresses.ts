@@ -1,7 +1,7 @@
 import type { ClimbingGym } from "./dataModel";
 
 // Conservative matching: punctuation, capitalization, spacing, and common street suffixes.
-// Report possible duplicates for review; two gyms can legitimately share a building.
+// Check for collisions in CI; legitimate co-located gyms need an explicit exception.
 const normalize = (value: string): string =>
   value
     .toLowerCase()
@@ -18,9 +18,9 @@ export type AddressCollision = {
 export function duplicateGymAddresses(gyms: readonly ClimbingGym[]): AddressCollision[] {
   const byAddress = new Map<string, ClimbingGym[]>();
   for (const gym of gyms) {
-    const { streetNumber, streetName, city, state, country, postalCode } = gym.address;
+    const { streetNumber, streetName, city, state, country } = gym.address;
     if (!streetNumber.trim() || !streetName.trim() || !city.trim()) continue;
-    const key = [country, state, city, postalCode, streetNumber, streetName]
+    const key = [country, state, city, streetNumber, streetName]
       .map(normalize)
       .join("|");
     const atAddress = byAddress.get(key) ?? [];

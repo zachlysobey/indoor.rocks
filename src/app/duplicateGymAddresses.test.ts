@@ -20,6 +20,15 @@ describe("duplicateGymAddresses", () => {
     ]);
   });
 
+  it("flags the same street address even with different postal codes", () => {
+    const duplicate = {
+      ...sample,
+      name: "Other gym",
+      address: { ...sample.address, postalCode: "99999" },
+    };
+    expect(duplicateGymAddresses([sample, duplicate])).toHaveLength(1);
+  });
+
   it("does not flag distinct addresses", () => {
     const other = {
       ...sample,
@@ -32,5 +41,11 @@ describe("duplicateGymAddresses", () => {
   it("does not flag records missing a street address", () => {
     const unknown = { ...sample, address: { ...sample.address, streetNumber: "" } };
     expect(duplicateGymAddresses([unknown, unknown])).toEqual([]);
+  });
+  it("does not contain duplicate street addresses in the real gym dataset", () => {
+    const duplicates = duplicateGymAddresses(getData().climbingGyms);
+    // If two separate gyms legitimately share an address, document and allowlist
+    // that exact pair rather than silently ignoring collisions.
+    expect(duplicates).toEqual([]);
   });
 });
