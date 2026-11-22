@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import styles from "./page.module.css";
+import styles from "../linkPage.module.css";
 
 export const metadata: Metadata = {
   title: "Home Walls · indoor.rocks",
