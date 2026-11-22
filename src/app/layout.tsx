@@ -1,16 +1,16 @@
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import HeaderNav from "./HeaderNav";
-import { gtmContainerId } from "./analytics";
+import { gaMeasurementId } from "./analytics";
 import "./globals.css";
 import styles from "./layout.module.css";
 import { siteUrl } from "./siteUrl";
 import ClimbingWall from "./wall/ClimbingWall";
 
 const inter = Inter({ subsets: ["latin"] });
-const gtmId = gtmContainerId();
+const gaId = gaMeasurementId();
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -25,7 +25,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <body className={inter.className}>
         <ClimbingWall />
         <div className={styles.shell}>
@@ -46,6 +45,7 @@ export default function RootLayout({
             </a>
           </footer>
         </div>
+        {gaId && <GoogleAnalytics gaId={gaId} />}
       </body>
     </html>
   );

@@ -1,18 +1,18 @@
 import { describe, expect, it } from "vitest";
-import { gtmContainerId } from "./analytics";
+import { gaMeasurementId } from "./analytics";
 
-describe("gtmContainerId", () => {
-  it("loads no container when unset or empty", () => {
-    expect(gtmContainerId(undefined)).toBeUndefined();
-    expect(gtmContainerId("")).toBeUndefined();
+describe("gaMeasurementId", () => {
+  it("disables analytics when unset or empty", () => {
+    expect(gaMeasurementId(undefined)).toBeUndefined();
+    expect(gaMeasurementId("")).toBeUndefined();
   });
 
-  it("passes a container ID through", () => {
-    expect(gtmContainerId("GTM-AB12CD3")).toBe("GTM-AB12CD3");
+  it("passes a measurement ID through", () => {
+    expect(gaMeasurementId("G-AB12CD34EF")).toBe("G-AB12CD34EF");
   });
 
-  it("rejects anything else, like a GA4 measurement ID", () => {
-    for (const bad of ["G-AB12CD34EF", "UA-12345-1", "GTM-", "gtm-ab12cd3", " GTM-AB12CD3"])
-      expect(() => gtmContainerId(bad)).toThrow(/Tag Manager container ID/);
+  it("rejects anything else, including Tag Manager container IDs", () => {
+    for (const bad of ["GTM-AB12CD3", "UA-12345-1", "G-", "g-ab12cd3", " G-AB12CD3"])
+      expect(() => gaMeasurementId(bad)).toThrow(/GA4 measurement ID/);
   });
 });
