@@ -14,5 +14,5 @@ export const elev8: ClimbingGym = {
     latitude: 44.762,
     longitude: -85.610,
   },
-  amenities: amenities('bouldering', 'top-rope', 'yoga', 'arial-silks'),
+  amenities: amenities('bouldering', 'top-rope', 'yoga', 'aerial-silks'),
 };

@@ -1,3 +1,5 @@
+import type { AmenityName } from "./data/amenityMap";
+
 export type TopLevelEntity = {
   name: string;
 }
@@ -26,17 +28,9 @@ export type Gym = Place & {
 };
 
 export type GymAmenity = {
-  name:
-    |'free-weights'
-    |'machines'
-    |'bouldering'
-    |'auto-belays'
-    |'top-rope'
-    |'lead'
-    |'sauna'
-    |'yoga'
-    |'arial-silks'
-  description?:  string
+  name: AmenityName;
+  label: string;
+  description?: string;
 };
 
 export type ClimbingGym = Gym & {

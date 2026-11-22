@@ -19,7 +19,7 @@ export function GymDetails({ gym, className }: Props) {
       {gym.description && <p>{gym.description}</p>}
       {gym.amenities.length > 0 && (
         <ul>
-          {gym.amenities.map(a => <li key={a.name}>{a.name}</li>)}
+          {gym.amenities.map(a => <li key={a.name}>{a.label}</li>)}
         </ul>
       )}
       <footer>

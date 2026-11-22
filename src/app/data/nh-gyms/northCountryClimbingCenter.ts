@@ -14,5 +14,5 @@ export const northCountryClimbingCenter: ClimbingGym = {
     latitude: 44.229,
     longitude: -71.880,
   },
-  amenities: amenities('bouldering', 'top-rope', 'lead', 'arial-silks'),
+  amenities: amenities('bouldering', 'top-rope', 'lead', 'aerial-silks'),
 };

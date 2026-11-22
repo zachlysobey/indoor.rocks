@@ -14,5 +14,5 @@ export const rockFitness: ClimbingGym = {
     latitude: 33.580,
     longitude: -117.247,
   },
-  amenities: amenities('bouldering', 'auto-belays', 'yoga', 'arial-silks'),
+  amenities: amenities('bouldering', 'auto-belays', 'yoga', 'aerial-silks'),
 };

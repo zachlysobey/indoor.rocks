@@ -15,5 +15,5 @@ export const stateClimb: ClimbingGym = {
     latitude: 38.473,
     longitude: -77.995,
   },
-  amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'arial-silks'),
+  amenities: amenities('bouldering', 'top-rope', 'lead', 'auto-belays', 'aerial-silks'),
 };

@@ -15,5 +15,5 @@ export const nevadaClimbingCenter: ClimbingGym = {
     latitude: 36.078,
     longitude: -115.112,
   },
-  amenities: amenities('bouldering', 'top-rope', 'lead', 'yoga', 'arial-silks'),
+  amenities: amenities('bouldering', 'top-rope', 'lead', 'yoga', 'aerial-silks'),
 };
