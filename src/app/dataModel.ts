@@ -45,6 +45,8 @@ export type ClimbingGym = Gym & {
 
 export type Company = TopLevelEntity & {
   name: string;
+  // The chain's own home, covering all its gyms. Set only when a source shows it, as for a gym.
+  website?: string;
 };
 
 export type DataModel = {

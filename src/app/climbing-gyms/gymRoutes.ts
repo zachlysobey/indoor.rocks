@@ -5,11 +5,13 @@
 // own page.
 //
 // A gym's page sits under /climbing-gym/, not /climbing-gyms/, so no gym's slug can collide with a
-// page of the browsing ones (map/, list/).
+// page of the browsing ones (map/, list/, chains/).
 export const gymRoutes = {
   index: (): string => "/climbing-gyms/",
   page: (slug: string): string => `/climbing-gym/${slug}/`,
   map: (slug?: string): string => `/climbing-gyms/map/${slug ? `?focus=${slug}` : ""}`,
   // Every gym on one page, by state, without the map.
   list: (): string => "/climbing-gyms/list/",
+  // Every chain, biggest first, with its gyms.
+  chains: (): string => "/climbing-gyms/chains/",
 };

@@ -13,6 +13,7 @@ const pages = [
   gymRoutes.index(),
   gymRoutes.map(),
   gymRoutes.list(),
+  gymRoutes.chains(),
   "/home-walls/",
   "/tv/",
   "/climbing-holds/",

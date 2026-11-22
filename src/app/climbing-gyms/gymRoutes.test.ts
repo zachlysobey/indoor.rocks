@@ -21,4 +21,8 @@ describe("gymRoutes", () => {
   it("puts the list of every gym, without the map, at /climbing-gyms/list/", () => {
     expect(gymRoutes.list()).toBe("/climbing-gyms/list/");
   });
+
+  it("puts the chains, with their gyms, at /climbing-gyms/chains/", () => {
+    expect(gymRoutes.chains()).toBe("/climbing-gyms/chains/");
+  });
 });
