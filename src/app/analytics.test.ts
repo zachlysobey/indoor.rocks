@@ -1,9 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { gaMeasurementId } from "./analytics";
 
 describe("gaMeasurementId", () => {
+  afterEach(() => vi.unstubAllEnvs());
+
   it("disables analytics when unset or empty", () => {
-    expect(gaMeasurementId(undefined)).toBeUndefined();
+    vi.stubEnv("NEXT_PUBLIC_GA_MEASUREMENT_ID", undefined);
+    expect(gaMeasurementId()).toBeUndefined();
     expect(gaMeasurementId("")).toBeUndefined();
   });
 
