@@ -34,6 +34,10 @@ export default function IndoorClimbingTvPage() {
               </p>
             )}
           </li>
+          <li>
+            <a href="https://www.youtube.com/channel/UCrq7CrFwKG1X5mrDUj_mJrA">Toby Roberts</a> — the
+            2024 Olympic champion, behind the scenes of a World Cup season
+          </li>
         </ul>
       </section>
 
@@ -51,12 +55,24 @@ export default function IndoorClimbingTvPage() {
             long-running London gym bouldering vlog
           </li>
           <li>
+            <a href="https://www.youtube.com/channel/UCLze_9DjASz_ZxB7UTt2Alw">Bouldering DabRats</a>{" "}
+            — a women-led bouldering vlog, started as a counterpart to Bobat
+          </li>
+          <li>
             <a href="https://www.youtube.com/channel/UCgtOMaHBiYvsRYZ77utf8FQ">Eric Karlsson</a> —
             strong bouldering, in the gym and out, from Sweden
           </li>
           <li>
-            <a href="https://www.youtube.com/@emilabrahamsson">Emil Abrahamsson</a> — training
-            experiments and hard projects from a former Swedish team climber
+            <a href="https://www.youtube.com/channel/UCqiKFGkSZwrbMSfkkd2CQGg">Emil Abrahamsson</a> —
+            training experiments and hard projects from a former Swedish team climber
+          </li>
+          <li>
+            <a href="https://www.youtube.com/channel/UCyGqObd717uKwGWf_KdNbXw">Anna Hazelnutt</a> —
+            a pro climber and slab specialist, with plenty of gym sessions
+          </li>
+          <li>
+            <a href="https://www.youtube.com/channel/UCcUQgjlYTq0T01mYq4n9USQ">Mike Boyd Climbs</a> —
+            a late starter documenting his progress, grade by grade
           </li>
         </ul>
 
@@ -75,12 +91,18 @@ export default function IndoorClimbingTvPage() {
             — Louis Parkinson&apos;s coaching channel: technique, with plenty of fun along the way
           </li>
           <li>
-            <a href="https://www.youtube.com/@paradigmclimbing">Paradigm Climbing</a> — Charlie
-            Schreiber, a competition coach, on movement, tension and training
+            <a href="https://www.youtube.com/channel/UCuCBztyW7D8y_qE0q0YUiZg">Paradigm Climbing</a>{" "}
+            — Charlie Schreiber, a competition coach, on movement, tension and training
           </li>
           <li>
-            <a href="https://www.youtube.com/@HannahMorrisBouldering">Hannah Morris Bouldering</a>{" "}
+            <a href="https://www.youtube.com/channel/UCd41X9UCCXAgruATzShEl4w">Hannah Morris Bouldering</a>{" "}
             — tips for everyday boulderers, often learned from a guest coach
+          </li>
+          <li>
+            <a href="https://www.youtube.com/channel/UCZh3d0esu6d67-3JX7H7FCw">
+              Power Company Climbing
+            </a>{" "}
+            — Kris Hampton and Nate Drolet on movement skill and simple, effective training
           </li>
         </ul>
       </section>
