@@ -14,7 +14,8 @@ export default function Home() {
     <main className={styles.main}>
       <p className={styles.intro}>
         Find somewhere to climb indoors, across the US and Canada: {count} climbing gyms on one map. Plus
-        the rest of climbing inside — choosing shoes, building a home wall, buying holds, and climbing worth watching.
+        the rest of climbing inside — choosing shoes, building a home wall, buying holds, climbing
+        worth watching, and climbers worth following.
       </p>
 
       <ul className={ctaStyles.ctas}>
@@ -46,6 +47,12 @@ export default function Home() {
           <Link href="/tv">
             <strong>Watch climbing</strong>
             <span>Competitions and YouTube channels worth your time</span>
+          </Link>
+        </li>
+        <li>
+          <Link href="/social">
+            <strong>Follow climbers</strong>
+            <span>Instagram accounts worth following, from pros to setters</span>
           </Link>
         </li>
       </ul>

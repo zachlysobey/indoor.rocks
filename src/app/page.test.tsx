@@ -20,7 +20,14 @@ describe("home page", () => {
   });
 
   it("links to each section", () => {
-    for (const href of [gymRoutes.index(), "/climbing-shoes", "/home-walls", "/climbing-holds", "/tv"])
+    for (const href of [
+      gymRoutes.index(),
+      "/climbing-shoes",
+      "/home-walls",
+      "/climbing-holds",
+      "/tv",
+      "/social",
+    ])
       expect(hrefs).toContain(unslashed(href));
   });
 
