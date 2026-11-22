@@ -1,0 +1,18 @@
+import type { ClimbingGym } from "@/app/dataModel";
+import { amenities } from "../amenities";
+
+export const rockCityClimbing: ClimbingGym = {
+  name: 'Rock City Climbing',
+  website: 'https://www.rockcityclimbing.com/',
+  address: {
+    streetNumber: '16942',
+    streetName: 'Gothard St',
+    city: 'Huntington Beach',
+    state: 'CA',
+    postalCode: '92647',
+    country: 'USA',
+    latitude: 33.713,
+    longitude: -118.006,
+  },
+  amenities: amenities(),
+};
