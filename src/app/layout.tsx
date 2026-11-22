@@ -1,13 +1,16 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import HeaderNav from "./HeaderNav";
+import { gaMeasurementId } from "./analytics";
 import "./globals.css";
 import styles from "./layout.module.css";
 import { siteUrl } from "./siteUrl";
 import ClimbingWall from "./wall/ClimbingWall";
 
 const inter = Inter({ subsets: ["latin"] });
+const gaId = gaMeasurementId();
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -43,6 +46,7 @@ export default function RootLayout({
           </footer>
         </div>
       </body>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }
