@@ -7,6 +7,7 @@ import type { ClimbingGym } from "../dataModel";
 import { gymSlug } from "../gymSlug";
 import { CornerArrows } from "./CornerArrows";
 import { focusGym } from "./focus";
+import { escapeIsTaken } from "./escapeIsTaken";
 import { GymDetails } from "./GymDetails";
 import styles from "./GymGroups.module.css";
 import { GymMorph } from "./GymMorph";
@@ -93,7 +94,7 @@ export function GymGroups({ groups, selected, route, onHover, scroller, level = 
   useEffect(() => {
     if (!selected) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape" || event.defaultPrevented) return;
+      if (event.key !== "Escape" || escapeIsTaken(event)) return;
       const card = selectedItem.current;
       if (card?.contains(document.activeElement))
         card.querySelector<HTMLElement>(`.${styles.title}`)?.focus();
