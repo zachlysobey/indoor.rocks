@@ -15,6 +15,7 @@ const pages = [
   gymRoutes.list(),
   "/home-walls/",
   "/tv/",
+  "/climbing-holds/",
 ];
 
 // Served as /sitemap.xml: every page, then every gym's page. Just URLs: the build can't know when a
