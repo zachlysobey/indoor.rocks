@@ -21,6 +21,7 @@ export const states = [
   { code: "MD", name: "Maryland" },
   { code: "MA", name: "Massachusetts" },
   { code: "MI", name: "Michigan" },
+  { code: "MN", name: "Minnesota" },
   { code: "MS", name: "Mississippi" },
   { code: "MO", name: "Missouri" },
   { code: "MT", name: "Montana" },
@@ -42,5 +43,6 @@ export const states = [
   { code: "VT", name: "Vermont" },
   { code: "VA", name: "Virginia" },
   { code: "WV", name: "West Virginia" },
+  { code: "WI", name: "Wisconsin" },
   { code: "WY", name: "Wyoming" },
 ];
