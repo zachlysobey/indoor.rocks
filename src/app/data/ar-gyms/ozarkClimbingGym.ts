@@ -1,8 +1,10 @@
 import type { ClimbingGym } from "@/app/dataModel";
 import { amenities } from "../amenities";
+import { stoneyard } from "../companies/stoneyard";
 
 export const ozarkClimbingGym: ClimbingGym = {
   name: 'Ozark Climbing Gym',
+  parent: stoneyard,
   description: 'Bouldering only.',
   address: {
     streetNumber: '875',
