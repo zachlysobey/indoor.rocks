@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: "Climbing Holds · indoor.rocks",
 };
 
+// Checked when the static page is built, so the callout drops off with the first deploy after the
+// sale. Its text names the end date, so it stays true if that deploy comes late.
+const escapeSaleIsOn = Date.now() < Date.parse("2026-12-01T00:00:00-05:00");
+
 export default function ClimbingHoldsPage() {
   return (
     <main className={styles.main}>
@@ -23,19 +27,39 @@ export default function ClimbingHoldsPage() {
           </li>
         </ul>
 
-        <h4>Plastic</h4>
+        <h4>Bigger brands</h4>
         <ul>
+          <li>
+            <a href="https://escapeclimbing.com/">Escape Climbing</a> — made to order in Minnesota,
+            plus a{" "}
+            <a href="https://escapeclimbing.com/products/monthly-hold-subscription-2025">
+              monthly hold subscription
+            </a>{" "}
+            at 30–40% off
+            {escapeSaleIsOn && (
+              <p className={styles.callout}>
+                <strong>On sale:</strong> Black November, with new deals each week through November
+                30
+              </p>
+            )}
+          </li>
           <li>
             <a href="https://www.atomikclimbingholds.com/">Atomik</a> — made in Utah; a huge range,
             lots of value packs, and quick shipping
           </li>
           <li>
-            <a href="https://www.etsy.com/shop/EscapeClimbing">Escape Climbing</a> — designed in
-            Minnesota, with factory seconds for cheap
-          </li>
-          <li>
             <a href="https://settercloset.com/">Kilter Grips</a> — sold through Kilter&apos;s Setter
             Closet shop
+          </li>
+          <li>
+            <a href="https://www.metoliusclimbing.com/">Metolius</a> — widely stocked hold packs
+          </li>
+          <li>
+            <a href="https://pusher.world/">Pusher</a>
+          </li>
+          <li>
+            <a href="https://candyshopclimbing.com/collections/rock-candy-holds">Rock Candy</a> —
+            from Akron, Ohio
           </li>
           <li>
             <a href="https://soillholds.com/">So iLL</a>
@@ -43,8 +67,36 @@ export default function ClimbingHoldsPage() {
           <li>
             <a href="https://teknikhandholds.com/">Teknik</a> — from Canada, a gym staple
           </li>
+        </ul>
+
+        <h4>Smaller makers</h4>
+        <ul>
           <li>
-            <a href="https://www.metoliusclimbing.com/">Metolius</a> — widely stocked hold packs
+            <a href="https://climb-club.com">Climb Club</a>
+          </li>
+          <li>
+            <a href="https://cragcreationholds.ca/">Crag Creation</a> — 3D-printed holds from Canada
+          </li>
+          <li>
+            <a href="https://decoy-holds.com/">Decoy</a> — rock-realistic shapes from Connecticut,
+            and the makers of the Decoy Board
+          </li>
+          <li>
+            <a href="https://www.rockymountainclimbinggear.com">Rocky Mountain Climbing Gear</a> —
+            inexpensive, rock-like holds
+          </li>
+        </ul>
+
+        <h4>Europe</h4>
+        <ul>
+          <li>
+            <a href="https://batholds.com/en/">Bat Holds</a> — from Poland
+          </li>
+          <li>
+            <a href="https://www.euroholds.com/en/">Euroholds</a> — from Spain
+          </li>
+          <li>
+            <a href="https://www.greenholds.eu/">Greenholds</a>
           </li>
         </ul>
 
@@ -57,6 +109,14 @@ export default function ClimbingHoldsPage() {
           </li>
           <li>
             <a href="https://www.metoliusclimbing.com/wood_grips_hold_set.html">Metolius Wood Grips</a>
+          </li>
+        </ul>
+
+        <h4>Shops</h4>
+        <ul>
+          <li>
+            <a href="https://www.theholdroom.com/">The Hold Room</a> — an Arizona setter supply shop
+            carrying many brands
           </li>
         </ul>
       </section>
@@ -84,6 +144,15 @@ export default function ClimbingHoldsPage() {
           <li>
             <a href="https://www.facebook.com/groups/306173267024741/">DIY Climbing Holds</a> —
             Facebook group for pouring, carving and shaping your own
+          </li>
+          <li>
+            <a href="https://5tendons.com/how-to-guide/">5tendons how-to guide</a>
+          </li>
+          <li>
+            <a href="https://commercial3dfiles.com/collections/sender-grips-diy-climbing-volume-plans-for-gyms-and-home-walls">
+              Sender Grips volume plans
+            </a>{" "}
+            — DIY plans for building your own volumes
           </li>
         </ul>
       </section>

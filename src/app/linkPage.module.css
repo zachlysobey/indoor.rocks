@@ -28,3 +28,12 @@
     text-decoration: underline;
   }
 }
+
+/* A time-limited note, like a sale, set apart from the evergreen links around it. */
+.callout {
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.75rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--chip);
+}
