@@ -7,7 +7,7 @@ import { gymSlug } from "./gymSlug";
 // Stick to the known name and location; amenities may be incomplete or unverified.
 export function gymPageMetadata(gym: ClimbingGym): Metadata {
   const title = `${gym.name} · indoor.rocks`;
-  const description = `Find ${gym.name} in ${gym.address.city}, ${gym.address.state}. View its address${gym.amenities.length ? " and listed amenities" : ""} on indoor.rocks${gym.website ? ", with a link to the gym's website" : ""}.`;
+  const description = `Find ${gym.name} in ${gym.address.city}, ${gym.address.region}. View its address${gym.amenities.length ? " and listed amenities" : ""} on indoor.rocks${gym.website ? ", with a link to the gym's website" : ""}.`;
   const url = gymRoutes.page(gymSlug(gym));
   return {
     title,

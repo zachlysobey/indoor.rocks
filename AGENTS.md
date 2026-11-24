@@ -28,4 +28,4 @@ When one of these issues closes, remove its row.
 - List only the amenities a source names, and set `website` only when a source shows it. Note anything inferred in #76.
 - Each gym is one file in a `src/app/data/*-gyms/` folder, listed in that folder's `index.ts`. A new folder is added to `src/app/getData.ts`. `getData.test.ts` fails if a gym file is left out.
 - A gym in a chain sets `parent` to its company in `src/app/data/companies/`. A company's `website` is the chain's own home, and follows the same rule as a gym's. `gymChains.test.ts` fails if a company has no gyms.
-- A new state or province needs an entry under its country in `src/app/states.ts` (alphabetical by name) and a bounding box in `src/app/states.test.ts`. A gym's `address.country` is its country's `name` there.
+- A new region (state, province) needs an entry under its country in `src/app/regions.ts` (alphabetical by name) and a bounding box in `src/app/regions.test.ts`. Codes are ISO 3166: `address.country` is the country's 3166-1 alpha-2 code (`US`, `CA`) and `address.region` its 3166-2 code without the prefix (`NY`, `BC`).

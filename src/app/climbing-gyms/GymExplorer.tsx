@@ -3,7 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import type { ClimbingGym } from "../dataModel";
 import { gymSlug } from "../gymSlug";
-import { states } from "../states";
+import { regionId, regions } from "../regions";
 import { focusGym, WithFocus } from "./focus";
 import styles from "./GymExplorer.module.css";
 import { GymGroups } from "./GymGroups";
@@ -24,16 +24,16 @@ const toPin = (gym: ClimbingGym): Pin => ({
 // Module-level, so it's the same function every render: PinMap redraws when onSelect changes.
 const selectPin = (slug: string) => focusGym(gymRoutes.map(slug));
 
-// The gyms by state, beside a map of them all. The list and the map share the gym in ?focus=: a pin
+// The gyms by region, beside a map of them all. The list and the map share the gym in ?focus=: a pin
 // opens its gym's card in the list, and the list's gym shows on the map.
 function Explorer({ gyms, selected }: Props & { selected?: string }) {
   const pins = useMemo(() => gyms.map(toPin), [gyms]);
   const groups = useMemo(
     () =>
-      states.map(state => ({
-        id: state.code,
-        name: state.name,
-        gyms: gyms.filter(gym => gym.address.state === state.code),
+      regions.map(region => ({
+        id: region.id,
+        name: region.name,
+        gyms: gyms.filter(gym => regionId(gym.address) === region.id),
       })),
     [gyms],
   );

@@ -11,7 +11,7 @@ describe("gymPageMetadata", () => {
     const metadata = gymPageMetadata(gym);
     expect(metadata.title).toBe(`${gym.name} · indoor.rocks`);
     expect(metadata.description).toContain(gym.address.city);
-    expect(metadata.description).toContain(gym.address.state);
+    expect(metadata.description).toContain(gym.address.region);
     expect(metadata.alternates?.canonical).toBe(gymRoutes.page(gymSlug(gym)));
     expect(metadata.openGraph).toEqual(expect.objectContaining({
       title: metadata.title,
@@ -33,7 +33,7 @@ describe("gymPageMetadata", () => {
     };
     const minimal = gymPageMetadata(gym);
     expect(minimal.description).toBe(
-      `Find ${gym.name} in ${gym.address.city}, ${gym.address.state}. View its address on indoor.rocks.`,
+      `Find ${gym.name} in ${gym.address.city}, ${gym.address.region}. View its address on indoor.rocks.`,
     );
 
     const complete = gymPageMetadata({
