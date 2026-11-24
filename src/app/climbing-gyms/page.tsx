@@ -21,13 +21,13 @@ export default function ClimbingGymsPage() {
         <li>
           <Link href={gymRoutes.map()}>
             <strong>Map</strong>
-            <span>Every gym on a map, with a list by state alongside</span>
+            <span>Every gym on a map, with a list by state or province alongside</span>
           </Link>
         </li>
         <li>
           <Link href={gymRoutes.list()}>
             <strong>List</strong>
-            <span>Every gym at a glance, by state, on one page</span>
+            <span>Every gym at a glance, by state or province, on one page</span>
           </Link>
         </li>
         <li>

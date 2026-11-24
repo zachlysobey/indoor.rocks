@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <p className={styles.intro}>
-        Find somewhere to climb indoors, anywhere in the US: {count} climbing gyms on one map. Plus
+        Find somewhere to climb indoors, across the US and Canada: {count} climbing gyms on one map. Plus
         the rest of climbing inside — building a home wall, buying holds, and climbing worth watching.
       </p>
 
@@ -21,7 +21,7 @@ export default function Home() {
         <li>
           <Link href={gymRoutes.index()}>
             <strong>Find a gym</strong>
-            <span>Every gym on a map, by state, and by chain</span>
+            <span>Every gym on a map, by state or province, and by chain</span>
           </Link>
         </li>
         <li>
