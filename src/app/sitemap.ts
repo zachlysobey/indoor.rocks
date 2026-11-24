@@ -16,6 +16,7 @@ const pages = [
   gymRoutes.chains(),
   "/home-walls/",
   "/tv/",
+  "/social/",
   "/climbing-holds/",
   "/climbing-shoes/",
 ];
