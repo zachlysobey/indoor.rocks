@@ -8,7 +8,9 @@ export type Address = {
   streetNumber: string;
   streetName: string;
   city: string;
-  state: string;
+  // ISO 3166 codes, listed in regions.ts: the 3166-2 region without its country prefix ("NY", "BC"),
+  // and the 3166-1 alpha-2 country ("US", "CA").
+  region: string;
   postalCode: string;
   country: string;
   latitude: number;

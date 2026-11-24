@@ -1,10 +1,15 @@
-// The states and provinces the gym list covers, by country, each alphabetical by name. A gym's
-// address.state is one of these codes, and its address.country its country's name. A gym in a state
-// missing here gets a pin on the map but no place in the list; states.test.ts checks all of this.
+import type { Address } from "./dataModel";
+
+// The countries the gym list covers, each with its regions (states, provinces) alphabetical by name.
+// Codes are ISO 3166: a country's is its 3166-1 alpha-2 code, and a region's is its 3166-2 code
+// without the country prefix, so it is unique only within its country ("WA" is both Washington and
+// Western Australia). A gym's address.country and address.region are these codes. A gym in a region
+// missing here gets a pin on the map but no place in the list; regions.test.ts checks all of this.
 export const countries = [
   {
-    name: "USA",
-    states: [
+    code: "US",
+    name: "United States",
+    regions: [
       { code: "AL", name: "Alabama" },
       { code: "AK", name: "Alaska" },
       { code: "AZ", name: "Arizona" },
@@ -59,12 +64,19 @@ export const countries = [
     ],
   },
   {
+    code: "CA",
     name: "Canada",
-    states: [
+    regions: [
       { code: "BC", name: "British Columbia" },
     ],
   },
 ];
 
-// Every state and province, US first. Codes are unique across countries, so a code names one place.
-export const states = countries.flatMap(country => country.states);
+// A region's full ISO 3166-2 code, unique across countries: "US-WA", "AU-WA".
+export const regionId = ({ country, region }: Pick<Address, "country" | "region">): string =>
+  `${country}-${region}`;
+
+// Every region, in country order, keyed by its regionId.
+export const regions = countries.flatMap(country =>
+  country.regions.map(region => ({ ...region, id: regionId({ country: country.code, region: region.code }) })),
+);

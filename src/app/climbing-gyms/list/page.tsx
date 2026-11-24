@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getData } from "../../getData";
 import { gymSlug } from "../../gymSlug";
-import { states } from "../../states";
+import { regionId, regions } from "../../regions";
 import { gymRoutes } from "../gymRoutes";
 import styles from "./page.module.css";
 
@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: "All Climbing Gyms · indoor.rocks",
 };
 
-// Every gym at once, by state, in as many columns as fit: like the map page's list with every state
+// Every gym at once, by region, in as many columns as fit: like the map page's list with every region
 // open, and no map. Each name links to the gym's own page.
 export default function GymListPage() {
   const gyms = getData().climbingGyms;
-  const groups = states
-    .map(state => ({ ...state, gyms: gyms.filter(gym => gym.address.state === state.code) }))
+  const groups = regions
+    .map(region => ({ ...region, gyms: gyms.filter(gym => regionId(gym.address) === region.id) }))
     .filter(group => group.gyms.length > 0);
 
   return (
@@ -22,8 +22,8 @@ export default function GymListPage() {
       <h2>All climbing gyms</h2>
       <div className={styles.columns}>
         {groups.map(group => (
-          <section key={group.code} aria-labelledby={`state-${group.code}`}>
-            <h3 id={`state-${group.code}`}>
+          <section key={group.id} aria-labelledby={`region-${group.id}`}>
+            <h3 id={`region-${group.id}`}>
               <span>{group.name}</span>
               <span className={styles.count}>{group.gyms.length}</span>
             </h3>
