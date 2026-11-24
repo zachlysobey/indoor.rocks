@@ -67,6 +67,7 @@ export const countries = [
     code: "CA",
     name: "Canada",
     regions: [
+      { code: "AB", name: "Alberta" },
       { code: "BC", name: "British Columbia" },
     ],
   },
