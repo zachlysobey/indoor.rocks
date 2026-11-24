@@ -58,6 +58,7 @@ const bounds: Record<string, [number, number, number, number]> = {
   "US-IL": [36.9, -91.6, 42.6, -87.0],
   "CA-AB": [48.9, -120.1, 60.1, -109.9],
   "CA-BC": [48.2, -139.1, 60.0, -114.0],
+  "CA-ON": [41.6, -95.2, 56.9, -74.3],
 };
 
 describe("regions", () => {
