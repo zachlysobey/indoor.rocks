@@ -13,7 +13,7 @@ export const approachClimbingRichmond: ClimbingGym = {
     postalCode: 'V6V',
     country: 'Canada',
     latitude: 49.192,
-    longitude: -123.088,
+    longitude: -123.083,
   },
   amenities: amenities('bouldering'),
 };

@@ -11,7 +11,7 @@ export const grandWallBoulderingCoop: ClimbingGym = {
     state: 'BC',
     postalCode: 'V8B',
     country: 'Canada',
-    latitude: 49.700,
+    latitude: 49.699,
     longitude: -123.152,
   },
   amenities: amenities('bouldering'),

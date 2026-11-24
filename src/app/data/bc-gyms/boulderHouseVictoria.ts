@@ -4,6 +4,7 @@ import { boulderHouse } from "../companies/boulderHouse";
 
 export const boulderHouseVictoria: ClimbingGym = {
   name: 'BoulderHouse Victoria',
+  website: 'https://boulderhouse.ca/victoria/',
   description: 'Bouldering only.',
   parent: boulderHouse,
   address: {

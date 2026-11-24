@@ -4,6 +4,7 @@ import { theHive } from "../companies/theHive";
 
 export const theHiveSurrey: ClimbingGym = {
   name: 'The Hive Surrey',
+  website: 'https://www.hiveclimbing.com/locations/surrey',
   description: 'Bouldering only.',
   parent: theHive,
   address: {

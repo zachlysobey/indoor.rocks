@@ -4,6 +4,7 @@ import { theHive } from "../companies/theHive";
 
 export const theHivePortCoquitlam: ClimbingGym = {
   name: 'The Hive Port Coquitlam',
+  website: 'https://www.hiveclimbing.com/locations/port-coquitlam',
   parent: theHive,
   address: {
     streetNumber: '815',

@@ -4,6 +4,7 @@ import { theHive } from "../companies/theHive";
 
 export const theHiveHeights: ClimbingGym = {
   name: 'The Hive Heights',
+  website: 'https://www.hiveclimbing.com/locations/vancouver-heights',
   description: 'Formerly Cliffhanger Vancouver; roped climbing, with bouldering upstairs.',
   parent: theHive,
   address: {
