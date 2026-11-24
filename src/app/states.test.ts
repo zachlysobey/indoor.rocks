@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { getData } from "./getData";
-import { states } from "./states";
+import { countries, states } from "./states";
 
-// Rough [south, west, north, east] boxes around each state, generous enough to need no upkeep.
+// Rough [south, west, north, east] boxes around each state and province, generous enough to need no upkeep.
 // They catch a gym pinned in the wrong state or with a dropped minus sign, not a wrong street.
 const bounds: Record<string, [number, number, number, number]> = {
   NY: [40.4, -79.8, 45.1, -71.8],
@@ -56,19 +56,33 @@ const bounds: Record<string, [number, number, number, number]> = {
   CA: [32.5, -124.5, 42.1, -114.1],
   TX: [25.8, -106.7, 36.6, -93.5],
   IL: [36.9, -91.6, 42.6, -87.0],
+  BC: [48.2, -139.1, 60.0, -114.0],
 };
 
 describe("states", () => {
   const gyms = getData().climbingGyms;
 
-  it("is alphabetical by name", () => {
+  it.each(countries)("lists $name alphabetically by name", ({ states }) => {
     const names = states.map(state => state.name);
     expect(names).toEqual(names.toSorted((a, b) => a.localeCompare(b, "en")));
+  });
+
+  // A shared code would put one country's gyms in the other's group.
+  it("gives each state a unique code", () => {
+    const codes = states.map(state => state.code);
+    expect(new Set(codes).size).toBe(codes.length);
   });
 
   it("lists every state that has a gym", () => {
     const listed = states.map(state => state.code);
     for (const gym of gyms) expect(listed, gym.name).toContain(gym.address.state);
+  });
+
+  it("puts every gym in its state's country", () => {
+    for (const { name, address } of gyms) {
+      const country = countries.find(country => country.states.some(state => state.code === address.state));
+      expect(address.country, name).toBe(country?.name);
+    }
   });
 
   it("puts every gym inside its state", () => {
