@@ -4,6 +4,7 @@ import { projectClimbing } from "../companies/projectClimbing";
 
 export const projectClimbingAbbotsford: ClimbingGym = {
   name: 'Project Climbing Abbotsford',
+  website: 'https://projectclimbing.ca/abbotsford',
   parent: projectClimbing,
   address: {
     streetNumber: '34100',

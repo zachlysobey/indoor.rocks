@@ -4,7 +4,7 @@ import { amenities } from "../amenities";
 export const confluenceClimbing: ClimbingGym = {
   name: 'Confluence Climbing',
   website: 'https://www.confluenceclimbing.com',
-  description: 'Bouldering only.',
+  description: 'Bouldering only, with a Grasshopper board.',
   address: {
     streetNumber: '819',
     streetName: '9th St N',
@@ -15,5 +15,5 @@ export const confluenceClimbing: ClimbingGym = {
     latitude: 51.304,
     longitude: -116.973,
   },
-  amenities: amenities('bouldering'),
+  amenities: amenities('bouldering', 'free-weights'),
 };
