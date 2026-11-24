@@ -52,6 +52,7 @@ import { coGyms } from "./data/co-gyms";
 import { caGyms } from "./data/ca-gyms";
 import { txGyms } from "./data/tx-gyms";
 import { ilGyms } from "./data/il-gyms";
+import { abGyms } from "./data/ab-gyms";
 import { bcGyms } from "./data/bc-gyms";
 
 export function getData (): DataModel {
@@ -110,6 +111,7 @@ export function getData (): DataModel {
       ...caGyms,
       ...txGyms,
       ...ilGyms,
+      ...abGyms,
       ...bcGyms,
     ],
   };
