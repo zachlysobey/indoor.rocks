@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { CornerArrows } from "./CornerArrows";
 import { GymMorph } from "./GymMorph";
+import { escapeIsTaken } from "./escapeIsTaken";
 import { gymRoutes } from "./gymRoutes";
 import { openedFromList } from "./openedFromList";
 
@@ -12,22 +13,6 @@ type Props = {
   slug: string;
   className?: string;
 };
-
-// Is Escape someone else's to handle? Already handled, held with a modifier, mid-composition (an
-// IME), or typed into a field.
-function escapeIsTaken(event: KeyboardEvent): boolean {
-  const target = document.activeElement;
-  return (
-    event.defaultPrevented ||
-    event.isComposing ||
-    event.altKey ||
-    event.ctrlKey ||
-    event.metaKey ||
-    event.shiftKey ||
-    (target instanceof HTMLElement &&
-      (target.isContentEditable || target.matches("input, textarea, select")))
-  );
-}
 
 // The gym page's way back to the list that opened it (the map's, unless another did), with the gym
 // in focus. When a list opened this page, Escape does the same: the card grows out of the list like
