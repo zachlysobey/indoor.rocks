@@ -8,7 +8,7 @@ export const arqMountainCentre: ClimbingGym = {
     streetName: 'Industrial Rd 2',
     city: 'Cranbrook',
     state: 'BC',
-    postalCode: 'V1C',
+    postalCode: 'V1C 6R2',
     country: 'Canada',
     latitude: 49.520,
     longitude: -115.745,

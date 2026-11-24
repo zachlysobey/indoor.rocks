@@ -16,5 +16,5 @@ export const wipClimbingNanaimo: ClimbingGym = {
     latitude: 49.190,
     longitude: -123.989,
   },
-  amenities: amenities('bouldering', 'free-weights', 'sauna'),
+  amenities: amenities('bouldering', 'free-weights'),
 };

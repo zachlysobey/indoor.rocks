@@ -14,5 +14,5 @@ export const onTheRocksCampbellRiver: ClimbingGym = {
     latitude: 50.033,
     longitude: -125.273,
   },
-  amenities: amenities('bouldering', 'top-rope'),
+  amenities: amenities('bouldering', 'top-rope', 'lead'),
 };

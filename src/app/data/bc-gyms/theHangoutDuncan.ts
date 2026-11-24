@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const theHangoutDuncan: ClimbingGym = {
   name: 'The Hangout Duncan',
+  website: 'https://www.climbhangout.com',
   address: {
     streetNumber: '1065',
     streetName: 'Canada Ave, Unit 2',
