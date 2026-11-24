@@ -10,7 +10,7 @@ export const blocs: ClimbingGym = {
     streetName: '51 Ave NW',
     city: 'Edmonton',
     region: 'AB',
-    postalCode: 'T6E',
+    postalCode: 'T6E 5H1',
     country: 'CA',
     latitude: 53.486,
     longitude: -113.460,
