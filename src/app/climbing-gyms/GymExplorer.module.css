@@ -39,10 +39,39 @@
   grid-area: map;
 }
 
-/* On the map, a group's heading sticks to the top of the scrolling list, over the gyms below it. */
-.list h2 {
+/* Headings stick to the top of the scrolling list, over the gyms below them: the country's, with
+   its region's just under it. */
+.list {
+  --country-height: 2.25rem;
+}
+
+.country {
   position: sticky;
   top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: var(--country-height);
+  padding: 0 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.count {
+  margin-left: auto;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.list h3 {
+  position: sticky;
+  top: var(--country-height);
   z-index: 1;
   background: var(--surface);
 }

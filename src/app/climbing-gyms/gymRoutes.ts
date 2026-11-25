@@ -10,7 +10,7 @@ export const gymRoutes = {
   index: (): string => "/climbing-gyms/",
   page: (slug: string): string => `/climbing-gym/${slug}/`,
   map: (slug?: string): string => `/climbing-gyms/map/${slug ? `?focus=${slug}` : ""}`,
-  // Every gym on one page, by region, without the map.
+  // Every gym on one page, by country and region, without the map.
   list: (): string => "/climbing-gyms/list/",
   // Every chain, biggest first, with its gyms, and a gym in focus as on the map.
   chains: (slug?: string): string => `/climbing-gyms/chains/${slug ? `?focus=${slug}` : ""}`,

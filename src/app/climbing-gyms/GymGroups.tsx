@@ -35,11 +35,13 @@ type Props = {
   level?: 2 | 3;
 };
 
-// Scroll just enough that the item is fully in view, below its group's heading if that's sticky.
-// scrollIntoView would scroll every scrollable ancestor, the page included.
+// Scroll just enough that the item is fully in view, below its group's heading if that's sticky
+// (and below whatever that heading sticks under). scrollIntoView would scroll every scrollable
+// ancestor, the page included.
 function reveal(item: HTMLElement, scroller: HTMLElement | null | undefined, behavior: ScrollBehavior) {
   const heading = item.closest("section")?.querySelector<HTMLElement>(`.${styles.heading}`);
-  const offset = heading && getComputedStyle(heading).position === "sticky" ? heading.offsetHeight : 0;
+  const style = heading && getComputedStyle(heading);
+  const offset = heading && style?.position === "sticky" ? parseFloat(style.top) + heading.offsetHeight : 0;
   const view = scroller ? scroller.getBoundingClientRect() : { top: 0, bottom: window.innerHeight };
   const box = item.getBoundingClientRect();
   const above = box.top - (view.top + offset);
@@ -89,9 +91,10 @@ export function GymGroups({ groups, selected, route, onHover, scroller, level = 
   }, [selected, scroller]);
 
   // Escape deselects, from anywhere on the page. If keyboard focus is in the card, it moves to the
-  // gym's title, which stays, rather than be lost with the card's links.
+  // gym's title, which stays, rather than be lost with the card's links. Only the list holding the
+  // selected gym listens, where a page has more than one.
   useEffect(() => {
-    if (!selected) return;
+    if (!selectedGroup) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Escape" || event.defaultPrevented) return;
       const card = selectedItem.current;
@@ -101,7 +104,7 @@ export function GymGroups({ groups, selected, route, onHover, scroller, level = 
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [selected, route]);
+  }, [selectedGroup, route]);
 
   return groups.map(group => {
     const isExpanded = expanded.has(group.id);
