@@ -54,6 +54,7 @@ import { txGyms } from "./data/tx-gyms";
 import { ilGyms } from "./data/il-gyms";
 import { abGyms } from "./data/ab-gyms";
 import { bcGyms } from "./data/bc-gyms";
+import { onGyms } from "./data/on-gyms";
 
 export function getData (): DataModel {
   return {
@@ -113,6 +114,7 @@ export function getData (): DataModel {
       ...ilGyms,
       ...abGyms,
       ...bcGyms,
+      ...onGyms,
     ],
   };
 }
