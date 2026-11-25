@@ -8,6 +8,7 @@
   ],
   "timezone": "America/New_York",
   "osvVulnerabilityAlerts": true,
+  "prConcurrentLimit": 3,
   "packageRules": [
     {
       "description": "Batch routine dev-tool updates into one weekly PR. Packages that version with next or react stay in those groups.",
