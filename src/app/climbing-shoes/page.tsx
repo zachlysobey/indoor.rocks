@@ -37,6 +37,17 @@ export default function ClimbingShoesPage() {
             from Salt Lake City, and better known for climbing hardware
           </li>
           <li>
+            <a href="https://www.butora.com/">Butora</a> — from South Korea, with a focus on comfort
+          </li>
+          <li>
+            <a href="https://www.unparallelsports.com/">Unparallel</a> — from Southern California,
+            started by former Five Ten staff
+          </li>
+          <li>
+            <a href="https://redchiliclimbing.com/us-en">Red Chili</a> — from Germany, and now part
+            of EDELRID
+          </li>
+          <li>
             <a href="https://www.ocun.com/">Ocun</a> — from the Czech Republic
           </li>
           <li>
