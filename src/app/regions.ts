@@ -70,6 +70,7 @@ export const countries = [
       { code: "AB", name: "Alberta" },
       { code: "BC", name: "British Columbia" },
       { code: "ON", name: "Ontario" },
+      { code: "QC", name: "Quebec" },
     ],
   },
 ];
