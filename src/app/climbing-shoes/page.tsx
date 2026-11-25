@@ -9,32 +9,32 @@ export default function ClimbingShoesPage() {
   return (
     <main className={styles.main}>
       <h2>Climbing shoes</h2>
-      <p>The biggest brands, and advice on picking a pair and keeping them fresh.</p>
+      <p>The biggest brands, most popular first, and advice on picking a pair and keeping them fresh.</p>
 
       <section>
         <h3>Brands</h3>
         <ul>
           <li>
-            <a href="https://www.evolvsports.com/">Evolv</a> — from Southern California
-          </li>
-          <li>
-            <a href="https://www.adidas.com/us/five_ten-climbing-shoes">Five Ten</a> — now part of
-            adidas
-          </li>
-          <li>
             <a href="https://www.lasportivausa.com/">La Sportiva</a> — from Italy, and the most
             popular in climbers&apos; polls
-          </li>
-          <li>
-            <a href="https://madrock.com/">Mad Rock</a> — from Southern California, with a focus on
-            value
           </li>
           <li>
             <a href="https://us.scarpa.com/">Scarpa</a> — also from Italy, and La Sportiva&apos;s
             closest rival
           </li>
           <li>
+            <a href="https://www.evolvsports.com/">Evolv</a> — from Southern California
+          </li>
+          <li>
             <a href="https://tenaya.net/">Tenaya</a> — from Spain
+          </li>
+          <li>
+            <a href="https://www.adidas.com/us/five_ten-climbing-shoes">Five Ten</a> — now part of
+            adidas
+          </li>
+          <li>
+            <a href="https://madrock.com/">Mad Rock</a> — from Southern California, with a focus on
+            value
           </li>
         </ul>
       </section>
