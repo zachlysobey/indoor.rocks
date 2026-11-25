@@ -56,6 +56,13 @@ import { abGyms } from "./data/ab-gyms";
 import { bcGyms } from "./data/bc-gyms";
 import { onGyms } from "./data/on-gyms";
 import { qcGyms } from "./data/qc-gyms";
+import { mbGyms } from "./data/mb-gyms";
+import { skGyms } from "./data/sk-gyms";
+import { nsGyms } from "./data/ns-gyms";
+import { nbGyms } from "./data/nb-gyms";
+import { nlGyms } from "./data/nl-gyms";
+import { peGyms } from "./data/pe-gyms";
+import { ytGyms } from "./data/yt-gyms";
 
 export function getData (): DataModel {
   return {
@@ -117,6 +124,13 @@ export function getData (): DataModel {
       ...bcGyms,
       ...onGyms,
       ...qcGyms,
+      ...mbGyms,
+      ...skGyms,
+      ...nsGyms,
+      ...nbGyms,
+      ...nlGyms,
+      ...peGyms,
+      ...ytGyms,
     ],
   };
 }
