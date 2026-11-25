@@ -10,8 +10,9 @@
   "osvVulnerabilityAlerts": true,
   "packageRules": [
     {
-      "description": "Batch routine dev-tool updates into one weekly PR.",
+      "description": "Batch routine dev-tool updates into one weekly PR. Packages that version with next or react stay in those groups.",
       "matchDepTypes": ["devDependencies"],
+      "matchPackageNames": ["!@next/**", "!@types/react", "!@types/react-dom"],
       "matchUpdateTypes": ["minor", "patch", "digest", "pin"],
       "groupName": "dev dependencies (non-major)"
     },
