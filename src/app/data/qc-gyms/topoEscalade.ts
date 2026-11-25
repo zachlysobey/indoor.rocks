@@ -14,5 +14,5 @@ export const topoEscalade: ClimbingGym = {
     latitude: 46.090,
     longitude: -70.680,
   },
-  amenities: amenities(),
+  amenities: amenities('bouldering', 'top-rope', 'yoga'),
 };

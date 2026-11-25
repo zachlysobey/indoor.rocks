@@ -4,6 +4,7 @@ import { allezUpMileEnd } from "./allezUpMileEnd";
 import { allezUpPointeSaintCharles } from "./allezUpPointeSaintCharles";
 import { allezUpVerdun } from "./allezUpVerdun";
 import { altitudeGymGatineau } from "./altitudeGymGatineau";
+import { atelierBloc } from "./atelierBloc";
 import { betaBloc } from "./betaBloc";
 import { betaCrux } from "./betaCrux";
 import { bloc981 } from "./bloc981";
@@ -42,6 +43,7 @@ export const qcGyms: ClimbingGym[] = [
   allezUpPointeSaintCharles,
   allezUpVerdun,
   altitudeGymGatineau,
+  atelierBloc,
   betaBloc,
   betaCrux,
   bloc981,
