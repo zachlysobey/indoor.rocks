@@ -11,8 +11,8 @@ export const dVert: ClimbingGym = {
     region: 'QC',
     postalCode: 'J1X',
     country: 'CA',
-    latitude: 45.262,
-    longitude: -72.150,
+    latitude: 45.276,
+    longitude: -72.177,
   },
-  amenities: amenities('yoga'),
+  amenities: amenities('bouldering', 'yoga'),
 };

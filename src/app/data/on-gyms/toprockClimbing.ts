@@ -3,6 +3,7 @@ import { amenities } from "../amenities";
 
 export const toprockClimbing: ClimbingGym = {
   name: 'Toprock Climbing',
+  website: 'https://toprockclimbing.ca',
   address: {
     streetNumber: '284',
     streetName: 'Orenda Rd, Unit 8',
