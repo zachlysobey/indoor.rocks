@@ -33,7 +33,7 @@
     "eslint-plugin-oxlint": "1.95.0",
     "globals": "17.14.0",
     "oxlint": "1.95.0",
-    "typescript": "5.9.3",
+    "typescript": "7.0.2",
     "vitest": "5.1.1"
   }
 }
