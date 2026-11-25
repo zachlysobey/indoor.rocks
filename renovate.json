@@ -1,0 +1,31 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    "schedule:weekly",
+    ":maintainLockFilesWeekly"
+  ],
+  "timezone": "America/New_York",
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "description": "Batch routine dev-tool updates into one weekly PR. Packages that version with next or react stay in those groups.",
+      "matchDepTypes": ["devDependencies"],
+      "matchPackageNames": ["!@next/**", "!@types/react", "!@types/react-dom"],
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin"],
+      "groupName": "dev dependencies (non-major)"
+    },
+    {
+      "description": "Node is pinned in .nvmrc and package.json devEngines, which must move together. Bump it by hand.",
+      "matchDepNames": ["node"],
+      "enabled": false
+    },
+    {
+      "description": "@types/node majors track the Node runtime, so they move with the manual Node bump.",
+      "matchPackageNames": ["@types/node"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}
