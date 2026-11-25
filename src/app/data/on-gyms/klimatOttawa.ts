@@ -1,9 +1,11 @@
 import type { ClimbingGym } from "@/app/dataModel";
 import { amenities } from "../amenities";
+import { klimat } from "../companies/klimat";
 
 export const klimatOttawa: ClimbingGym = {
   name: 'Klimat 2.0',
   description: 'Bouldering, with a fitness centre and café.',
+  parent: klimat,
   address: {
     streetNumber: '265',
     streetName: 'City Centre Ave',
