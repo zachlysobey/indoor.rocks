@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { getData } from "./getData";
-import { countries, regionId, regions } from "./regions";
+import { countries, gymsByCountry, regionId, regions } from "./regions";
 
 // Rough [south, west, north, east] boxes around each region, by regionId, generous enough to need no
 // upkeep. They catch a gym pinned in the wrong region or with a dropped minus sign, not a wrong street.
@@ -102,5 +102,42 @@ describe("regions", () => {
       expect(address.longitude, name).toBeGreaterThan(west);
       expect(address.longitude, name).toBeLessThan(east);
     }
+  });
+});
+
+describe("gymsByCountry", () => {
+  const gyms = getData().climbingGyms;
+  const byCountry = gymsByCountry(gyms);
+
+  it("puts every gym in exactly one group: its own country's and region's", () => {
+    const grouped = byCountry.flatMap(country =>
+      country.regions.flatMap(region =>
+        region.gyms.map(gym => {
+          expect(gym.address.country, gym.name).toBe(country.id);
+          expect(regionId(gym.address), gym.name).toBe(region.id);
+          return gym;
+        }),
+      ),
+    );
+    expect(new Set(grouped).size).toBe(gyms.length);
+    expect(grouped).toHaveLength(gyms.length);
+  });
+
+  it("counts each country's gyms", () => {
+    for (const country of byCountry)
+      expect(country.gymCount).toBe(gyms.filter(gym => gym.address.country === country.id).length);
+  });
+
+  it("keeps the order of the countries and their regions", () => {
+    const order = regions.map(region => region.id);
+    const grouped = byCountry.flatMap(country => country.regions.map(region => region.id));
+    expect(grouped).toEqual(order.filter(id => grouped.includes(id)));
+  });
+
+  it("leaves out countries and regions without gyms", () => {
+    const inAlberta = gyms.filter(gym => regionId(gym.address) === "CA-AB");
+    expect(gymsByCountry(inAlberta)).toEqual([
+      { id: "CA", name: "Canada", gymCount: inAlberta.length, regions: [{ id: "CA-AB", name: "Alberta", gyms: inAlberta }] },
+    ]);
   });
 });

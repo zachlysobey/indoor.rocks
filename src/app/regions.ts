@@ -1,4 +1,4 @@
-import type { Address } from "./dataModel";
+import type { Address, ClimbingGym } from "./dataModel";
 
 // The countries the gym list covers, each with its regions (states, provinces) alphabetical by name.
 // Codes are ISO 3166: a country's is its 3166-1 alpha-2 code, and a region's is its 3166-2 code
@@ -90,3 +90,18 @@ export const regionId = ({ country, region }: Pick<Address, "country" | "region"
 export const regions = countries.flatMap(country =>
   country.regions.map(region => ({ ...region, id: regionId({ country: country.code, region: region.code }) })),
 );
+
+// The gyms by country, then region, in the order above, leaving out any place without one.
+export const gymsByCountry = (gyms: ClimbingGym[]) =>
+  countries
+    .map(country => {
+      const groups = country.regions
+        .map(region => {
+          const id = regionId({ country: country.code, region: region.code });
+          return { id, name: region.name, gyms: gyms.filter(gym => regionId(gym.address) === id) };
+        })
+        .filter(group => group.gyms.length > 0);
+      const gymCount = groups.reduce((sum, group) => sum + group.gyms.length, 0);
+      return { id: country.code, name: country.name, gymCount, regions: groups };
+    })
+    .filter(country => country.gymCount > 0);
