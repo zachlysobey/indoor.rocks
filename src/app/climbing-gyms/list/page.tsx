@@ -3,6 +3,7 @@ import { getData } from "../../getData";
 import { gymSlug } from "../../gymSlug";
 import { gymsByCountry } from "../../regions";
 import { gymRoutes } from "../gymRoutes";
+import { ViewToggle } from "../ViewToggle";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function GymListPage() {
 
   return (
     <main className={styles.content}>
+      <ViewToggle current="list" />
       <h2>All climbing gyms</h2>
       {countries.map(country => (
         <section key={country.id} aria-labelledby={`country-${country.id}`}>

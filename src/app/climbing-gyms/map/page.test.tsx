@@ -14,6 +14,13 @@ describe("map page", () => {
   const html = renderToStaticMarkup(<ClimbingGymMapPage />);
   const countries = gymsByCountry(getData().climbingGyms);
 
+  // ViewToggle.test.tsx covers the toggle itself.
+  it("starts with the view toggle, on the map view", () => {
+    const toggle = html.match(/<nav aria-label="Gym views".*?<\/nav>/);
+    expect(toggle?.index).toBeLessThan(html.search(/<h[2-4]/));
+    expect(toggle?.[0].match(/<a [^>]*aria-current="page"[^>]*>([^<]*)</)?.[1]).toBe("Map");
+  });
+
   it("lists each country's regions under the country, in order", () => {
     const headings = [...html.matchAll(/<(h2|h3)[^>]*>.*?<span>([^<]*)<\/span>/g)].map(
       ([, level, name]) => `${level} ${name}`,

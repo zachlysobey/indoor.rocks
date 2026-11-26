@@ -1,0 +1,33 @@
+/* A segmented control: the views side by side in one pill, the current one filled in. */
+.toggle {
+  display: flex;
+  align-self: start;
+  width: fit-content;
+  padding: 0.1875rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.toggle a {
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  color: var(--muted);
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+.toggle a[aria-current="page"] {
+  background: var(--chip);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (hover: hover) {
+  .toggle a:not([aria-current]):hover {
+    color: var(--text);
+  }
+}
