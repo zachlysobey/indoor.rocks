@@ -63,6 +63,16 @@ import { nbGyms } from "./data/nb-gyms";
 import { nlGyms } from "./data/nl-gyms";
 import { peGyms } from "./data/pe-gyms";
 import { ytGyms } from "./data/yt-gyms";
+import { cmxGyms } from "./data/cmx-gyms";
+import { mexGyms } from "./data/mex-gyms";
+import { nleGyms } from "./data/nle-gyms";
+import { jalGyms } from "./data/jal-gyms";
+import { pueGyms } from "./data/pue-gyms";
+import { yucGyms } from "./data/yuc-gyms";
+import { queGyms } from "./data/que-gyms";
+import { chpGyms } from "./data/chp-gyms";
+import { coaGyms } from "./data/coa-gyms";
+import { rooGyms } from "./data/roo-gyms";
 
 export function getData (): DataModel {
   return {
@@ -131,6 +141,16 @@ export function getData (): DataModel {
       ...nlGyms,
       ...peGyms,
       ...ytGyms,
+      ...cmxGyms,
+      ...mexGyms,
+      ...nleGyms,
+      ...jalGyms,
+      ...pueGyms,
+      ...yucGyms,
+      ...queGyms,
+      ...chpGyms,
+      ...coaGyms,
+      ...rooGyms,
     ],
   };
 }

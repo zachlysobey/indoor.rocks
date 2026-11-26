@@ -80,6 +80,22 @@ export const countries = [
       { code: "YT", name: "Yukon" },
     ],
   },
+  {
+    code: "MX",
+    name: "Mexico",
+    regions: [
+      { code: "CHP", name: "Chiapas" },
+      { code: "COA", name: "Coahuila" },
+      { code: "JAL", name: "Jalisco" },
+      { code: "CMX", name: "Mexico City" },
+      { code: "NLE", name: "Nuevo León" },
+      { code: "PUE", name: "Puebla" },
+      { code: "QUE", name: "Querétaro" },
+      { code: "ROO", name: "Quintana Roo" },
+      { code: "MEX", name: "State of Mexico" },
+      { code: "YUC", name: "Yucatán" },
+    ],
+  },
 ];
 
 // A region's full ISO 3166-2 code, unique across countries: "US-WA", "AU-WA".
