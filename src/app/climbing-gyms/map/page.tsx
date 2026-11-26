@@ -3,6 +3,7 @@ import { getData } from "../../getData";
 import { GymExplorer } from "../GymExplorer";
 import { GymMorph } from "../GymMorph";
 import { gymRoutes } from "../gymRoutes";
+import { ViewToggle } from "../ViewToggle";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function ClimbingGymMapPage() {
   return (
     <GymMorph.Page>
       <main className={styles.content}>
+        <ViewToggle current="map" />
         <GymExplorer gyms={getData().climbingGyms} />
       </main>
     </GymMorph.Page>
