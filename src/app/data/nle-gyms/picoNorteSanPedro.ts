@@ -7,7 +7,7 @@ export const picoNorteSanPedro: ClimbingGym = {
   parent: picoNorte,
   address: {
     streetNumber: '326',
-    streetName: 'Lic. Benito Juárez',
+    streetName: 'Lic. Benito Juárez Nte.',
     city: 'San Pedro Garza García',
     region: 'NLE',
     postalCode: '66230',

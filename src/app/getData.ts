@@ -73,6 +73,11 @@ import { queGyms } from "./data/que-gyms";
 import { chpGyms } from "./data/chp-gyms";
 import { coaGyms } from "./data/coa-gyms";
 import { rooGyms } from "./data/roo-gyms";
+import { bcnGyms } from "./data/bcn-gyms";
+import { guaGyms } from "./data/gua-gyms";
+import { micGyms } from "./data/mic-gyms";
+import { oaxGyms } from "./data/oax-gyms";
+import { sonGyms } from "./data/son-gyms";
 
 export function getData (): DataModel {
   return {
@@ -151,6 +156,11 @@ export function getData (): DataModel {
       ...chpGyms,
       ...coaGyms,
       ...rooGyms,
+      ...bcnGyms,
+      ...guaGyms,
+      ...micGyms,
+      ...oaxGyms,
+      ...sonGyms,
     ],
   };
 }
