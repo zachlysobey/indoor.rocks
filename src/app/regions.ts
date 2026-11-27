@@ -96,6 +96,7 @@ export const countries = [
       { code: "PUE", name: "Puebla" },
       { code: "QUE", name: "Querétaro" },
       { code: "ROO", name: "Quintana Roo" },
+      { code: "SON", name: "Sonora" },
       { code: "MEX", name: "State of Mexico" },
       { code: "YUC", name: "Yucatán" },
     ],
