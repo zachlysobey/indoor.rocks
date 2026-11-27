@@ -41,6 +41,15 @@ export type Company = {
   website?: string;
 };
 
+// A board family, like "Kilter Board", not a version or layout of one. Its website is the maker's
+// own page for the board.
+export type SystemBoard = {
+  name: string;
+  maker: string;
+  website: string;
+  description?: string;
+};
+
 export type DataModel = {
   climbingGyms: ClimbingGym[];
 };
