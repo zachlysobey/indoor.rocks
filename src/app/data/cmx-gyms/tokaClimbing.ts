@@ -8,7 +8,7 @@ export const tokaClimbing: ClimbingGym = {
     streetName: 'Tlatilco',
     city: 'Ciudad de México',
     region: 'CMX',
-    postalCode: '11350',
+    postalCode: '11360',
     country: 'MX',
     latitude: 19.453,
     longitude: -99.175,

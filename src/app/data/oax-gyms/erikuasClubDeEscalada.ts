@@ -13,5 +13,5 @@ export const erikuasClubDeEscalada: ClimbingGym = {
     latitude: 17.077,
     longitude: -96.712,
   },
-  amenities: amenities(),
+  amenities: amenities('bouldering'),
 };

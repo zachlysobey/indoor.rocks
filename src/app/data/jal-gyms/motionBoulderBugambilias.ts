@@ -7,10 +7,10 @@ export const motionBoulderBugambilias: ClimbingGym = {
   parent: motionBoulder,
   address: {
     streetNumber: '3188',
-    streetName: 'Av. Adolfo López Mateos Sur',
+    streetName: 'Av. Agua Blanca',
     city: 'Zapopan',
     region: 'JAL',
-    postalCode: '',
+    postalCode: '45235',
     country: 'MX',
     latitude: 20.598,
     longitude: -103.448,
