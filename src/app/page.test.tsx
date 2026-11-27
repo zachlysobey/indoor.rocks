@@ -25,6 +25,7 @@ describe("home page", () => {
       "/climbing-shoes",
       "/home-walls",
       "/climbing-holds",
+      "/system-boards",
       "/tv",
       "/social",
     ])
