@@ -14,7 +14,7 @@ export default function Home() {
     <main className={styles.main}>
       <p className={styles.intro}>
         Find somewhere to climb indoors, across the US and Canada: {count} climbing gyms on one map. Plus
-        the rest of climbing inside — choosing shoes, building a home wall, buying holds, climbing
+        the rest of climbing inside — choosing shoes, building a home wall, buying holds, training on a system board, climbing
         worth watching, and climbers worth following.
       </p>
 
@@ -41,6 +41,12 @@ export default function Home() {
           <Link href="/climbing-holds">
             <strong>Get holds</strong>
             <span>Where to get them, new or used, or how to make your own</span>
+          </Link>
+        </li>
+        <li>
+          <Link href="/system-boards">
+            <strong>Train on a board</strong>
+            <span>Kilter, Tension, MoonBoard and the other system boards</span>
           </Link>
         </li>
         <li>

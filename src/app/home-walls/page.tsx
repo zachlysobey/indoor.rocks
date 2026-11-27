@@ -12,7 +12,8 @@ export default function HomeWallsPage() {
       <h2>Home walls</h2>
       <p>Resources for building and climbing on a wall of your own.</p>
       <p>
-        Need holds? See <Link href="/climbing-holds">where to get them</Link>.
+        Need holds? See <Link href="/climbing-holds">where to get them</Link>, or build a{" "}
+        <Link href="/system-boards">system board</Link> instead.
       </p>
 
       <section>
