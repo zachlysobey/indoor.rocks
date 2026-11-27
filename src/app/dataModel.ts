@@ -1,9 +1,5 @@
 import type { AmenityName } from "./data/amenityMap";
 
-export type TopLevelEntity = {
-  name: string;
-}
-
 export type Address = {
   streetNumber: string;
   streetName: string;
@@ -17,7 +13,7 @@ export type Address = {
   longitude: number;
 }
 
-export type Place = TopLevelEntity & {
+export type Place = {
   name: string;
   description?: string;
   website?: string;
@@ -39,7 +35,7 @@ export type ClimbingGym = Gym & {
   parent?: Company;
 }
 
-export type Company = TopLevelEntity & {
+export type Company = {
   name: string;
   // The chain's own home, covering all its gyms. Set only when a source shows it, as for a gym.
   website?: string;
