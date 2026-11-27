@@ -2,8 +2,8 @@ import type { ClimbingGym } from "@/app/dataModel";
 import { amenities } from "../amenities";
 import { picoNorte } from "../companies/picoNorte";
 
-export const picoNorteNuevoSur: ClimbingGym = {
-  name: 'Pico Norte Nuevo Sur',
+export const picoNorteZonaTec: ClimbingGym = {
+  name: 'Pico Norte Zona Tec',
   parent: picoNorte,
   address: {
     streetNumber: '2703',

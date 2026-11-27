@@ -13,5 +13,5 @@ export const deltaClimbing: ClimbingGym = {
     latitude: 25.727,
     longitude: -100.372,
   },
-  amenities: amenities(),
+  amenities: amenities('bouldering'),
 };
