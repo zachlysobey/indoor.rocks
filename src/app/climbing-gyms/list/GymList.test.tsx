@@ -15,6 +15,7 @@ const render = (props: Partial<Parameters<typeof GymList>[0]> = {}) =>
 const linkedPages = (html: string) => [...html.matchAll(/<a href="([^"]*)"/g)].map(([, href]) => href);
 const pages = (shown: typeof gyms) => shown.map(gym => gymRoutes.page(gymSlug(gym)));
 const status = (html: string) => html.match(/<output[^>]*>([^<]*)</)?.[1];
+const filters = (html: string) => html.match(/<details[^>]*>.*?<\/details>/)?.[0] ?? "";
 
 describe("GymList", () => {
   it("starts with every gym, by region", () => {
@@ -35,6 +36,28 @@ describe("GymList", () => {
     expect(new Set(linkedPages(html))).toEqual(new Set(pages(shown)));
     expect(html).toContain('value="boulder"');
     expect(html).toMatch(/<input type="checkbox" checked=""\/>Bouldering</);
+  });
+
+  it("keeps the amenity filters behind a closed disclosure, until it starts filtering by them", () => {
+    expect(filters(render())).toMatch(/^<details class="[^"]*">/);
+    expect(filters(render())).toMatch(/<summary>Filters<\/summary>/);
+    expect(filters(render())).toContain('type="checkbox"');
+
+    const html = filters(render({ initialFilter: { ...noFilter, amenities: ["bouldering", "lead"] } }));
+    expect(html).toMatch(/^<details [^>]*open=""/);
+    expect(html).toMatch(/<summary>Filters<span[^>]*>2<\/span><\/summary>/);
+  });
+
+  it("keeps the search plain, with how it works in a popover", () => {
+    const html = render();
+    expect(html).toContain('placeholder="Search gyms"');
+    const target = html.match(/<button [^>]*popoverTarget="([^"]+)"[^>]*aria-label="How search works"/i)?.[1];
+    expect(target).toBeTruthy();
+    expect(html).toMatch(new RegExp(`<div id="${target}" popover="auto"[^>]*>[^<]*name, city, region, country and chain`));
+  });
+
+  it("labels the sort as a sort", () => {
+    expect(render()).toMatch(/<label[^>]*><span>Sort by<\/span><select>/);
   });
 
   it("says when nothing matches", () => {

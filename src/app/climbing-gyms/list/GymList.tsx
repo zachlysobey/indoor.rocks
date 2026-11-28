@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { amenityMap, type AmenityName } from "../../data/amenityMap";
 import type { ClimbingGym } from "../../dataModel";
 import { gymSlug } from "../../gymSlug";
@@ -21,7 +21,7 @@ const amenityNames = Object.keys(amenityMap) as AmenityName[];
 // A plain <a>, not <Link>: Link would prefetch every gym page in view, which here is all of them.
 const GymLink = ({ gym }: { gym: ClimbingGym }) => <a href={gymRoutes.page(gymSlug(gym))}>{gym.name}</a>;
 
-// Every gym, searchable, filterable by amenity, and sorted by region or by name.
+// Every gym, searchable, sorted by region or by name, and filterable by amenity behind a disclosure.
 export function GymList({ gyms, initialFilter = noFilter, initialSort = "region" }: Props) {
   const [filter, setFilter] = useState(initialFilter);
   const [sort, setSort] = useState(initialSort);
@@ -38,33 +38,46 @@ export function GymList({ gyms, initialFilter = noFilter, initialSort = "region"
   return (
     <>
       <search className={styles.controls}>
-        <input
-          type="search"
-          aria-label="Search gyms"
-          placeholder="Name, city, region or chain"
-          value={filter.query}
-          onChange={event => setFilter(current => ({ ...current, query: event.target.value }))}
-        />
-        <select aria-label="Sort gyms" value={sort} onChange={event => setSort(event.target.value as GymSort)}>
-          {Object.entries(sorts).map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
-        <fieldset className={styles.amenities}>
-          <legend>Has</legend>
-          {amenityNames.map(name => (
-            <label key={name}>
-              <input
-                type="checkbox"
-                checked={filter.amenities.includes(name)}
-                onChange={() => toggleAmenity(name)}
-              />
-              {amenityMap[name].label}
-            </label>
-          ))}
-        </fieldset>
+        <div className={styles.search}>
+          <input
+            type="search"
+            aria-label="Search gyms"
+            placeholder="Search gyms"
+            value={filter.query}
+            onChange={event => setFilter(current => ({ ...current, query: event.target.value }))}
+          />
+          <SearchHelp />
+        </div>
+        <label className={styles.sort}>
+          <span>Sort by</span>
+          <select value={sort} onChange={event => setSort(event.target.value as GymSort)}>
+            {Object.entries(sorts).map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </label>
+        {/* Starts open only if it starts filtering; after that, the visitor opens and closes it. */}
+        <details className={styles.filters} open={initialFilter.amenities.length > 0}>
+          <summary>
+            Filters
+            {filter.amenities.length > 0 && <span className={styles.badge}>{filter.amenities.length}</span>}
+          </summary>
+          <fieldset className={styles.amenities}>
+            <legend>Has</legend>
+            {amenityNames.map(name => (
+              <label key={name}>
+                <input
+                  type="checkbox"
+                  checked={filter.amenities.includes(name)}
+                  onChange={() => toggleAmenity(name)}
+                />
+                {amenityMap[name].label}
+              </label>
+            ))}
+          </fieldset>
+        </details>
       </search>
       <output className={styles.status}>
         {shown.length === 0
@@ -74,6 +87,26 @@ export function GymList({ gyms, initialFilter = noFilter, initialSort = "region"
             : `${shown.length} of ${gyms.length} gyms`}
       </output>
       {sort === "name" ? <ByName gyms={shown} /> : <ByRegion gyms={shown} />}
+    </>
+  );
+}
+
+// An "i" in the search box that toggles a note on what the search looks through. A native popover,
+// so it needs no state, and closes on Escape or a click outside.
+function SearchHelp() {
+  const id = useId();
+  return (
+    <>
+      <button type="button" className={styles.help} popoverTarget={id} aria-label="How search works">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+          <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M8 7v4.5M8 4.5v.01" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+        </svg>
+      </button>
+      <div id={id} popover="auto" className={styles.helpText}>
+        Searches each gym’s name, city, region, country and chain. Each word narrows it: “boulder denver”
+        finds gyms matching both.
+      </div>
     </>
   );
 }
