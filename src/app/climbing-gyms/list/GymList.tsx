@@ -4,9 +4,19 @@ import { useId, useMemo, useState } from "react";
 import { amenityMap, type AmenityName } from "../../data/amenityMap";
 import type { ClimbingGym } from "../../dataModel";
 import { gymSlug } from "../../gymSlug";
-import { gymsByCountry } from "../../regions";
+import { countries, gymsByCountry } from "../../regions";
 import { gymRoutes } from "../gymRoutes";
-import { byName, filterGyms, noFilter, sorts, type GymFilter, type GymSort } from "./gymFilter";
+import {
+  byName,
+  chainChoices,
+  filterCount,
+  filterGyms,
+  independent,
+  noFilter,
+  sorts,
+  type GymFilter,
+  type GymSort,
+} from "./gymFilter";
 import styles from "./page.module.css";
 
 type Props = {
@@ -18,22 +28,22 @@ type Props = {
 
 const amenityNames = Object.keys(amenityMap) as AmenityName[];
 
+// The list with the value added, or taken out if it's there.
+const toggled = <T,>(list: T[], value: T): T[] =>
+  list.includes(value) ? list.filter(other => other !== value) : [...list, value];
+
 // A plain <a>, not <Link>: Link would prefetch every gym page in view, which here is all of them.
 const GymLink = ({ gym }: { gym: ClimbingGym }) => <a href={gymRoutes.page(gymSlug(gym))}>{gym.name}</a>;
 
-// Every gym, searchable, sorted by region or by name, and filterable by amenity behind a disclosure.
+// Every gym, searchable, sorted by region or by name, and filterable by country, chain and amenity
+// behind a disclosure.
 export function GymList({ gyms, initialFilter = noFilter, initialSort = "region" }: Props) {
   const [filter, setFilter] = useState(initialFilter);
   const [sort, setSort] = useState(initialSort);
   const shown = useMemo(() => filterGyms(gyms, filter), [gyms, filter]);
+  const filtering = filterCount(filter);
+  const chains = useMemo(() => chainChoices(gyms), [gyms]);
 
-  const toggleAmenity = (name: AmenityName) =>
-    setFilter(current => ({
-      ...current,
-      amenities: current.amenities.includes(name)
-        ? current.amenities.filter(other => other !== name)
-        : [...current.amenities, name],
-    }));
 
   return (
     <>
@@ -48,7 +58,7 @@ export function GymList({ gyms, initialFilter = noFilter, initialSort = "region"
           />
           <SearchHelp />
         </div>
-        <label className={styles.sort}>
+        <label className={styles.field}>
           <span>Sort by</span>
           <select value={sort} onChange={event => setSort(event.target.value as GymSort)}>
             {Object.entries(sorts).map(([value, label]) => (
@@ -59,11 +69,41 @@ export function GymList({ gyms, initialFilter = noFilter, initialSort = "region"
           </select>
         </label>
         {/* Starts open only if it starts filtering; after that, the visitor opens and closes it. */}
-        <details className={styles.filters} open={initialFilter.amenities.length > 0}>
+        <details className={styles.filters} open={filterCount(initialFilter) > 0}>
           <summary>
             Filters
-            {filter.amenities.length > 0 && <span className={styles.badge}>{filter.amenities.length}</span>}
+            {filtering > 0 && <span className={styles.badge}>{filtering}</span>}
           </summary>
+          <label className={styles.field}>
+            <span>Country</span>
+            <select
+              value={filter.country}
+              onChange={event => setFilter(current => ({ ...current, country: event.target.value }))}
+            >
+              <option value="">Any</option>
+              {countries.map(country => (
+                <option key={country.code} value={country.code}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <fieldset className={styles.chains}>
+            <legend>Chain</legend>
+            <div className={styles.chainList}>
+              {chains.map(({ chain, count }) => (
+                <label key={chain}>
+                  <input
+                    type="checkbox"
+                    checked={filter.chains.includes(chain)}
+                    onChange={() => setFilter(current => ({ ...current, chains: toggled(current.chains, chain) }))}
+                  />
+                  {chain === independent ? <em>Independent</em> : chain}
+                  <span className={styles.count}>({count})</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
           <fieldset className={styles.amenities}>
             <legend>Has</legend>
             {amenityNames.map(name => (
@@ -71,7 +111,7 @@ export function GymList({ gyms, initialFilter = noFilter, initialSort = "region"
                 <input
                   type="checkbox"
                   checked={filter.amenities.includes(name)}
-                  onChange={() => toggleAmenity(name)}
+                  onChange={() => setFilter(current => ({ ...current, amenities: toggled(current.amenities, name) }))}
                 />
                 {amenityMap[name].label}
               </label>

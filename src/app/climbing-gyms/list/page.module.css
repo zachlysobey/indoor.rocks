@@ -144,17 +144,18 @@
   }
 }
 
-/* A visible "Sort by" label, so the select reads as a sort and not a filter. */
-.sort {
+/* A select with a visible label beside it, so the sort reads as a sort and the country as a filter. */
+.field {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  width: fit-content;
 }
 
 /* The same mono, uppercase label as the filters' toggle and legend. */
-.sort span,
+.field span,
 .filters summary,
-.amenities legend {
+.filters legend {
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -162,9 +163,44 @@
   text-transform: uppercase;
 }
 
-/* A disclosure for the amenity filters, closed until wanted. */
+/* A disclosure for the country, chain and amenity filters, closed until wanted. */
 .filters {
   flex-basis: 100%;
+}
+
+.filters > :not(summary) {
+  margin-top: 0.75rem;
+}
+
+.filters fieldset {
+  border: 0;
+  font-size: 0.85rem;
+}
+
+.filters fieldset input {
+  accent-color: var(--accent);
+}
+
+/* Every chain, in a box that scrolls rather than pushing the gyms off the screen. */
+.chains legend {
+  margin-bottom: 0.375rem;
+}
+
+.chainList {
+  width: min(100%, 22rem);
+  max-height: 12rem;
+  padding: 0.25rem 0.625rem;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.chainList label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-block: 0.15rem;
 }
 
 .filters summary {
@@ -210,9 +246,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 0.75rem;
-  margin-top: 0.5rem;
-  border: 0;
-  font-size: 0.85rem;
 }
 
 .amenities legend {
@@ -224,10 +257,6 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
-}
-
-.amenities input {
-  accent-color: var(--accent);
 }
 
 .status {
