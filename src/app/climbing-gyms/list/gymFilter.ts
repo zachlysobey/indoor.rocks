@@ -9,7 +9,8 @@ export type GymFilter = {
 
 export const noFilter: GymFilter = { query: "", amenities: [] };
 
-export const sorts = { region: "By region", name: "A–Z" } as const;
+// Each reads after "Sort by".
+export const sorts = { region: "Region", name: "Name (A–Z)" } as const;
 
 export type GymSort = keyof typeof sorts;
 
